@@ -6,17 +6,27 @@
 package com.erp.rh.entidade.departamento;
 
 import com.erp.rh.entidade.funcionario.Funcionario;
+import java.io.Serializable;
 import java.util.List;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 /**
  *
  * @author Raul Portela
  */
-public class Departamento {
+
+@Entity
+public class Departamento implements Serializable {
     
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
-    private String Nome;
+    @Column(length = 30, nullable = false, name = "NOME")
+    private String name;
     
-    private List<Funcionario> funcionarios;
 }
