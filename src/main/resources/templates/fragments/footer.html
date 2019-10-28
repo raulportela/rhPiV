@@ -1,6 +1,10 @@
-<div th:fragments = "footer">
-    
-    <!-- Footer -->
+<!-- 
+Sintaxe para acresentar esse pedaço de código em alguma pagina desejada:
+   Footer (rodapé) 
+        <footer th:include="fragments/footer :: footer" ></footer> 
+-->
+
+<div th:fragment = "footer">
     <footer class="footer">
         <div class="row align-items-center justify-content-xl-between">
             <div class="col-xl-6">
@@ -26,5 +30,4 @@
             </div>
         </div>
     </footer>
-
 </div>

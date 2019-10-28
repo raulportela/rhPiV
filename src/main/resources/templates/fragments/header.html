@@ -1,9 +1,9 @@
-<div th:fragments="header">
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>
-        Argon Dashboard - Free Dashboard for Bootstrap 4 by Creative Tim
-    </title>
+<!-- 
+Sintaxe para acresentar esse pedaço de código em alguma pagina desejada:
+   header (Parte central) 
+        <div th:include="fragments/header :: header"></div>
+-->
+<div th:fragment ="header">
     <!-- Favicon -->
     <link href="/img/brand/favicon.png" rel="icon" type="image/png">
     <!-- Fonts -->
@@ -13,4 +13,6 @@
     <link href="/js/plugins/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet" />
     <!-- CSS Files -->
     <link href="/css/argon-dashboard.css?v=1.1.0" rel="stylesheet" />
+
+    
 </div>
