@@ -15,17 +15,21 @@ import org.springframework.web.servlet.ModelAndView;
  * @author Luana
  */
 @Controller
-@RequestMapping("/erp")
+@RequestMapping("/erp/funcionario")
 public class FuncionarioControle {
-    
-    @GetMapping("/funcionarios")
-    public ModelAndView listaFuncinarios(){
-        return new ModelAndView("/funcionario/listarFuncionarios");
-    }
-    
-    @GetMapping("/perfil")
-    public ModelAndView Perfil(){
-        return  new ModelAndView("/funcionario/profile");
-    }
-}
 
+	@GetMapping("/listar")
+	public ModelAndView listaFuncinarios() {
+		return new ModelAndView("/funcionario/listarFuncionarios");
+	}
+
+	@GetMapping("/perfil")
+	public ModelAndView Perfil() {
+		return new ModelAndView("/funcionario/profile");
+	}
+	
+	@GetMapping("/cadastro")
+	public ModelAndView Cadastrar() {
+		return new ModelAndView("/funcionario/cadastro");
+	}
+}

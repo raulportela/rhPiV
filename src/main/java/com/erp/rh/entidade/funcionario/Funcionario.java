@@ -33,156 +33,155 @@ import org.hibernate.annotations.FetchMode;
 
 @Entity
 public class Funcionario implements Serializable {
-    
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    
-    @Column(length = 30, nullable = false, name = "NOME")
-    private String firstName;
-    
-    @Column(length = 50, nullable = false, name = "SOBRENOME")
-    private String lastName;
-    
-    @Column(length = 11, nullable = false, name = "CPF")
-    private Long cpf;
-    
-    @Column(nullable = false, updatable = false, name = "DTNASCIMENTO")
-    private LocalDate dtBirth;
-    
-    @Column(nullable = false, name = "DISPONIVEL")
-    private boolean disponivel;
-    
-    //true == female
-    //false == male
-    @Column(nullable = false, name = "GENRE")
-    private boolean genre;
-    
-    @Column(length = 10, nullable = false, name = "SENHA")
-    private String hashsenha;
-    
-    @Embedded
-    @OneToOne
-    private Endereco endereco;
-    @Embedded
-    @OneToOne
-    private Contato contato;
-    
-    @Fetch(FetchMode.SUBSELECT)
-    @OneToMany(mappedBy = "funcionario", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private List<Advertencia> advertencia;
-    
-    @Fetch(FetchMode.SUBSELECT)
-    @OneToMany(mappedBy = "funcionario", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private List<Suspensao> suspensao;
-    
-    @Fetch(FetchMode.SUBSELECT)
-    @OneToMany(mappedBy = "funcionario", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private List<Cargo> cargo;
 
-    public Long getId() {
-        return id;
-    }
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	@Column(length = 30, nullable = false, name = "NOME")
+	private String firstName;
 
-    public String getFirstName() {
-        return firstName;
-    }
+	@Column(length = 50, nullable = false, name = "SOBRENOME")
+	private String lastName;
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
+	@Column(length = 11, nullable = false, name = "CPF")
+	private Long cpf;
 
-    public String getLastName() {
-        return lastName;
-    }
+	@Column(nullable = false, updatable = false, name = "DTNASCIMENTO")
+	private LocalDate dtBirth;
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
+	@Column(nullable = false, name = "DISPONIVEL")
+	private boolean disponivel;
 
-    public Long getCpf() {
-        return cpf;
-    }
+	// true == female
+	// false == male
+	@Column(nullable = false, name = "GENERO")
+	private boolean genero;
 
-    public void setCpf(Long cpf) {
-        this.cpf = cpf;
-    }
+	@Column(length = 10, nullable = false, name = "SENHA")
+	private String hashsenha;
 
-    public LocalDate getDtBirth() {
-        return dtBirth;
-    }
+	@Embedded
+	@OneToOne
+	private Endereco endereco;
+	@Embedded
+	@OneToOne
+	private Contato contato;
 
-    public void setDtBirth(LocalDate dtBirth) {
-        this.dtBirth = dtBirth;
-    }
+	@Fetch(FetchMode.SUBSELECT)
+	@OneToMany(mappedBy = "funcionario", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	private List<Advertencia> advertencia;
 
-    public boolean isDisponivel() {
-        return disponivel;
-    }
+	@Fetch(FetchMode.SUBSELECT)
+	@OneToMany(mappedBy = "funcionario", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	private List<Suspensao> suspensao;
 
-    public void setDisponivel(boolean disponivel) {
-        this.disponivel = disponivel;
-    }
+	@Fetch(FetchMode.SUBSELECT)
+	@OneToMany(mappedBy = "funcionario", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	private List<Cargo> cargo;
 
-    public boolean isGenre() {
-        return genre;
-    }
+	public Long getId() {
+		return id;
+	}
 
-    public void setGenre(boolean genre) {
-        this.genre = genre;
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    public String getHashsenha() {
-        return hashsenha;
-    }
+	public String getFirstName() {
+		return firstName;
+	}
 
-    public void setHashsenha(String hashsenha) {
-        this.hashsenha = hashsenha;
-    }
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
 
-    public Endereco getEndereco() {
-        return endereco;
-    }
+	public String getLastName() {
+		return lastName;
+	}
 
-    public void setEndereco(Endereco endereco) {
-        this.endereco = endereco;
-    }
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
 
-    public Contato getContato() {
-        return contato;
-    }
+	public Long getCpf() {
+		return cpf;
+	}
 
-    public void setContato(Contato contato) {
-        this.contato = contato;
-    }
+	public void setCpf(Long cpf) {
+		this.cpf = cpf;
+	}
 
-    public List<Advertencia> getAdvertencia() {
-        return advertencia;
-    }
+	public LocalDate getDtBirth() {
+		return dtBirth;
+	}
 
-    public void setAdvertencia(List<Advertencia> advertencia) {
-        this.advertencia = advertencia;
-    }
+	public void setDtBirth(LocalDate dtBirth) {
+		this.dtBirth = dtBirth;
+	}
 
-    public List<Suspensao> getSuspensao() {
-        return suspensao;
-    }
+	public boolean isDisponivel() {
+		return disponivel;
+	}
 
-    public void setSuspensao(List<Suspensao> suspensao) {
-        this.suspensao = suspensao;
-    }
+	public void setDisponivel(boolean disponivel) {
+		this.disponivel = disponivel;
+	}
 
-    public List<Cargo> getCargo() {
-        return cargo;
-    }
+	public boolean isGenero() {
+		return genero;
+	}
 
-    public void setCargo(List<Cargo> cargo) {
-        this.cargo = cargo;
-    }
-    
-    
+	public void setGenero(boolean genero) {
+		this.genero = genero;
+	}
+
+	public String getHashsenha() {
+		return hashsenha;
+	}
+
+	public void setHashsenha(String hashsenha) {
+		this.hashsenha = hashsenha;
+	}
+
+	public Endereco getEndereco() {
+		return endereco;
+	}
+
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
+	}
+
+	public Contato getContato() {
+		return contato;
+	}
+
+	public void setContato(Contato contato) {
+		this.contato = contato;
+	}
+
+	public List<Advertencia> getAdvertencia() {
+		return advertencia;
+	}
+
+	public void setAdvertencia(List<Advertencia> advertencia) {
+		this.advertencia = advertencia;
+	}
+
+	public List<Suspensao> getSuspensao() {
+		return suspensao;
+	}
+
+	public void setSuspensao(List<Suspensao> suspensao) {
+		this.suspensao = suspensao;
+	}
+
+	public List<Cargo> getCargo() {
+		return cargo;
+	}
+
+	public void setCargo(List<Cargo> cargo) {
+		this.cargo = cargo;
+	}
+
 }

@@ -21,54 +21,53 @@ import javax.persistence.ManyToOne;
  */
 @Entity
 public class Suspensao implements Serializable {
-    
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    
-    @Column(length = 240, nullable = false, name = "REASON")
-    private String reason;
-    
-    @Column(nullable = false, name = "DTAPLICACAO")
-    private LocalDate dtAplicacao;
-    
-    @Column(nullable = false, updatable = false, name = "DTRETURN")
-    private LocalDate dtReturn;
-    
-    @ManyToOne()
-    private Funcionario funcionario;
 
-    public Long getId() {
-        return id;
-    }
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	@Column(length = 240, nullable = false, name = "REASON")
+	private String reason;
 
-    public String getReason() {
-        return reason;
-    }
+	@Column(nullable = false, name = "DTAPLICACAO")
+	private LocalDate dtAplicacao;
 
-    public void setReason(String reason) {
-        this.reason = reason;
-    }
+	@Column(nullable = false, updatable = false, name = "DTRETURN")
+	private LocalDate dtReturn;
 
-    public LocalDate getDtAplicacao() {
-        return dtAplicacao;
-    }
+	@ManyToOne()
+	private Funcionario funcionario;
 
-    public void setDtAplicacao(LocalDate dtAplicacao) {
-        this.dtAplicacao = dtAplicacao;
-    }
+	public Long getId() {
+		return id;
+	}
 
-    public LocalDate getDtReturn() {
-        return dtReturn;
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    public void setDtReturn(LocalDate dtReturn) {
-        this.dtReturn = dtReturn;
-    }
-    
-    
+	public String getReason() {
+		return reason;
+	}
+
+	public void setReason(String reason) {
+		this.reason = reason;
+	}
+
+	public LocalDate getDtAplicacao() {
+		return dtAplicacao;
+	}
+
+	public void setDtAplicacao(LocalDate dtAplicacao) {
+		this.dtAplicacao = dtAplicacao;
+	}
+
+	public LocalDate getDtReturn() {
+		return dtReturn;
+	}
+
+	public void setDtReturn(LocalDate dtReturn) {
+		this.dtReturn = dtReturn;
+	}
+
 }

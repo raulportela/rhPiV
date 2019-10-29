@@ -21,43 +21,42 @@ import javax.persistence.ManyToOne;
  */
 @Entity
 public class Advertencia implements Serializable {
-    
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    
-    @Column(length = 240, nullable = false, name = "REASON")
-    private String reason;
-    
-    @Column(nullable = false, name = "DTAPLICACAO")
-    private LocalDate dtAplicacao;
 
-    @ManyToOne()
-    private Funcionario funcionario;
-    
-    public Long getId() {
-        return id;
-    }
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	@Column(length = 240, nullable = false, name = "REASON")
+	private String reason;
 
-    public String getReason() {
-        return reason;
-    }
+	@Column(nullable = false, name = "DTAPLICACAO")
+	private LocalDate dtAplicacao;
 
-    public void setReason(String reason) {
-        this.reason = reason;
-    }
+	@ManyToOne()
+	private Funcionario funcionario;
 
-    public LocalDate getDtAplicacao() {
-        return dtAplicacao;
-    }
+	public Long getId() {
+		return id;
+	}
 
-    public void setDtAplicacao(LocalDate dtAplicacao) {
-        this.dtAplicacao = dtAplicacao;
-    }
-    
-    
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getReason() {
+		return reason;
+	}
+
+	public void setReason(String reason) {
+		this.reason = reason;
+	}
+
+	public LocalDate getDtAplicacao() {
+		return dtAplicacao;
+	}
+
+	public void setDtAplicacao(LocalDate dtAplicacao) {
+		this.dtAplicacao = dtAplicacao;
+	}
+
 }
