@@ -55,8 +55,8 @@ public class Funcionario implements Serializable {
 
 	// true == female
 	// false == male
-	@Column(nullable = false, name = "GENRE")
-	private boolean genre;
+	@Column(nullable = false, name = "GENERO")
+	private boolean genero;
 
 	@Column(length = 10, nullable = false, name = "SENHA")
 	private String hashsenha;
@@ -128,12 +128,12 @@ public class Funcionario implements Serializable {
 		this.disponivel = disponivel;
 	}
 
-	public boolean isGenre() {
-		return genre;
+	public boolean isGenero() {
+		return genero;
 	}
 
-	public void setGenre(boolean genre) {
-		this.genre = genre;
+	public void setGenero(boolean genero) {
+		this.genero = genero;
 	}
 
 	public String getHashsenha() {

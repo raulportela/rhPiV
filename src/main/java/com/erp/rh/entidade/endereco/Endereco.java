@@ -37,6 +37,9 @@ public class Endereco implements Serializable {
 
 	@Column(length = 200, nullable = false, name = "COMPLEMENTO")
 	private String complemento;
+	
+	@Column(length = 200, nullable = false, name = "Cidade")
+	private String cidade;
 
 	public Long getId() {
 		return id;
@@ -48,6 +51,14 @@ public class Endereco implements Serializable {
 
 	public String getRua() {
 		return rua;
+	}
+
+	public String getCidade() {
+		return cidade;
+	}
+
+	public void setCidade(String cidade) {
+		this.cidade = cidade;
 	}
 
 	public void setRua(String rua) {

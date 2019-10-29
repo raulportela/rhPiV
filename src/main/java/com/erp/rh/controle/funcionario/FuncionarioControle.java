@@ -15,10 +15,10 @@ import org.springframework.web.servlet.ModelAndView;
  * @author Luana
  */
 @Controller
-@RequestMapping("/erp")
+@RequestMapping("/erp/funcionario")
 public class FuncionarioControle {
 
-	@GetMapping("/funcionarios")
+	@GetMapping("/listar")
 	public ModelAndView listaFuncinarios() {
 		return new ModelAndView("/funcionario/listarFuncionarios");
 	}
@@ -26,5 +26,10 @@ public class FuncionarioControle {
 	@GetMapping("/perfil")
 	public ModelAndView Perfil() {
 		return new ModelAndView("/funcionario/profile");
+	}
+	
+	@GetMapping("/cadastro")
+	public ModelAndView Cadastrar() {
+		return new ModelAndView("/funcionario/cadastro");
 	}
 }
