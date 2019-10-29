@@ -17,15 +17,14 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 @RequestMapping("/erp")
 public class FuncionarioControle {
-    
-    @GetMapping("/funcionarios")
-    public ModelAndView listaFuncinarios(){
-        return new ModelAndView("/funcionario/listarFuncionarios");
-    }
-    
-    @GetMapping("/perfil")
-    public ModelAndView Perfil(){
-        return  new ModelAndView("/funcionario/profile");
-    }
-}
 
+	@GetMapping("/funcionarios")
+	public ModelAndView listaFuncinarios() {
+		return new ModelAndView("/funcionario/listarFuncionarios");
+	}
+
+	@GetMapping("/perfil")
+	public ModelAndView Perfil() {
+		return new ModelAndView("/funcionario/profile");
+	}
+}

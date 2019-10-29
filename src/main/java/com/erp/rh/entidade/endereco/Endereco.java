@@ -19,72 +19,71 @@ import javax.persistence.Id;
 @Entity
 public class Endereco implements Serializable {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
-    @Column(length = 100, nullable = false, name = "RUA")
-    private String rua;
+	@Column(length = 100, nullable = false, name = "RUA")
+	private String rua;
 
-    @Column(length = 6, nullable = false, name = "NUMERO")
-    private int numero;
+	@Column(length = 6, nullable = false, name = "NUMERO")
+	private int numero;
 
-    @Column(length = 50, nullable = false, name = "BAIRRO")
-    private String bairro;
+	@Column(length = 50, nullable = false, name = "BAIRRO")
+	private String bairro;
 
-    @Column(length = 7, nullable = false, name = "CEP")
-    private int cep;
+	@Column(length = 7, nullable = false, name = "CEP")
+	private int cep;
 
-    @Column(length = 200, nullable = false, name = "COMPLEMENTO")
-    private String complemento;
+	@Column(length = 200, nullable = false, name = "COMPLEMENTO")
+	private String complemento;
 
-    public Long getId() {
-        return id;
-    }
+	public Long getId() {
+		return id;
+	}
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    public String getRua() {
-        return rua;
-    }
+	public String getRua() {
+		return rua;
+	}
 
-    public void setRua(String rua) {
-        this.rua = rua;
-    }
+	public void setRua(String rua) {
+		this.rua = rua;
+	}
 
-    public int getNumero() {
-        return numero;
-    }
+	public int getNumero() {
+		return numero;
+	}
 
-    public void setNumero(int numero) {
-        this.numero = numero;
-    }
+	public void setNumero(int numero) {
+		this.numero = numero;
+	}
 
-    public String getBairro() {
-        return bairro;
-    }
+	public String getBairro() {
+		return bairro;
+	}
 
-    public void setBairro(String bairro) {
-        this.bairro = bairro;
-    }
+	public void setBairro(String bairro) {
+		this.bairro = bairro;
+	}
 
-    public int getCep() {
-        return cep;
-    }
+	public int getCep() {
+		return cep;
+	}
 
-    public void setCep(int cep) {
-        this.cep = cep;
-    }
+	public void setCep(int cep) {
+		this.cep = cep;
+	}
 
-    public String getComplemento() {
-        return complemento;
-    }
+	public String getComplemento() {
+		return complemento;
+	}
 
-    public void setComplemento(String complemento) {
-        this.complemento = complemento;
-    }
-    
-    
+	public void setComplemento(String complemento) {
+		this.complemento = complemento;
+	}
+
 }

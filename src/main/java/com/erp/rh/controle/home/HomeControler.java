@@ -17,12 +17,11 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping("/erp")
-public class HomeControler{
-    
-    @GetMapping("/home")
-    public ModelAndView home (){
-        return new ModelAndView ("/home/index");
-    }
-    
-    
+public class HomeControler {
+
+	@GetMapping("/home")
+	public ModelAndView home() {
+		return new ModelAndView("/home/index");
+	}
+
 }

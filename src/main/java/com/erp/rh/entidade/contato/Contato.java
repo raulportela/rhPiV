@@ -22,18 +22,17 @@ import javax.persistence.OneToMany;
 @Entity
 public class Contato implements Serializable {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
-    @Column(length = 100, nullable = false, name = "EMAIL")
-    private String email;
-    
-    @Column(length = 15, nullable = false, name = "CELULAR")
-    private String celular;
-    
-    @Column(length = 15, nullable = false, name = "TELEFONE")
-    private String telefone;
-    
-    
+	@Column(length = 100, nullable = false, name = "EMAIL")
+	private String email;
+
+	@Column(length = 15, nullable = false, name = "CELULAR")
+	private String celular;
+
+	@Column(length = 15, nullable = false, name = "TELEFONE")
+	private String telefone;
+
 }
