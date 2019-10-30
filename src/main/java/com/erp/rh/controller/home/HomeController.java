@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.erp.rh.controle.home;
+package com.erp.rh.controller.home;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,7 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping("/erp")
-public class HomeControler {
+public class HomeController {
 
 	@GetMapping("/home")
 	public ModelAndView home() {
