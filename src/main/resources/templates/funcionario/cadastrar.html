@@ -91,28 +91,12 @@
                                                            placeholder="XXX.XXX.XXX-XX" th:classappend="${#fields.hasErrors('cpf')}? is-invalid" th:field="*{cpf}">
                                                 </div>
                                             </div>
-                                            <div class="col-lg-2">
+                                            <div class="col-lg-6">
                                                 <div class="form-group">
                                                     <label class="form-control-label" for="input-last-name">Nascimento</label> 
-                                                    <input type="text" id="input-dtnascimento"
+                                                    <input type="date" id="input-dtnascimento"
                                                            class="form-control form-control-alternative"
-                                                           placeholder="XX" maxlength="2">
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-2">
-                                                <div class="form-group">
-                                                    <label class="form-control-label" for="input-last-name">.</label> 
-                                                    <input type="text" min="1" max="31" id="input-dtnascimento"
-                                                           class="form-control form-control-alternative"
-                                                           placeholder="XX" maxlength="2">
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-2">
-                                                <div class="form-group">
-                                                    <label class="form-control-label" for="input-last-name">.  </label> 
-                                                    <input type="text" min="1" max="12"  id="input-dtnascimento"
-                                                           class="form-control form-control-alternative"
-                                                           placeholder="XXXX" maxlength="4">
+                                                           placeholder="XX/XX/XXXX" maxlength="10">
                                                 </div>
                                             </div>
                                             <div class="col-lg-6">

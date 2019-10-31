@@ -7,6 +7,8 @@ package com.erp.rh.controller.funcionario;
 
 import com.erp.rh.entidade.funcionario.Funcionario;
 import com.erp.rh.repository.funcionario.FuncionarioRepository;
+import java.time.LocalDate;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -23,33 +25,34 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @Controller
 @RequestMapping("/erp/funcionario")
 public class FuncionarioController {
-
-        FuncionarioRepository funcionarioRepository;
     
-	@GetMapping("/listar")
-	public ModelAndView listaFuncinarios() {
-		return new ModelAndView("/funcionario/listarFuncionarios");
-	}
+    @Autowired
+    FuncionarioRepository funcionarioRepository;
 
-	@GetMapping("/perfil")
-	public ModelAndView Perfil() {
-		return new ModelAndView("/funcionario/profile");
-	}
-	
-	@GetMapping("/cadastrar")
-	public ModelAndView Cadastrar() {
-		return new ModelAndView("/funcionario/cadastrar")
-                        .addObject("funcionario", new Funcionario());
-	}
-        
-        @PostMapping("/save")
-	public void Save(
-                @ModelAttribute("funcionario") Funcionario funcionario,
-                @RequestParam("dia") String dia,
-                @RequestParam("mes") String mes,
-                @RequestParam("ano") String ano,
-                
-                RedirectAttributes redirectAttributes) {
-            funcionarioRepository.save(funcionario);
-	}
+    @GetMapping("/listar")
+    public ModelAndView listaFuncinarios() {
+        return new ModelAndView("/funcionario/listarFuncionarios");
+    }
+    
+    @PostMapping("/save")
+    public void Save(
+            @ModelAttribute("funcionario") Funcionario funcionario,
+            RedirectAttributes redirectAttributes) {
+        funcionario.setDtBirth(LocalDate.now());
+        funcionario.setDisponivel(true);
+        funcionarioRepository.save(funcionario);
+    }
+
+    @GetMapping("/perfil")
+    public ModelAndView Perfil() {
+        return new ModelAndView("/funcionario/profile");
+    }
+
+    @GetMapping("/cadastrar")
+    public ModelAndView Cadastrar() {
+        return new ModelAndView("/funcionario/cadastrar")
+                .addObject("funcionario", new Funcionario());
+    }
+
+    
 }

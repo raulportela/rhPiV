@@ -47,7 +47,7 @@ public class Funcionario implements Serializable {
 	@Column(length = 11, nullable = false, name = "CPF")
 	private Long cpf;
 
-	@Column(nullable = false, updatable = false, name = "DTNASCIMENTO")
+	@Column(nullable = false, updatable = false, name = "DTBIRTH")
 	private LocalDate dtBirth;
 
 	@Column(nullable = false, name = "DISPONIVEL")
@@ -58,13 +58,12 @@ public class Funcionario implements Serializable {
 	@Column(nullable = false, name = "GENERO")
 	private boolean genero;
 
-	@Column(length = 10, nullable = false, name = "SENHA")
+	@Column(length = 10, nullable = true, name = "SENHA")
 	private String hashsenha;
 
-	@Embedded
 	@OneToOne
 	private Endereco endereco;
-	@Embedded
+	
 	@OneToOne
 	private Contato contato;
 

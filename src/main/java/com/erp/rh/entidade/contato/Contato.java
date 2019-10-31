@@ -5,12 +5,14 @@
  */
 package com.erp.rh.entidade.contato;
 
+import com.erp.rh.entidade.funcionario.Funcionario;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 /**
  *
@@ -31,6 +33,9 @@ public class Contato implements Serializable {
 
     @Column(length = 15, nullable = false, name = "TELEFONE")
     private String telefone;
+    
+    @OneToOne()
+    private Funcionario funcionario;
 
     public Long getId() {
         return id;
