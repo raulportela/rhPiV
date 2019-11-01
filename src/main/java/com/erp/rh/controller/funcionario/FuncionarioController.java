@@ -35,12 +35,14 @@ public class FuncionarioController {
     }
     
     @PostMapping("/save")
-    public void Save(
+    public ModelAndView Save(
             @ModelAttribute("funcionario") Funcionario funcionario,
             RedirectAttributes redirectAttributes) {
-        funcionario.setDtBirth(LocalDate.now());
-        funcionario.setDisponivel(true);
+                funcionario.setDisponivel(true);
         funcionarioRepository.save(funcionario);
+        redirectAttributes.addFlashAttribute("mensagemSucesso",
+                "Funcinario " + funcionario.getFirstName() + " salvo com sucesso");
+        return new ModelAndView("redirect:/erp/funcionario/listar");
     }
 
     @GetMapping("/perfil")

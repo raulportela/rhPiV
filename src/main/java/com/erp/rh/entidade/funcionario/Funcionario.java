@@ -25,6 +25,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
+import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  *
@@ -48,6 +49,7 @@ public class Funcionario implements Serializable {
 	private Long cpf;
 
 	@Column(nullable = false, updatable = false, name = "DTBIRTH")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate dtBirth;
 
 	@Column(nullable = false, name = "DISPONIVEL")
@@ -61,10 +63,10 @@ public class Funcionario implements Serializable {
 	@Column(length = 10, nullable = true, name = "SENHA")
 	private String hashsenha;
 
-	@OneToOne
+	@OneToOne ( fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private Endereco endereco;
 	
-	@OneToOne
+	@OneToOne ( fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private Contato contato;
 
 	@Fetch(FetchMode.SUBSELECT)
