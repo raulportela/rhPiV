@@ -11,6 +11,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.transaction.Transactional;
+
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -18,8 +20,16 @@ import org.springframework.stereotype.Repository;
  * @author Raul Portela
  */
 @Repository
-public class FuncionarioRepository {
-	@PersistenceContext
+public interface FuncionarioRepository extends JpaRepository<Funcionario, Long> {
+	
+	
+	Funcionario findById(long id);
+	List<Funcionario> findAll();
+	
+	
+	
+	
+	/**@PersistenceContext
 	private EntityManager entityManager;
 
 	@Transactional
@@ -52,5 +62,5 @@ public class FuncionarioRepository {
 		Query jpqlQuery = entityManager.createNamedQuery("Funcionario.findAll");
 		List<Funcionario> funcionarios = jpqlQuery.getResultList();
 		return funcionarios;
-	}
+	} */
 }

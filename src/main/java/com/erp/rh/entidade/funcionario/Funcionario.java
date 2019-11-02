@@ -23,6 +23,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -38,16 +41,20 @@ public class Funcionario implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-
+	
+	@NotNull(message = "Digite o nome")
 	@Column(length = 30, nullable = false, name = "NOME")
 	private String firstName;
-
+	
+	@NotNull(message = "Digite o sobrenome")
 	@Column(length = 50, nullable = false, name = "SOBRENOME")
 	private String lastName;
-
+	
+	@NotNull(message = "Digite o CPF")
 	@Column(length = 11, nullable = false, name = "CPF")
 	private Long cpf;
-
+	
+	@NotNull(message = "Digite a data de nascimento")
 	@Column(nullable = false, updatable = false, name = "DTBIRTH")
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate dtBirth;
@@ -60,9 +67,11 @@ public class Funcionario implements Serializable {
 	@Column(nullable = false, name = "GENERO")
 	private boolean genero;
 
+	
 	@Column(length = 10, nullable = true, name = "SENHA")
 	private String hashsenha;
 
+	
 	@OneToOne ( fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private Endereco endereco;
 	
