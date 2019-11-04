@@ -18,6 +18,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -37,12 +38,12 @@ public class FuncionarioController {
 
 	@GetMapping("/listar")
 	public ModelAndView listaFuncinarios() {
-		List <Funcionario> listaFuncionario = new ArrayList();
-		
-		if(listaFuncionario.isEmpty()) {
+		List<Funcionario> listaFuncionario = new ArrayList();
+
+		if (listaFuncionario.isEmpty()) {
 			listaFuncionario = funcionarioRepository.findAll();
 		}
-		
+
 		return new ModelAndView("/funcionario/listarFuncionarios").addObject("listaFuncionario", listaFuncionario);
 	}
 
@@ -50,13 +51,30 @@ public class FuncionarioController {
 	public ModelAndView Save(@ModelAttribute("funcionario") @Valid Funcionario funcionario, BindingResult bindingResult,
 			RedirectAttributes redirectAttributes) {
 		if (bindingResult.hasErrors()) {
-			return new ModelAndView("/funcionario/cadastrar");
+			return new ModelAndView("/funcionario/cadastrarAlterar");
 		}
-		funcionario.setDisponivel(true);
-		funcionarioRepository.save(funcionario);
-		redirectAttributes.addFlashAttribute("mensagemSucesso",
-				"Funcinario " + funcionario.getFirstName() + " cadastrado com sucesso");
-		return new ModelAndView("redirect:/erp/funcionario/listar");
+
+		if (funcionario.getId() != null) {
+
+			redirectAttributes.addFlashAttribute("mensagemSucesso",
+					"Funcinario " + funcionario.getFirstName() + " Alterado com sucesso");
+			return new ModelAndView("redirect:/erp/funcionario/listar");
+
+		} else {
+
+			funcionario.setDisponivel(true);
+			funcionarioRepository.save(funcionario);
+			redirectAttributes.addFlashAttribute("mensagemSucesso",
+					"Funcinario " + funcionario.getFirstName() + " cadastrado com sucesso");
+			return new ModelAndView("redirect:/erp/funcionario/listar");
+
+		}
+	}
+
+	@GetMapping("/buscar/{id}")
+	public ModelAndView FuncinarioById(@PathVariable(value = "id") long id) {
+		Funcionario alterarfunc = funcionarioRepository.findById(id);
+		return new ModelAndView("/funcionario/cadastrarAlterar").addObject("funcionario", alterarfunc);
 	}
 
 	@GetMapping("/perfil")
@@ -66,7 +84,7 @@ public class FuncionarioController {
 
 	@GetMapping("/cadastrar")
 	public ModelAndView Cadastrar() {
-		return new ModelAndView("/funcionario/cadastrar").addObject("funcionario", new Funcionario());
+		return new ModelAndView("/funcionario/cadastrarAlterar").addObject("funcionario", new Funcionario());
 	}
 
 }
