@@ -60,6 +60,7 @@ public class FuncionarioController {
         }
         
         funcionarioRepository.save(funcionario);
+        
         redirectAttributes.addFlashAttribute("mensagemSucesso",
                 "Funcinario " + funcionario.getFirstName() + " cadastrado com sucesso");
         return new ModelAndView("redirect:/erp/funcionario/listar");
