@@ -15,7 +15,6 @@ import java.time.LocalDate;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -23,7 +22,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.Fetch;
@@ -34,164 +32,173 @@ import org.springframework.format.annotation.DateTimeFormat;
  *
  * @author Raul Portela
  */
-
 @Entity
 public class Funcionario implements Serializable {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-	
-	@NotNull(message = "Digite o nome")
-	@Column(length = 30, nullable = false, name = "NOME")
-	private String firstName;
-	
-	@NotNull(message = "Digite o sobrenome")
-	@Column(length = 50, nullable = false, name = "SOBRENOME")
-	private String lastName;
-	
-	@NotNull(message = "Digite o CPF")
-	@Column(length = 11, nullable = false, name = "CPF")
-	private Long cpf;
-	
-	@NotNull(message = "Digite a data de nascimento")
-	@Column(nullable = false, updatable = false, name = "DTBIRTH")
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	private LocalDate dtBirth;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-	@Column(nullable = false, name = "DISPONIVEL")
-	private boolean disponivel;
+    @NotNull(message = "Digite o nome")
+    @Column(length = 30, nullable = false, name = "NOME")
+    private String firstName;
 
-	// true == female
-	// false == male
-	@Column(nullable = false, name = "GENERO")
-	private boolean genero;
+    @NotNull(message = "Digite o sobrenome")
+    @Column(length = 50, nullable = false, name = "SOBRENOME")
+    private String lastName;
 
-	
-	@Column(length = 10, nullable = true, name = "SENHA")
-	private String hashsenha;
+    @NotNull(message = "Digite o CPF")
+    @Column(length = 11, nullable = false, name = "CPF")
+    private Long cpf;
 
-	
-	@OneToOne ( fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	private Endereco endereco;
-	
-	@OneToOne ( fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	private Contato contato;
+    @NotNull(message = "Digite a data de nascimento")
+    @Column(nullable = false, updatable = false, name = "DTBIRTH")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate dtBirth;
 
-	@Fetch(FetchMode.SUBSELECT)
-	@OneToMany(mappedBy = "funcionario", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	private List<Advertencia> advertencia;
+    @Column(nullable = false, updatable = false, name = "DTADMISSION")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate dtAdmission;
 
-	@Fetch(FetchMode.SUBSELECT)
-	@OneToMany(mappedBy = "funcionario", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	private List<Suspensao> suspensao;
+    @Column(nullable = false, name = "DISPONIVEL")
+    private boolean disponivel;
 
-	@Fetch(FetchMode.SUBSELECT)
-	@OneToMany(mappedBy = "funcionario", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	private List<Cargo> cargo;
+    // true == female
+    // false == male
+    @Column(nullable = false, name = "GENERO")
+    private boolean genero;
 
-	public Long getId() {
-		return id;
-	}
+    @Column(length = 10, nullable = true, name = "SENHA")
+    private String hashsenha;
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private Endereco endereco;
 
-	public String getFirstName() {
-		return firstName;
-	}
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private Contato contato;
 
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
+    @Fetch(FetchMode.SUBSELECT)
+    @OneToMany(mappedBy = "funcionario", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private List<Advertencia> advertencia;
 
-	public String getLastName() {
-		return lastName;
-	}
+    @Fetch(FetchMode.SUBSELECT)
+    @OneToMany(mappedBy = "funcionario", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private List<Suspensao> suspensao;
 
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
+    @Fetch(FetchMode.SUBSELECT)
+    @OneToMany(mappedBy = "funcionario", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private List<Cargo> cargo;
 
-	public Long getCpf() {
-		return cpf;
-	}
+    public Long getId() {
+        return id;
+    }
 
-	public void setCpf(Long cpf) {
-		this.cpf = cpf;
-	}
+    public LocalDate getDtAdmission() {
+        return dtAdmission;
+    }
 
-	public LocalDate getDtBirth() {
-		return dtBirth;
-	}
+    public void setDtAdmission(LocalDate dtAdmission) {
+        this.dtAdmission = dtAdmission;
+    }
 
-	public void setDtBirth(LocalDate dtBirth) {
-		this.dtBirth = dtBirth;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	public boolean isDisponivel() {
-		return disponivel;
-	}
+    public String getFirstName() {
+        return firstName;
+    }
 
-	public void setDisponivel(boolean disponivel) {
-		this.disponivel = disponivel;
-	}
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
 
-	public boolean isGenero() {
-		return genero;
-	}
+    public String getLastName() {
+        return lastName;
+    }
 
-	public void setGenero(boolean genero) {
-		this.genero = genero;
-	}
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
 
-	public String getHashsenha() {
-		return hashsenha;
-	}
+    public Long getCpf() {
+        return cpf;
+    }
 
-	public void setHashsenha(String hashsenha) {
-		this.hashsenha = hashsenha;
-	}
+    public void setCpf(Long cpf) {
+        this.cpf = cpf;
+    }
 
-	public Endereco getEndereco() {
-		return endereco;
-	}
+    public LocalDate getDtBirth() {
+        return dtBirth;
+    }
 
-	public void setEndereco(Endereco endereco) {
-		this.endereco = endereco;
-	}
+    public void setDtBirth(LocalDate dtBirth) {
+        this.dtBirth = dtBirth;
+    }
 
-	public Contato getContato() {
-		return contato;
-	}
+    public boolean isDisponivel() {
+        return disponivel;
+    }
 
-	public void setContato(Contato contato) {
-		this.contato = contato;
-	}
+    public void setDisponivel(boolean disponivel) {
+        this.disponivel = disponivel;
+    }
 
-	public List<Advertencia> getAdvertencia() {
-		return advertencia;
-	}
+    public boolean isGenero() {
+        return genero;
+    }
 
-	public void setAdvertencia(List<Advertencia> advertencia) {
-		this.advertencia = advertencia;
-	}
+    public void setGenero(boolean genero) {
+        this.genero = genero;
+    }
 
-	public List<Suspensao> getSuspensao() {
-		return suspensao;
-	}
+    public String getHashsenha() {
+        return hashsenha;
+    }
 
-	public void setSuspensao(List<Suspensao> suspensao) {
-		this.suspensao = suspensao;
-	}
+    public void setHashsenha(String hashsenha) {
+        this.hashsenha = hashsenha;
+    }
 
-	public List<Cargo> getCargo() {
-		return cargo;
-	}
+    public Endereco getEndereco() {
+        return endereco;
+    }
 
-	public void setCargo(List<Cargo> cargo) {
-		this.cargo = cargo;
-	}
+    public void setEndereco(Endereco endereco) {
+        this.endereco = endereco;
+    }
+
+    public Contato getContato() {
+        return contato;
+    }
+
+    public void setContato(Contato contato) {
+        this.contato = contato;
+    }
+
+    public List<Advertencia> getAdvertencia() {
+        return advertencia;
+    }
+
+    public void setAdvertencia(List<Advertencia> advertencia) {
+        this.advertencia = advertencia;
+    }
+
+    public List<Suspensao> getSuspensao() {
+        return suspensao;
+    }
+
+    public void setSuspensao(List<Suspensao> suspensao) {
+        this.suspensao = suspensao;
+    }
+
+    public List<Cargo> getCargo() {
+        return cargo;
+    }
+
+    public void setCargo(List<Cargo> cargo) {
+        this.cargo = cargo;
+    }
 
 }
