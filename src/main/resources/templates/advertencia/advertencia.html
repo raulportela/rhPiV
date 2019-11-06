@@ -1,0 +1,136 @@
+<!--
+
+=========================================================
+* Argon Dashboard - v1.1.0
+=========================================================
+
+* Product Page: https://www.creative-tim.com/product/argon-dashboard
+* Copyright 2019 Creative Tim (https://www.creative-tim.com)
+* Licensed under MIT (https://github.com/creativetimofficial/argon-dashboard/blob/master/LICENSE.md)
+
+* Coded by Creative Tim
+
+=========================================================
+
+* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. -->
+<!DOCTYPE html>
+<html lang="en">
+
+    <!-- Cabeçalho importado -->
+    <head th:include="fragments/head :: head"></head>
+
+    <body class="">
+        <nav
+            class="navbar navbar-vertical fixed-left navbar-expand-md navbar-light bg-white"
+            id="sidenav-main">
+            <!--  Nav Left (Menu do lado Esquedo) -->
+            <nav th:include="fragments/nav :: nav"></nav>
+        </nav>
+
+        <div class="main-content">
+
+            <!--  Nav Up (parte de cima) -->
+            <nav th:include="fragments/nav2 :: nav2"></nav>
+
+            <!-- Header -->
+            <div class="header pb-5 pt-5 pt-lg-8 d-flex align-items-center"
+                 style="min-height: 300px; background-size: cover; background-position: center top;">
+                <!-- Mask -->
+                <span class="mask bg-gradient-default opacity-8"></span>
+                <!-- Header container -->
+                <div class="container-fluid d-flex align-items-center">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-10" th:object="${funcionario}">
+                            <h1 class="display-3 text-white">Advertencia</h1>
+                            <p class="text-white mt-0 mb-7">É necessario o preenchimento
+                                de todas Informções que contém *</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Page content -->
+            <div class="container-fluid mt--7">
+                <div class="row">
+                    <div class="col-xl-12 order-xl-1">
+                        <div class="card bg-secondary shadow">
+                            <div class="card-header bg-white border-0">
+                                <div class="row align-items-center">
+                                    <div class="col-8">
+                                        <h3 class="mb-0">Cadastrar Funcionario</h3>
+                                    </div>
+                                </div>
+                            </div>
+                            <form th:action="@{/erp/advertencia/save}" method="post" th:object="${advertencia}">
+                                <div class="card-body">
+                                    <h6 class="heading-small text-muted mb-4">Funcionario advertido</h6>
+                                    <div class="pl-lg-4">
+                                        <div class="row" th:object="${advertencia.funcionario}">
+                                            <div class="col-lg-6">
+                                                <div class="form-group" >
+                                                    <label class="form-control-label" for="input-first-name">Primeiro nome</label> 
+                                                    <input type="text" id="input-first-name"
+                                                           class="form-control form-control-alternative"
+                                                           placeholder="Primeiro nome"
+                                                           th:classappend="${#fields.hasErrors('firstName')}? is-invalid"
+                                                           th:field="*{firstName}">
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <div class="form-group">
+                                                    <label class="form-control-label" for="input-last-name">Sobrenome</label>
+                                                    <input type="text" id="input-last-name"
+                                                           class="form-control form-control-alternative"
+                                                           placeholder="Sobrenome"
+                                                           th:classappend="${#fields.hasErrors('lastName')}? is-invalid"
+                                                           th:field="*{lastName}">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr class="my-4" />
+                                <!-- Contato -->
+                                <div class="card-body">
+                                    <h6 class="heading-small text-muted mb-4">Informações da advertencia</h6>
+                                    <div class="pl-lg-4">
+                                        <div class="row">
+                                            <div class="col-lg-3">
+                                                <div class="form-group">
+                                                    <label class="form-control-label" for="input-last-name">Data de aplicação</label>
+                                                    <input type="date" id="input-dtnascimento"
+                                                           class="form-control form-control-alternative"
+                                                           maxlength="10"
+                                                           th:classappend="${#fields.hasErrors('dtAplicacao')}? is-invalid"
+                                                           th:field="*{dtAplicacao}" readonly>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-9">
+                                                <div class="form-group">
+                                                    <label class="form-control-label" for="input-city">Motivo</label>
+                                                    <input type="text" id="input-city"
+                                                           class="form-control form-control-alternative"
+                                                           placeholder="Descreva o motivo"
+                                                           th:classappend="${#fields.hasErrors('reason')}? is-invalid"
+                                                           th:field="*{reason}">
+                                                </div>
+                                            </div>
+                                            <a th:href="@{/erp/home}" class="btn btn-dark">Cancelar</a> 
+                                            <input type="submit" class="btn btn-info" value="Aplicar"> 
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <footer th:include="fragments/footer :: footer"></footer>
+        </div>
+    </div>
+
+    <!-- Scripts-->
+    <div th:include="fragments/scripts :: scripts"></div>
+</body>
+</html>

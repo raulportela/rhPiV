@@ -35,7 +35,8 @@ public class Suspensao implements Serializable {
     @Column(nullable = false, updatable = false, name = "DTRETURN")
     private LocalDate dtReturn;
 
-   
+    @ManyToOne()
+    private Funcionario funcionario;
 
     public Long getId() {
         return id;

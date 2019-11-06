@@ -77,12 +77,10 @@ public class Funcionario implements Serializable {
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Contato contato;
 
-    @Fetch(FetchMode.SUBSELECT)
-    @OneToMany(mappedBy = "funcionario", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "funcionario", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Advertencia> advertencia;
 
-    @Fetch(FetchMode.SUBSELECT)
-    @OneToMany(mappedBy = "funcionario", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "funcionario", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Suspensao> suspensao;
 
     @Fetch(FetchMode.SUBSELECT)
