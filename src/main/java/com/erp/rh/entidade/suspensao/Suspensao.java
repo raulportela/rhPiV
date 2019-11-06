@@ -22,52 +22,51 @@ import javax.persistence.ManyToOne;
 @Entity
 public class Suspensao implements Serializable {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-	@Column(length = 240, nullable = false, name = "REASON")
-	private String reason;
+    @Column(length = 240, nullable = false, name = "REASON")
+    private String reason;
 
-	@Column(nullable = false, name = "DTAPLICACAO")
-	private LocalDate dtAplicacao;
+    @Column(nullable = false, name = "DTAPLICACAO")
+    private LocalDate dtAplicacao;
 
-	@Column(nullable = false, updatable = false, name = "DTRETURN")
-	private LocalDate dtReturn;
+    @Column(nullable = false, updatable = false, name = "DTRETURN")
+    private LocalDate dtReturn;
 
-	@ManyToOne()
-	private Funcionario funcionario;
+   
 
-	public Long getId() {
-		return id;
-	}
+    public Long getId() {
+        return id;
+    }
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	public String getReason() {
-		return reason;
-	}
+    public String getReason() {
+        return reason;
+    }
 
-	public void setReason(String reason) {
-		this.reason = reason;
-	}
+    public void setReason(String reason) {
+        this.reason = reason;
+    }
 
-	public LocalDate getDtAplicacao() {
-		return dtAplicacao;
-	}
+    public LocalDate getDtAplicacao() {
+        return dtAplicacao;
+    }
 
-	public void setDtAplicacao(LocalDate dtAplicacao) {
-		this.dtAplicacao = dtAplicacao;
-	}
+    public void setDtAplicacao(LocalDate dtAplicacao) {
+        this.dtAplicacao = dtAplicacao;
+    }
 
-	public LocalDate getDtReturn() {
-		return dtReturn;
-	}
+    public LocalDate getDtReturn() {
+        return dtReturn;
+    }
 
-	public void setDtReturn(LocalDate dtReturn) {
-		this.dtReturn = dtReturn;
-	}
+    public void setDtReturn(LocalDate dtReturn) {
+        this.dtReturn = dtReturn;
+    }
 
 }

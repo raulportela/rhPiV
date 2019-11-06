@@ -43,9 +43,6 @@ public class Endereco implements Serializable {
     @Column(length = 200, nullable = false, name = "Cidade")
     private String cidade;
 
-    @OneToOne()
-    private Funcionario funcionario;
-
     public Long getId() {
         return id;
     }

@@ -34,9 +34,6 @@ public class Contato implements Serializable {
     @Column(length = 15, nullable = false, name = "TELEFONE")
     private String telefone;
     
-    @OneToOne()
-    private Funcionario funcionario;
-
     public Long getId() {
         return id;
     }

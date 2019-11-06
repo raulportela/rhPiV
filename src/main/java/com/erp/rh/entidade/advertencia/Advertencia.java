@@ -32,9 +32,6 @@ public class Advertencia implements Serializable {
 	@Column(nullable = false, name = "DTAPLICACAO")
 	private LocalDate dtAplicacao;
 
-	@ManyToOne()
-	private Funcionario funcionario;
-
 	public Long getId() {
 		return id;
 	}
