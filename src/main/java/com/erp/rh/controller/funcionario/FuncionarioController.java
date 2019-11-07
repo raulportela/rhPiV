@@ -32,63 +32,66 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @RequestMapping("/erp/funcionario")
 public class FuncionarioController {
 
-    @Autowired
-    FuncionarioRepository funcionarioRepository;
+	@Autowired
+	FuncionarioRepository funcionarioRepository;
 
-    @GetMapping("/listar")
-    public ModelAndView listaFuncinarios() {
-        List<Funcionario> listaFuncionario = new ArrayList();
-        if (listaFuncionario.isEmpty()) {
-            listaFuncionario = funcionarioRepository.findAll();
-        }
-        return new ModelAndView("/funcionario/listarFuncionarios").addObject("listaFuncionario", listaFuncionario);
-    }
+	@GetMapping("/listar")
+	public ModelAndView listaFuncinarios() {
+		List<Funcionario> listaFuncionario = new ArrayList();
+		if (listaFuncionario.isEmpty()) {
+			listaFuncionario = funcionarioRepository.findAll();
+		}
+		return new ModelAndView("/funcionario/listarFuncionarios").addObject("listaFuncionario", listaFuncionario);
+	}
 
-    @PostMapping("/save")
-    public ModelAndView save(@ModelAttribute("funcionario") @Valid Funcionario funcionario, BindingResult bindingResult,
-            RedirectAttributes redirectAttributes) {
-        if (bindingResult.hasErrors()) {
-            return new ModelAndView("/funcionario/cadastrarAlterar");
-        }
+	@PostMapping("/save")
+	public ModelAndView save(@ModelAttribute("funcionario") @Valid Funcionario funcionario, BindingResult bindingResult,
+			RedirectAttributes redirectAttributes) {
+		if (bindingResult.hasErrors()) {
+			return new ModelAndView("/funcionario/cadastrarAlterar");
+		}
 
-        if (funcionario.getId() == null) {
-            funcionario.setDisponivel(true);
-            funcionario.setDtAdmission(LocalDate.now());
-        }
+		if (funcionario.getId() == null) {
+			funcionario.setDisponivel(true);
+			funcionario.setDtAdmission(LocalDate.now());
+			funcionarioRepository.save(funcionario);
+			redirectAttributes.addFlashAttribute("mensagemSucesso",
+					"Funcionario " + funcionario.getFirstName() + " cadastrado com sucesso");
+		} else {
+			redirectAttributes.addFlashAttribute("mensagemSucesso",
+					"Funcionario " + funcionario.getFirstName() + " Alterado com sucesso");
+		}
 
-        funcionarioRepository.save(funcionario);
-        redirectAttributes.addFlashAttribute("mensagemSucesso",
-                "Funcinario " + funcionario.getFirstName() + " cadastrado com sucesso");
-        return new ModelAndView("redirect:/erp/funcionario/listar");
+		return new ModelAndView("redirect:/erp/funcionario/listar");
 
-    }
+	}
 
-    @GetMapping("/buscar/{id}")
-    public ModelAndView funcinarioById(@PathVariable(value = "id") long id) {
-        Funcionario alterarfunc = funcionarioRepository.findById(id);
-        return new ModelAndView("/funcionario/cadastrarAlterar").addObject("funcionario", alterarfunc);
-    }
+	@GetMapping("/buscar/{id}")
+	public ModelAndView funcinarioById(@PathVariable(value = "id") long id) {
+		Funcionario alterarfunc = funcionarioRepository.findById(id);
+		return new ModelAndView("/funcionario/cadastrarAlterar").addObject("funcionario", alterarfunc);
+	}
 
-    @GetMapping("/perfil")
-    public ModelAndView perfil() {
-        return new ModelAndView("/funcionario/profile");
-    }
+	@GetMapping("/perfil")
+	public ModelAndView perfil() {
+		return new ModelAndView("/funcionario/profile");
+	}
 
-    @GetMapping("/cadastrar")
-    public ModelAndView cadastrar() {
-        return new ModelAndView("/funcionario/cadastrarAlterar").addObject("funcionario", new Funcionario());
-    }
-    
-    @GetMapping("/suspender/{id}")
-    public ModelAndView suspender(@PathVariable(value = "id") long id){
-        Funcionario alterarfunc = funcionarioRepository.findById(id);
-        return new ModelAndView("/funcionario/suspender");
-    }
-    
-    @GetMapping("/advertir/{id}")
-    public ModelAndView advertir(@PathVariable(value = "id") long id){
-        Funcionario alterarfunc = funcionarioRepository.findById(id);
-        return new ModelAndView("/funcionario/advertir");
-    }
+	@GetMapping("/cadastrar")
+	public ModelAndView cadastrar() {
+		return new ModelAndView("/funcionario/cadastrarAlterar").addObject("funcionario", new Funcionario());
+	}
+
+	@GetMapping("/suspender/{id}")
+	public ModelAndView suspender(@PathVariable(value = "id") long id) {
+		Funcionario alterarfunc = funcionarioRepository.findById(id);
+		return new ModelAndView("/funcionario/suspender");
+	}
+
+	@GetMapping("/advertir/{id}")
+	public ModelAndView advertir(@PathVariable(value = "id") long id) {
+		Funcionario alterarfunc = funcionarioRepository.findById(id);
+		return new ModelAndView("/funcionario/advertir");
+	}
 
 }

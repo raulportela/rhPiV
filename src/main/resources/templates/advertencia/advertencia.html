@@ -16,21 +16,21 @@
 <!DOCTYPE html>
 <html lang="en">
 
-    <!-- Cabeçalho importado -->
-    <head th:include="fragments/head :: head"></head>
+<!-- Cabeçalho importado -->
+<head th:include="fragments/head :: head"></head>
 
-    <body class="">
-        <nav
-            class="navbar navbar-vertical fixed-left navbar-expand-md navbar-light bg-white"
-            id="sidenav-main">
-            <!--  Nav Left (Menu do lado Esquedo) -->
-            <nav th:include="fragments/nav :: nav"></nav>
-        </nav>
+<body class="">
+	<nav
+		class="navbar navbar-vertical fixed-left navbar-expand-md navbar-light bg-white"
+		id="sidenav-main">
+		<!--  Nav Left (Menu do lado Esquedo) -->
+		<nav th:include="fragments/nav :: nav"></nav>
+	</nav>
 
-        <div class="main-content">
+	<div class="main-content">
 
-            <!--  Nav Up (parte de cima) -->
-            <nav th:include="fragments/nav2 :: nav2"></nav>
+		<!--  Nav Up (parte de cima) -->
+		<nav th:include="fragments/nav2 :: nav2"></nav>
 
             <!-- Header -->
             <div class="header pb-5 pt-5 pt-lg-8 d-flex align-items-center"
@@ -129,12 +129,12 @@
                 </div>
             </div>
 
-            <!-- Footer -->
-            <footer th:include="fragments/footer :: footer"></footer>
-        </div>
-    </div>
+		<!-- Footer -->
+		<footer th:include="fragments/footer :: footer"></footer>
+	</div>
+	</div>
 
-    <!-- Scripts-->
-    <div th:include="fragments/scripts :: scripts"></div>
+	<!-- Scripts-->
+	<div th:include="fragments/scripts :: scripts"></div>
 </body>
 </html>
