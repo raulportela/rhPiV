@@ -8,8 +8,11 @@ package com.erp.rh.entidade.advertencia;
 import com.erp.rh.entidade.funcionario.Funcionario;
 import java.io.Serializable;
 import java.time.LocalDate;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -34,7 +37,7 @@ public class Advertencia implements Serializable {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate dtAplicacao;
 
-    @ManyToOne()
+    @ManyToOne
     private Funcionario funcionario;
 
     public Long getId() {
