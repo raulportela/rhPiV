@@ -12,6 +12,7 @@ import com.erp.rh.entidade.endereco.Endereco;
 import com.erp.rh.entidade.suspensao.Suspensao;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -77,10 +78,12 @@ public class Funcionario implements Serializable {
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Contato contato;
 
-    @OneToMany(mappedBy = "funcionario", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<Advertencia> advertencia;
+    @Fetch(FetchMode.SUBSELECT)
+    @OneToMany(mappedBy = "funcionario", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private List<Advertencia> advertencias;
 
-    @OneToMany(mappedBy = "funcionario", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @Fetch(FetchMode.SUBSELECT)
+    @OneToMany(mappedBy = "funcionario", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Suspensao> suspensao;
 
     @Fetch(FetchMode.SUBSELECT)
@@ -175,12 +178,12 @@ public class Funcionario implements Serializable {
         this.contato = contato;
     }
 
-    public List<Advertencia> getAdvertencia() {
-        return advertencia;
+    public List<Advertencia> getAdvertencias() {
+        return advertencias;
     }
 
-    public void setAdvertencia(List<Advertencia> advertencia) {
-        this.advertencia = advertencia;
+    public void setAdvertencias(List<Advertencia> advertencias) {
+        this.advertencias = advertencias;
     }
 
     public List<Suspensao> getSuspensao() {

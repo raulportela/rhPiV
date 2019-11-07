@@ -6,10 +6,11 @@
 package com.erp.rh.controller.advertencia;
 
 import com.erp.rh.entidade.advertencia.Advertencia;
+import com.erp.rh.entidade.funcionario.Funcionario;
 import com.erp.rh.repository.advertencia.AdvertenciaRepository;
 import com.erp.rh.repository.funcionario.FuncionarioRepository;
 import java.time.LocalDate;
-import javax.validation.Valid;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -35,19 +36,16 @@ public class AdvertenciaController {
     FuncionarioRepository funcionarioRepository;
 
     @PostMapping("/save")
-    public ModelAndView save(@ModelAttribute("advertencia") @Valid Advertencia advertencia,
+    public ModelAndView save(@ModelAttribute("advertencia") Advertencia advertencia,
             RedirectAttributes redirectAttributes) {
+        long id = advertencia.getFuncionario().getId();
+        Funcionario funcionario = funcionarioRepository.findById(id);
+        advertencia.setFuncionario(funcionario);
         advertenciaRepository.save(advertencia);
         return new ModelAndView("redirect:/erp/funcionario/listar");
 
     }
 
-//    @GetMapping("/buscar/{id}")
-//    public ModelAndView funcinarioById(@PathVariable(value = "id") long id) {
-//        Funcionario alterarfunc = funcionarioRepository.findById(id);
-//        return new ModelAndView("/funcionario/cadastrarAlterar").addObject("funcionario", alterarfunc);
-//    }
-    
     @GetMapping("/aplicar/{id}")
     public ModelAndView advertir(@PathVariable(value = "id") long id){
 

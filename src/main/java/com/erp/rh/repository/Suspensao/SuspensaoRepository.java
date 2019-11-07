@@ -3,14 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.erp.rh.repository.funcionario;
+package com.erp.rh.repository.Suspensao;
 
 import com.erp.rh.entidade.funcionario.Funcionario;
+import com.erp.rh.entidade.suspensao.Suspensao;
 import java.util.List;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
-import javax.transaction.Transactional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -20,10 +17,13 @@ import org.springframework.stereotype.Repository;
  * @author Raul Portela
  */
 @Repository
-public interface FuncionarioRepository extends JpaRepository<Funcionario, Long> {
+public interface SuspensaoRepository extends JpaRepository<Suspensao, Long> {
+	
 	
 	Funcionario findById(long id);
-	List<Funcionario> findAll();
+        
+        @Override
+	List<Suspensao> findAll();
 	
 	/**@PersistenceContext
 	private EntityManager entityManager;
