@@ -1,0 +1,146 @@
+[33mcommit d3b4d860c197fa6e25cbf357f427e66d57c1679c[m[33m ([m[1;36mHEAD -> [m[1;32mjeferson[m[33m, [m[1;31morigin/jeferson[m[33m)[m
+Author: Jeferson Nolasco <Jeferson Nolasco@sindeepresorg.local>
+Date:   Tue Nov 5 17:00:07 2019 -0300
+
+    Msg de inclusão de funcionario com sucesso, esta aparecendo agora, e criei um modal para enviar msg para o solicitante do funcionario como o professo pedio, mais ainda tem que editar
+
+[33mcommit 24d70f3d4ca54f67123eea872fefe4ff0ea49c97[m[33m ([m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: jeferson.nsousa <jeferson.nsousa@CAS555675W1020.senacsp.edu.br>
+Date:   Mon Nov 4 22:04:17 2019 -0300
+
+    corrigido cadastro de funcionario
+
+[33mcommit eb162503cfc7f431d41f3423f30a11f531cd0157[m
+Author: Leonardo Maia <Leonardo Maia@192.168.33.95>
+Date:   Mon Nov 4 22:50:14 2019 -0200
+
+[33mcommit 4df6e4cf8f5597070c7b2e7065092656e4449eed[m
+Author: Leonardo Maia <Leonardo Maia@192.168.33.95>
+Date:   Mon Nov 4 22:49:54 2019 -0200
+
+[33mcommit 59f6790e6a261078ad23a0c2f9a30fc12076ba65[m
+Merge: ace279a ac76150
+Author: jehnls <37836166+jehnls@users.noreply.github.com>
+Date:   Mon Nov 4 19:32:40 2019 -0300
+
+    Merge pull request #2 from raulportela/jeferson
+    
+    Eu Fiz a tela de alterar Funcionario junto com a de cadastro
+
+[33mcommit ac7615003bc5d4fe8b46bcd7803e9d8ea0f802fb[m
+Author: Jeferson Nolasco <Jeferson Nolasco@sindeepresorg.local>
+Date:   Mon Nov 4 17:02:55 2019 -0300
+
+    Eu Fiz a tela de alterar Funcionario junto com a de cadastro
+
+[33mcommit ace279a22f52a22f790bbf2998f64aeed6742125[m
+Author: jehnls <jeferson_nls@hotmail.com>
+Date:   Sat Nov 2 02:04:16 2019 -0300
+
+    Esta listando os funcinarios, mais precisa arrumar ainda as informações de exibicão.
+
+[33mcommit 246812cebbaf23e6052b4dede5402c5fcaca24fa[m
+Author: jehnls <jeferson_nls@hotmail.com>
+Date:   Thu Oct 31 22:42:51 2019 -0300
+
+    Cadastro de funcionario, efetuando com sucesso, com data desejada
+
+[33mcommit ab743c20642cfcd9eab7435b8ecba90a0f1bd90b[m
+Author: Raul de Paula <raul.p.p@hotmail.com>
+Date:   Thu Oct 31 13:49:06 2019 -0300
+
+    Criei as entidades (Funcionario, departamento e cargo) sem adicionar as anotações do SpringBoot
+
+[33mcommit 4639b1befad91d68dfe45067ec583d2d2286e26d[m
+Author: Raul de Paula <raul.p.p@hotmail.com>
+Date:   Wed Oct 30 14:55:18 2019 -0300
+
+    Criei as entidades (Funcionario, departamento e cargo) sem adicionar as anotações do SpringBoot
+
+[33mcommit 29cab3fb2444e01b415d75009924a00319a946a1[m
+Merge: a5513a8 abf729d
+Author: jehnls <37836166+jehnls@users.noreply.github.com>
+Date:   Tue Oct 29 18:56:57 2019 -0300
+
+    Merge pull request #1 from raulportela/jeferson
+    
+    Jeferson
+
+[33mcommit abf729d27c1b3c57dd8576a4fd53feb270e15c49[m
+Author: Jeferson Nolasco <Jeferson Nolasco@sindeepresorg.local>
+Date:   Tue Oct 29 15:51:48 2019 -0300
+
+    Foi criado um pagina de cadastro de Funcionarios
+
+[33mcommit 3c27c8a14feecb641eba2e13bc7da214146fbf5e[m
+Author: Jeferson Nolasco <Jeferson Nolasco@sindeepresorg.local>
+Date:   Tue Oct 29 14:32:09 2019 -0300
+
+    Nova branch, para minhas verção
+
+[33mcommit a5513a8d3a7cddda3a7c5afa043920181f00e608[m[33m ([m[1;32mmaster[m[33m)[m
+Author: jehnls <jeferson_nls@hotmail.com>
+Date:   Mon Oct 28 01:18:49 2019 -0200
+
+    Links já ativos, permitindo a navagação em algumas paginas do navBar da esquerda.
+
+[33mcommit 5add50db194c3e6604a43e2fbda0b27f7be4d677[m
+Author: jehnls <jeferson_nls@hotmail.com>
+Date:   Mon Oct 28 01:16:41 2019 -0200
+
+    Links já ativos, permitindo a navagação em algumas paginas do navBar da esquerda.
+
+[33mcommit 2dd73b50e97fdba2d61fbdd85cc77e50a6d8ec66[m
+Author: jehnls <jeferson_nls@hotmail.com>
+Date:   Mon Oct 28 01:11:01 2019 -0200
+
+    Algumas paginas já separado por fragments como : home, funcionarios, perfil.
+    Os link dessas paginas já estao funcinando para a navagação pelo navBar da esquerda.
+
+[33mcommit d02ea0d8da69fe6018f0e1b699c807adac12086e[m
+Author: jehnls <jeferson_nls@hotmail.com>
+Date:   Sun Oct 27 03:38:02 2019 -0200
+
+    As paginas já estao dando para visualizar.
+    Foi criado os controler das telas: listaFuncinario, home e perfil.
+    Separação de Fragments: incompleta.
+
+[33mcommit 85349b839b174282e44bbb0483386c5a07dacd71[m
+Author: Raul de Paula <raul.p.p@hotmail.com>
+Date:   Sat Oct 26 17:59:32 2019 -0300
+
+    Foi adicionado as paginas html, as classes repository
+
+[33mcommit 385210d38ff2bb0cfd4f5fd967d35e8f487f4f90[m
+Author: Raul de Paula <raul.p.p@hotmail.com>
+Date:   Fri Oct 25 16:36:22 2019 -0300
+
+    Criei as entidades (Funcionario, departamento e cargo) sem adicionar as anotações do SpringBoot
+
+[33mcommit 280ece06fa20637e0aaf7394061f423edf974957[m
+Author: Raul de Paula <raul.p.p@hotmail.com>
+Date:   Fri Oct 25 16:13:00 2019 -0300
+
+    Foi adicionado todas as anotacoes SpringBoot
+
+[33mcommit 8a984f395df0415eadaa7422f97800e6f15b283e[m
+Author: Raul de Paula <raul.p.p@hotmail.com>
+Date:   Fri Oct 25 15:33:00 2019 -0300
+
+    Criei as entidades (Funcionario, departamento e cargo) sem adicionar as anotações do SpringBoot
+
+[33mcommit ece058c2a6b9a8f3d507c532fbceba0a81cd6227[m
+Author: Raul de Paula <raul.p.p@hotmail.com>
+Date:   Fri Oct 25 15:32:39 2019 -0300
+
+    Criei as entidades (Funcionario, departamento e cargo) sem adicionar as anotações do SpringBoot
+
+[33mcommit 7457e0e5a5cbe960e16ee9e00e38c7a8e3b66cba[m
+Author: Raul de Paula <raul.p.p@hotmail.com>
+Date:   Fri Oct 25 15:32:25 2019 -0300
+
+    Criei as entidades (Funcionario, departamento e cargo) sem adicionar as anotações do SpringBoot
+
+[33mcommit 4d404c8ace972c6d8d527e0b9fc2910dc3ddf6cc[m
+Author: Raul de Paula <raul.p.p@hotmail.com>
+Date:   Fri Oct 25 15:13:12 2019 -0300
