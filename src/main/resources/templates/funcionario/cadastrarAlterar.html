@@ -17,7 +17,17 @@
 <html lang="en">
 
 <!-- Cabeçalho importado -->
-<head th:include="fragments/head :: head"></head>
+<head th:include="fragments/head :: head">
+
+
+</head>
+
+<script>
+	//Mascara CPF
+	$(document).ready(function() {
+		$('#cpf').mask('999.999.999-99');
+	});
+</script>
 
 <body class="">
 	<nav
@@ -71,12 +81,12 @@
 									<div class="row">
 										<div class="col-lg-6">
 											<div class="form-group">
-												<label class="form-control-label" for="input-first-name">Primeiro
-													nome</label> <input type="text" id="input-first-name"
+												<label class="form-control-label" for="input-first-name">Nome
+												</label> <input type="text" id="input-first-name"
 													class="form-control form-control-alternative"
-													placeholder="Primeiro nome"
+													placeholder="Digite seu nome"
 													th:classappend="${#fields.hasErrors('firstName')}? is-invalid"
-													th:field="*{firstName}">
+													th:field="*{firstName}" required>
 											</div>
 										</div>
 										<div class="col-lg-6">
@@ -84,21 +94,20 @@
 												<label class="form-control-label" for="input-last-name">Sobrenome</label>
 												<input type="text" id="input-last-name"
 													class="form-control form-control-alternative"
-													placeholder="Sobrenome"
+													placeholder="Digite seu sobrenome"
 													th:classappend="${#fields.hasErrors('lastName')}? is-invalid"
-													th:field="*{lastName}">
+													th:field="*{lastName}" required>
 											</div>
 										</div>
 									</div>
 									<div class="row">
 										<div class="col-lg-6">
 											<div class="form-group">
-												<label class="form-control-label" for="input-first-name">Cpf</label>
+												<label class="form-control-label" for="input-first-name">CPF</label>
 												<input type="text" id="input-cpf"
-													class="form-control form-control-alternative"
-													placeholder="XXX.XXX.XXX-XX"
+													class="form-control cpf-mask" placeholder="XXX.XXX.XXX-XX"
 													th:classappend="${#fields.hasErrors('cpf')}? is-invalid"
-													th:field="*{cpf}">
+													th:field="*{cpf}" required>
 											</div>
 										</div>
 										<div class="col-lg-6">
@@ -107,7 +116,7 @@
 												<input type="date" id="input-dtnascimento"
 													class="form-control form-control-alternative"
 													placeholder="XX/XX/XXXX" maxlength="10"
-													th:field="*{dtBirth}">
+													th:field="*{dtBirth}" required>
 											</div>
 										</div>
 										<div class="col-lg-6">
@@ -120,6 +129,73 @@
 														<option th:value="false" th:text="Masculino"></option>
 													</select>
 												</div>
+											</div>
+										</div>
+
+										<div class="col-lg-3">
+											<div class="form-group">
+												<div class="form-group">
+													<label>Departamento</label> <select class="form-control"
+														th:field="*{departamento}">
+
+														<option th:value="RH" th:text="RH"></option>
+														<option th:value="Comercial" th:text="Comercial"></option>
+														<option th:value="Operações" th:text="Operações"></option>
+														<option th:value="Financeiro" th:text="Financeiro"></option>
+														<option th:value="T.I" th:text="T.I"></option>
+														<option th:value="Materiais" th:text="Materiais"></option>
+														<option th:value="Logística" th:text="Logística"></option>
+													</select>
+												</div>
+											</div>
+										</div>
+
+										<div class="col-lg-3">
+											<div class="form-group">
+												<div class="form-group">
+													<label>Cargo</label> <select class="form-control"
+														th:field="*{cargo}">
+
+														<option th:value="Ass.Administrativo">Assistente
+															Administrativo</option>
+
+														<option th:value="Estag.Marketing">Estagario
+															em Marketing</option>
+
+														<option th:value="Gere.Geral">Gerente
+															de Serviços Gerais</option>
+
+														<option th:value="Ass.Financeiro">Assistence
+															Financeiro</option>
+
+														<option th:value="Desen.Java">Analista Java</option>
+
+														<option th:value="Aux.Produção">Auxiliar de
+															Produção</option>
+
+														<option th:value="Aux.Estoque">Auxiliar de
+															Estoque</option>
+													</select>
+												</div>
+											</div>
+										</div>
+
+										<div class="col-lg-6">
+											<div class="form-group">
+												<label class="form-control-label" for="input-last-name">Data de admissão</label>
+												<input type="date" id="input-dtnascimento"
+													class="form-control form-control-alternative"
+													placeholder="XX/XX/XXXX" maxlength="10"
+													th:field="*{dataAdmissao}" required>
+											</div>
+										</div>
+										<div class="col-lg-6">
+											<div class="form-group">
+												<label class="form-control-label" for="input-last-name">Data de demissão</label>
+												<input type="date" id="input-dtnascimento"
+													class="form-control form-control-alternative"
+													placeholder="XX/XX/XXXX" maxlength="10"
+													th:field="*{dataDemissao}" >
 											</div>
 										</div>
 									</div>
@@ -137,7 +213,7 @@
 											<label class="form-control-label" for="input-city">Telefone</label>
 											<input type="number" id="input-city"
 												class="form-control form-control-alternative"
-												placeholder="0000-0000"
+												placeholder="(XX) XXXX-XXXX"
 												th:classappend="${#fields.hasErrors('telefone')}? is-invalid"
 												th:field="*{telefone}">
 										</div>
@@ -147,9 +223,9 @@
 											<label class="form-control-label" for="input-country">Celular</label>
 											<input type="number" id="input-country"
 												class="form-control form-control-alternative"
-												placeholder="00000-0000"
+												placeholder="(XX) XXXX-XXXX"
 												th:classappend="${#fields.hasErrors('celular')}? is-invalid"
-												th:field="*{celular}">
+												th:field="*{celular}" required>
 										</div>
 									</div>
 									<div class="col-lg-6">
@@ -159,7 +235,7 @@
 												class="form-control form-control-alternative"
 												placeholder="email@email.com"
 												th:classappend="${#fields.hasErrors('email')}? is-invalid"
-												th:field="*{email}">
+												th:field="*{email}" required>
 										</div>
 									</div>
 								</div>
@@ -178,9 +254,9 @@
 											<label class="form-control-label" for="input-address">Rua</label>
 											<input id="input-address"
 												class="form-control form-control-alternative"
-												placeholder="Informe o nome de sua rua" type="text"
+												placeholder="Digite o nome de sua rua" type="text"
 												th:classappend="${#fields.hasErrors('rua')}? is-invalid"
-												th:field="*{rua}">
+												th:field="*{rua}" required>
 										</div>
 									</div>
 									<div class="col-md-6">
@@ -190,7 +266,7 @@
 												class="form-control form-control-alternative"
 												placeholder="Ex: 10" type="text"
 												th:classappend="${#fields.hasErrors('numero')}? is-invalid"
-												th:field="*{numero}">
+												th:field="*{numero}" required>
 										</div>
 									</div>
 									<div class="col-md-6">
@@ -200,17 +276,17 @@
 												class="form-control form-control-alternative"
 												placeholder="Informe seu Bairro" type="text"
 												th:classappend="${#fields.hasErrors('bairro')}? is-invalid"
-												th:field="*{bairro}">
+												th:field="*{bairro}" required>
 										</div>
 									</div>
 									<div class="col-md-6">
 										<div class="form-group">
-											<label class="form-control-label" for="input-country">Cep</label>
-											<input type="text" id="input-postal-code"
+											<label class="form-control-label" for="input-country">CEP</label>
+											<input type="number" id="input-postal-code"
 												class="form-control form-control-alternative"
 												placeholder="XXX-XXXX"
 												th:classappend="${#fields.hasErrors('cep')}? is-invalid"
-												th:field="*{cep}">
+												th:field="*{cep}" required>
 										</div>
 									</div>
 									<div class="col-md-6">
@@ -230,7 +306,7 @@
 												class="form-control form-control-alternative"
 												placeholder="EX: São Paulo"
 												th:classappend="${#fields.hasErrors('cidade')}? is-invalid"
-												th:field="*{cidade}">
+												th:field="*{cidade}" required>
 										</div>
 									</div>
 
@@ -260,5 +336,6 @@
 
 	<!-- Scripts-->
 	<div th:include="fragments/scripts :: scripts"></div>
+
 </body>
 </html>

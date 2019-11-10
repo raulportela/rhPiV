@@ -37,11 +37,12 @@ public class FuncionarioController {
 
 	@GetMapping("/listar")
 	public ModelAndView listaFuncinarios() {
-		List<Funcionario> listaFuncionario = new ArrayList();
-		if (listaFuncionario.isEmpty()) {
-			listaFuncionario = funcionarioRepository.findAll();
-		}
-		return new ModelAndView("/funcionario/listarFuncionarios").addObject("listaFuncionario", listaFuncionario);
+//		List<Funcionario> listaFuncionario = new ArrayList();
+//		if (listaFuncionario.isEmpty()) {
+//			listaFuncionario = funcionarioRepository.findAll();
+//		}
+		return new ModelAndView("/funcionario/listarFuncionarios").addObject("listaFuncionario",
+				funcionarioRepository.findAll());
 	}
 
 	@PostMapping("/save")
@@ -55,11 +56,21 @@ public class FuncionarioController {
 			funcionario.setDisponivel(true);
 			funcionario.setDtAdmission(LocalDate.now());
 			funcionarioRepository.save(funcionario);
+
 			redirectAttributes.addFlashAttribute("mensagemSucesso",
 					"Funcionario " + funcionario.getFirstName() + " cadastrado com sucesso");
 		} else {
+			if (funcionario.getDataDemissao() == null) {
+				funcionario.setDisponivel(true);
+
+			} else {
+
+				funcionario.setDisponivel(false);
+			}
+
 			redirectAttributes.addFlashAttribute("mensagemSucesso",
 					"Funcionario " + funcionario.getFirstName() + " Alterado com sucesso");
+			funcionarioRepository.save(funcionario);
 		}
 
 		return new ModelAndView("redirect:/erp/funcionario/listar");

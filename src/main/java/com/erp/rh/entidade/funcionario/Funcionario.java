@@ -7,13 +7,12 @@ package com.erp.rh.entidade.funcionario;
 
 import com.erp.rh.entidade.contato.Contato;
 import com.erp.rh.entidade.advertencia.Advertencia;
-import com.erp.rh.entidade.cargo.Cargo;
 import com.erp.rh.entidade.endereco.Endereco;
 import com.erp.rh.entidade.suspensao.Suspensao;
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -37,172 +36,219 @@ import org.springframework.format.annotation.DateTimeFormat;
 @Entity
 public class Funcionario implements Serializable {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
-    @NotNull
-    @NotBlank(message = "Digite o nome")
-    @Column(length = 30, nullable = false, name = "NOME")
-    private String firstName;
+	@NotNull
+	@NotBlank(message = "Digite o nome")
+	@Column(length = 30, nullable = false, name = "NOME")
+	private String firstName;
 
-    @NotNull
-    @NotBlank(message = "Digite o sobrenome")
-    @Column(length = 50, nullable = false, name = "SOBRENOME")
-    private String lastName;
+	@NotNull
+	@NotBlank(message = "Digite o sobrenome")
+	@Column(length = 50, nullable = false, name = "SOBRENOME")
+	private String lastName;
 
-    @NotNull(message = "Digite o CPF")
-    @Column(length = 11, nullable = false, name = "CPF")
-    private Long cpf;
+	@NotNull(message = "Digite o CPF")
+	@Column(length = 11, nullable = false, name = "CPF")
+	private Long cpf;
 
-    @NotNull(message = "Digite a data de nascimento")
-    @Column(nullable = false, updatable = false, name = "DTBIRTH")
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private LocalDate dtBirth;
+	@NotNull(message = "Digite a data de nascimento")
+	@Column(nullable = false, updatable = false, name = "DTBIRTH")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private LocalDate dtBirth;
 
-    @Column(nullable = false, updatable = false, name = "DTADMISSION")
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private LocalDate dtAdmission;
+	@Column(nullable = false, updatable = false, name = "DTADMISSION")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private LocalDate dtAdmission;
 
-    @Column(nullable = false, name = "DISPONIVEL")
-    private boolean disponivel;
+	@Column(nullable = false, updatable = true,
+		name = "DISPONIVEL")
+	private boolean disponivel;
 
-    // true == female
-    // false == male
-    @Column(nullable = false, name = "GENERO")
-    private boolean genero;
+	// true == female
+	// false == male
+	@Column(nullable = false, name = "GENERO")
+	private boolean genero;
 
-    @Column(length = 10, nullable = true, name = "SENHA")
-    private String hashsenha;
+	@Column(length = 10, nullable = true, name = "SENHA")
+	private String hashsenha;
 
-    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private Endereco endereco;
+	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	private Endereco endereco;
 
-    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private Contato contato;
+	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	private Contato contato;
 
-    @Fetch(FetchMode.SUBSELECT)
-    @OneToMany(mappedBy = "funcionario", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private List<Advertencia> advertencias;
+	@Fetch(FetchMode.SUBSELECT)
+	@OneToMany(mappedBy = "funcionario", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	private List<Advertencia> advertencias;
 
-    @Fetch(FetchMode.SUBSELECT)
-    @OneToMany(mappedBy = "funcionario", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private List<Suspensao> suspensao;
+	@Fetch(FetchMode.SUBSELECT)
+	@OneToMany(mappedBy = "funcionario", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	private List<Suspensao> suspensao;
 
-    @Fetch(FetchMode.SUBSELECT)
-    @OneToMany(mappedBy = "funcionario", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private List<Cargo> cargo;
+	@Column(length = 20, nullable = true, name = "DEPARTAMENTO")
+	private String departamento;
 
-    public Long getId() {
-        return id;
-    }
+	@Column(length = 50, nullable = true, name = "CARGO")
+	private String cargo;
 
-    public LocalDate getDtAdmission() {
-        return dtAdmission;
-    }
+	@Column(nullable = false, updatable = true, name = "DATAADMISSAO")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private LocalDate dataAdmissao;
 
-    public void setDtAdmission(LocalDate dtAdmission) {
-        this.dtAdmission = dtAdmission;
-    }
+	@Column(nullable = true, updatable = true, name = "DATADEMISSAO")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private LocalDate dataDemissao;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+//    @Fetch(FetchMode.SUBSELECT)
+//    @OneToMany(mappedBy = "funcionario", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+//    private List<Cargo> cargo;
 
-    public String getFirstName() {
-        return firstName;
-    }
+	public Long getId() {
+		return id;
+	}
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
+	public LocalDate getDataAdmissao() {
+		return dataAdmissao;
+	}
 
-    public String getLastName() {
-        return lastName;
-    }
+	public void setDataAdmissao(LocalDate dataAdmissao) {
+		this.dataAdmissao = dataAdmissao;
+	}
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
+	public LocalDate getDataDemissao() {
+		return dataDemissao;
+	}
 
-    public Long getCpf() {
-        return cpf;
-    }
+	public void setDataDemissao(LocalDate dataDemissao) {
+		this.dataDemissao = dataDemissao;
+	}
 
-    public void setCpf(Long cpf) {
-        this.cpf = cpf;
-    }
+	public String getCargo() {
+		return cargo;
+	}
 
-    public LocalDate getDtBirth() {
-        return dtBirth;
-    }
+	public void setCargo(String cargo) {
+		this.cargo = cargo;
+	}
 
-    public void setDtBirth(LocalDate dtBirth) {
-        this.dtBirth = dtBirth;
-    }
+	public String getDepartamento() {
+		return departamento;
+	}
 
-    public boolean isDisponivel() {
-        return disponivel;
-    }
+	public void setDepartamento(String departamento) {
+		this.departamento = departamento;
+	}
 
-    public void setDisponivel(boolean disponivel) {
-        this.disponivel = disponivel;
-    }
+	public LocalDate getDtAdmission() {
+		return dtAdmission;
+	}
 
-    public boolean isGenero() {
-        return genero;
-    }
+	public void setDtAdmission(LocalDate dtAdmission) {
+		this.dtAdmission = dtAdmission;
+	}
 
-    public void setGenero(boolean genero) {
-        this.genero = genero;
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    public String getHashsenha() {
-        return hashsenha;
-    }
+	public String getFirstName() {
+		return firstName;
+	}
 
-    public void setHashsenha(String hashsenha) {
-        this.hashsenha = hashsenha;
-    }
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
 
-    public Endereco getEndereco() {
-        return endereco;
-    }
+	public String getLastName() {
+		return lastName;
+	}
 
-    public void setEndereco(Endereco endereco) {
-        this.endereco = endereco;
-    }
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
 
-    public Contato getContato() {
-        return contato;
-    }
+	public Long getCpf() {
+		return cpf;
+	}
 
-    public void setContato(Contato contato) {
-        this.contato = contato;
-    }
+	public void setCpf(Long cpf) {
+		this.cpf = cpf;
+	}
 
-    public List<Advertencia> getAdvertencias() {
-        return advertencias;
-    }
+	public LocalDate getDtBirth() {
+		return dtBirth;
+	}
 
-    public void setAdvertencias(List<Advertencia> advertencias) {
-        this.advertencias = advertencias;
-    }
+	public void setDtBirth(LocalDate dtBirth) {
+		this.dtBirth = dtBirth;
+	}
 
-    public List<Suspensao> getSuspensao() {
-        return suspensao;
-    }
+	public boolean isDisponivel() {
+		return disponivel;
+	}
 
-    public void setSuspensao(List<Suspensao> suspensao) {
-        this.suspensao = suspensao;
-    }
+	public void setDisponivel(boolean disponivel) {
+		this.disponivel = disponivel;
+	}
 
-    public List<Cargo> getCargo() {
-        return cargo;
-    }
+	public boolean isGenero() {
+		return genero;
+	}
 
-    public void setCargo(List<Cargo> cargo) {
-        this.cargo = cargo;
-    }
+	public void setGenero(boolean genero) {
+		this.genero = genero;
+	}
+
+	public String getHashsenha() {
+		return hashsenha;
+	}
+
+	public void setHashsenha(String hashsenha) {
+		this.hashsenha = hashsenha;
+	}
+
+	public Endereco getEndereco() {
+		return endereco;
+	}
+
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
+	}
+
+	public Contato getContato() {
+		return contato;
+	}
+
+	public void setContato(Contato contato) {
+		this.contato = contato;
+	}
+
+	public List<Advertencia> getAdvertencias() {
+		return advertencias;
+	}
+
+	public void setAdvertencias(List<Advertencia> advertencias) {
+		this.advertencias = advertencias;
+	}
+
+	public List<Suspensao> getSuspensao() {
+		return suspensao;
+	}
+
+	public void setSuspensao(List<Suspensao> suspensao) {
+		this.suspensao = suspensao;
+	}
+
+//	public List<Cargo> getCargo() {
+//		return cargo;
+//	}
+//
+//	public void setCargo(List<Cargo> cargo) {
+//		this.cargo = cargo;
+//	}
 
 }
