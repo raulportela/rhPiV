@@ -1,0 +1,99 @@
+<!--
+
+=========================================================
+* Argon Dashboard - v1.1.0
+=========================================================
+
+* Product Page: https://www.creative-tim.com/product/argon-dashboard
+* Copyright 2019 Creative Tim (https://www.creative-tim.com)
+* Licensed under MIT (https://github.com/creativetimofficial/argon-dashboard/blob/master/LICENSE.md)
+
+* Coded by Creative Tim
+
+=========================================================
+
+* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. -->
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Cabeçalho importado -->
+<head th:include="fragments/head :: head"></head>
+
+
+<body class="">
+
+	<nav
+		class="navbar navbar-vertical fixed-left navbar-expand-md navbar-light bg-white"
+		id="sidenav-main">
+		<!--  Nav Left (Menu do lado Esquedo) -->
+		<nav th:include="fragments/nav :: nav"></nav>
+	</nav>
+
+
+	<div class="main-content">
+		<!--  Nav Up (parte de cima) -->
+		<nav th:include="fragments/nav2 :: nav2"></nav>
+
+		<!-- Header -->
+		<div th:include="fragments/header :: header"></div>
+
+		<!-- Header -->
+		<div class="header bg-gradient-primary pb-8 pt-5 pt-md-8">
+			<div class="container-fluid">
+				<div class="header-body">
+					<!-- Card stats -->
+					<div class="row">
+						<div class="col-xl-12 col-lg-6">
+							<div class="card card-stats mb-4 mb-xl-0">
+								<h5 class="modal-title" id="exampleModalLabel">Nova
+									mensagem</h5>
+								<div class="card-body" th:object="${email}">
+									<form th:action="@{/erp/email/enviar}" method="post">
+										<div class="form-group">
+											<label for="exampleFormControlInput1">Novo Email</label> <input
+												type="email" class="form-control"
+												id="exampleFormControlInput1" placeholder="name@example.com">
+										</div>
+										<div class="form-group">
+											<label for="exampleFormControlSelect1">Example select</label>
+											<input type="text" class="form-control"
+												id="destinatario-name" Placeholder="Destiantario"
+												th:field="*{destinatario}">
+										</div>
+										<div class="form-group">
+											<label for="exampleFormControlSelect2">Example
+												multiple select</label> <input type="text" class="form-control"
+												id="destinatario-name" th:field="*{assunto}">
+										</div>
+										<div class="form-group">
+											<label for="exampleFormControlTextarea1">Example
+												textarea</label>
+											<textarea class="form-control" id="message-text"
+												th:field=*{mensagem} rows="3"></textarea>
+										</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-secondary"
+												data-dismiss="modal">Fechar</button>
+											<button type="submit" class="btn btn-primary">Enviar</button>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<!-- Footer -->
+		<footer th:include="fragments/footer :: footer"></footer>
+
+	</div>
+
+	<!-- Scripts-->
+	<div th:include="fragments/scripts :: scripts"></div>
+
+</body>
+
+</html>

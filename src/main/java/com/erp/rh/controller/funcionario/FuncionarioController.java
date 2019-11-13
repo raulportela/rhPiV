@@ -5,6 +5,7 @@
  */
 package com.erp.rh.controller.funcionario;
 
+import com.erp.rh.entidade.email.Email;
 import com.erp.rh.entidade.funcionario.Funcionario;
 import com.erp.rh.repository.funcionario.FuncionarioRepository;
 import java.time.LocalDate;
@@ -42,7 +43,7 @@ public class FuncionarioController {
 //			listaFuncionario = funcionarioRepository.findAll();
 //		}
 		return new ModelAndView("/funcionario/listarFuncionarios").addObject("listaFuncionario",
-				funcionarioRepository.findAll());
+				funcionarioRepository.findAll()).addObject("email", new Email());
 	}
 
 	@PostMapping("/save")

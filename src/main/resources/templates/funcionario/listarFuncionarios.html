@@ -239,9 +239,9 @@
 													class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
 													<a class="dropdown-item"
 														th:href="@{/erp/funcionario/buscar/{id}(id = ${func.id})}">Alterar</a>
-													<a class="dropdown-item" data-toggle="modal"
-														data-target="#exampleModal" href="#">Enviar Email</a> <a
-														class="dropdown-item"
+													<a class="dropdown-item"
+														th:href="@{/erp/email/funcionario/{id}(id = ${func.id})}">Enviar
+														Email</a> <a class="dropdown-item"
 														th:href="@{/erp/advertencia/aplicar/{id}(id = ${func.id})}">Aplicar
 														advertência</a> <a class="dropdown-item"
 														th:href="@{/erp/suspensao/aplicar/{id}(id = ${func.id})}">Aplicar
@@ -269,22 +269,30 @@
 											<span aria-hidden="true">&times;</span>
 										</button>
 									</div>
-									<div class="modal-body">
-										<form>
+									<div class="modal-body" th:object="${email}">
+										<form th:action="@{/erp/email/enviar}" method="post">
 											<div class="form-group">
 												<label for="recipient-name" class="col-form-label">Destinatario:</label>
-												<input type="text" class="form-control" id="recipient-name">
+												<input type="text" class="form-control"
+													id="destinatario-name" Placeholder="Destiantario"
+													th:field="*{destinatario}">
+											</div>
+											<div class="form-group">
+												<label for="recipient-name" class="col-form-label">Assunto:</label>
+												<input type="text" class="form-control"
+													id="destinatario-name" th:field="*{assunto}">
 											</div>
 											<div class="form-group">
 												<label for="message-text" class="col-form-label">Mensagem:</label>
-												<textarea class="form-control" id="message-text"></textarea>
+												<textarea class="form-control" id="message-text"
+													th:field=*{mensagem}></textarea>
+											</div>
+											<div class="modal-footer">
+												<button type="button" class="btn btn-secondary"
+													data-dismiss="modal">Fechar</button>
+												<button type="submit" class="btn btn-primary">Enviar</button>
 											</div>
 										</form>
-									</div>
-									<div class="modal-footer">
-										<button type="button" class="btn btn-secondary"
-											data-dismiss="modal">Fechar</button>
-										<button type="button" class="btn btn-primary">Enviar</button>
 									</div>
 								</div>
 							</div>
