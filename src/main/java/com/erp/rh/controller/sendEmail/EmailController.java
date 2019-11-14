@@ -27,29 +27,32 @@ public class EmailController {
 	FuncionarioRepository funcionarioRepository;
 	@Autowired
 	private JavaMailSender javaMailSender;
-	
+
+	@GetMapping("/novo")
+	public ModelAndView novoEmail() {
+		return new ModelAndView("/email/email").addObject("email", new Email());
+	}
+
 	@GetMapping("/funcionario/{id}")
-	public ModelAndView msgPreDefinida(@PathVariable(value = "id") long id) {
-		Funcionario funcionario = funcionarioRepository.findById(id); 
+	public ModelAndView msgPreDefinida(@PathVariable(value = "id") long id
+			/*,@PathVariable(value = "true") boolean msg */) {
+		Funcionario funcionario = funcionarioRepository.findById(id);
 		Email emailDefinido = new Email();
-		emailDefinido.setMensagem("Santo André, 07 de Dezembro de 2016.\r\n" + 
-				"\r\n" + 
-				"Quem possa interessar\r\n" + 
-				"\r\n" + 
-				"Declaramos para o devido fins que o Sr (a) "+funcionario.getFirstName()+" "+funcionario.getLastName()+", portador do CPF "+funcionario.getCpf() +",foi selecionado pelo RH desta Empresa para fazer parte de nosso quadro de funcionários a partir de "+funcionario.getDataAdmissao()+"\r\n" + 
-				"\r\n" + 
-				"\r\n" + 
-				"Sem mais,\r\n" + 
-				"\r\n" + 
-				"\r\n" + 
-				"\r\n" + 
-				"");
-	
+
+//		if (msg == true) {
+//			emailDefinido.setMensagem("Santo André, 07 de Dezembro de 2016.\r\n" + "\r\n" + "Quem possa interessar\r\n"
+//					+ "\r\n" + "Declaramos para o devido fins que o Sr (a) " + funcionario.getFirstName() + " "
+//					+ funcionario.getLastName() + ", portador do CPF " + funcionario.getCpf()
+//					+ ",foi selecionado pelo RH desta Empresa para fazer parte de nosso quadro de funcionários a partir de "
+//					+ funcionario.getDataAdmissao() + "\r\n" + "\r\n" + "\r\n" + "Sem mais,\r\n" + "\r\n" + "\r\n"
+//					+ "\r\n" + "");
+//		}
+
 		return new ModelAndView("/email/email").addObject("email", emailDefinido);
 	}
 
 	@PostMapping("enviar")
-	public ModelAndView sendEmail(@ModelAttribute("email") @Valid Email email,RedirectAttributes redirectAttributes) {
+	public ModelAndView sendEmail(@ModelAttribute("email") @Valid Email email, RedirectAttributes redirectAttributes) {
 
 		try {
 			MimeMessage mail = javaMailSender.createMimeMessage();
@@ -61,13 +64,13 @@ public class EmailController {
 			javaMailSender.send(mail);
 
 			redirectAttributes.addFlashAttribute("mensagemSucesso", "Email enviado com sucesso");
-						
+
 		} catch (Exception e) {
 			e.printStackTrace();
 			redirectAttributes.addFlashAttribute("mensagemSucesso", "Erro ao enviar email");
-			
+
 		}
-		
+
 		return new ModelAndView("redirect:/erp/funcionario/listar");
 
 	}

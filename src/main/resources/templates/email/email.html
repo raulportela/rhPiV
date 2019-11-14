@@ -39,38 +39,38 @@
 
 		<!-- Header -->
 		<div class="header bg-gradient-primary pb-8 pt-5 pt-md-8">
+
 			<div class="container-fluid">
+				<h1 class="display-2 text-white">Email</h1>
 				<div class="header-body">
 					<!-- Card stats -->
-					<div class="row">
+					<div class="row" th:object="${funcionario}">
 						<div class="col-xl-12 col-lg-6">
 							<div class="card card-stats mb-4 mb-xl-0">
-								<h5 class="modal-title" id="exampleModalLabel">Nova
-									mensagem</h5>
 								<div class="card-body" th:object="${email}">
 									<form th:action="@{/erp/email/enviar}" method="post">
 										<div class="form-group">
-											<label for="exampleFormControlInput1">Novo Email</label> <input
+											<label for="exampleFormControlInput1">Destinatario</label> <input
 												type="email" class="form-control"
-												id="exampleFormControlInput1" placeholder="name@example.com">
-										</div>
-										<div class="form-group">
-											<label for="exampleFormControlSelect1">Example select</label>
-											<input type="text" class="form-control"
-												id="destinatario-name" Placeholder="Destiantario"
+												id="exampleFormControlInput1" placeholder="name@example.com"
 												th:field="*{destinatario}">
 										</div>
 										<div class="form-group">
-											<label for="exampleFormControlSelect2">Example
-												multiple select</label> <input type="text" class="form-control"
-												id="destinatario-name" th:field="*{assunto}">
+											<label for="exampleFormControlSelect1">Assunto</label> <input
+												type="text" class="form-control" id="destinatario-name"
+												Placeholder="Assunto" th:field="*{assunto}">
 										</div>
 										<div class="form-group">
-											<label for="exampleFormControlTextarea1">Example
-												textarea</label>
+											<label for="exampleFormControlTextarea1">Mensagem</label>
 											<textarea class="form-control" id="message-text"
-												th:field=*{mensagem} rows="3"></textarea>
+												th:field=*{mensagem} rows="12"></textarea>
 										</div>
+										<!--<div class="form-group">
+											<a class="dropdown-item" th:href="@{/erp/email/funcionario/{id}(id = ${func.id}){msg}(msg = true)}}">Enviar
+												Email</a>
+											<button type="button" class="btn btn-primary">messagem
+												pré definida</button>
+										</div> -->
 										<div class="modal-footer">
 											<button type="button" class="btn btn-secondary"
 												data-dismiss="modal">Fechar</button>
