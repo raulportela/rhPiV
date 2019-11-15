@@ -42,8 +42,8 @@ public class FuncionarioController {
 //		if (listaFuncionario.isEmpty()) {
 //			listaFuncionario = funcionarioRepository.findAll();
 //		}
-		return new ModelAndView("/funcionario/listarFuncionarios").addObject("listaFuncionario",
-				funcionarioRepository.findAll()).addObject("email", new Email());
+		return new ModelAndView("/funcionario/listarFuncionarios")
+				.addObject("listaFuncionario", funcionarioRepository.findAll()).addObject("email", new Email());
 	}
 
 	@PostMapping("/save")

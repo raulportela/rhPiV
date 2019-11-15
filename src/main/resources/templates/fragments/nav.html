@@ -57,7 +57,7 @@ Sintaxe para acresentar esse pedaço de código em alguma pagina desejada:
                         <span>Support</span>
                     </a>
                     <div class="dropdown-divider"></div>
-                    <a href="#!" class="dropdown-item">
+                    <a th:href="@{/logout}" class="dropdown-item">
                         <i class="ni ni-user-run"></i>
                         <span>Logout</span>
                     </a>
@@ -110,7 +110,7 @@ Sintaxe para acresentar esse pedaço de código em alguma pagina desejada:
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="./examples/login.html">
+                    <a class="nav-link" th:href="@{/logout}">
                         <i class="ni ni-key-25 text-info"></i> Logout
                     </a>
                 </li>

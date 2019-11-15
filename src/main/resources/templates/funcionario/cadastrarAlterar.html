@@ -159,11 +159,11 @@
 														<option th:value="Ass.Administrativo">Assistente
 															Administrativo</option>
 
-														<option th:value="Estag.Marketing">Estagario
-															em Marketing</option>
+														<option th:value="Estag.Marketing">Estagario em
+															Marketing</option>
 
-														<option th:value="Gere.Geral">Gerente
-															de Serviços Gerais</option>
+														<option th:value="Gere.Geral">Gerente de
+															Serviços Gerais</option>
 
 														<option th:value="Ass.Financeiro">Assistence
 															Financeiro</option>
@@ -182,8 +182,8 @@
 
 										<div class="col-lg-6">
 											<div class="form-group">
-												<label class="form-control-label" for="input-last-name">Data de admissão</label>
-												<input type="date" id="input-dtnascimento"
+												<label class="form-control-label" for="input-last-name">Data
+													de admissão</label> <input type="date" id="input-dtnascimento"
 													class="form-control form-control-alternative"
 													placeholder="XX/XX/XXXX" maxlength="10"
 													th:field="*{dataAdmissao}" required>
@@ -191,22 +191,55 @@
 										</div>
 										<div class="col-lg-6">
 											<div class="form-group">
-												<label class="form-control-label" for="input-last-name">Data de demissão</label>
-												<input type="date" id="input-dtnascimento"
+												<label class="form-control-label" for="input-last-name">Data
+													de demissão</label> <input type="date" id="input-dtnascimento"
 													class="form-control form-control-alternative"
 													placeholder="XX/XX/XXXX" maxlength="10"
-													th:field="*{dataDemissao}" >
+													th:field="*{dataDemissao}">
 											</div>
 										</div>
 									</div>
 								</div>
 						</div>
 						<hr class="my-4" />
+						<!-- Acesso -->
+						
+						<div class="card-body">
+							<h6 class="heading-small text-muted mb-4">informações de
+								Acesso</h6>
+							<div class="pl-lg-4" th:object="${funcionario.acesso}">
+<!-- 							<input type="hidden" th:if="*{id != null}" th:field="*{id}" /> -->
+								<div class="row">
+									<div class="col-lg-6">
+										<div class="form-group">
+											<label class="form-control-label" for="input-city">Login</label>
+											<input type="text" id="input-city"
+												class="form-control form-control-alternative"
+												placeholder="Nome de Usu�rio"
+												th:classappend="${#fields.hasErrors('usuario')}? is-invalid"
+												th:field="*{usuario}">
+										</div>
+									</div>
+									<div class="col-lg-6">
+										<div class="form-group">
+											<label class="form-control-label" for="input-country">Senha</label>
+											<input type="password" id="input-country"
+												class="form-control form-control-alternative"
+												placeholder="password"
+												th:classappend="${#fields.hasErrors('hashsenha')}? is-invalid"
+												th:field="*{hashsenha}" required>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
 						<!-- Contato -->
 						<div class="card-body">
 							<h6 class="heading-small text-muted mb-4">informações de
 								contato</h6>
 							<div class="pl-lg-4" th:object="${funcionario.contato}">
+<!-- 							<input type="hidden" th:if="*{id != null}" th:field="*{id}" /> -->
 								<div class="row">
 									<div class="col-lg-6">
 										<div class="form-group">
@@ -248,6 +281,7 @@
 							<h6 class="heading-small text-muted mb-4">informações de
 								endereço</h6>
 							<div class="pl-lg-4" th:object="${funcionario.endereco}">
+<!-- 							<<input type="hidden" th:if="*{id != null}" th:field="*{id}" /> -->
 								<div class="row">
 									<div class="col-md-6">
 										<div class="form-group">

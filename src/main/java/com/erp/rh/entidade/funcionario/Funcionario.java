@@ -6,6 +6,7 @@
 package com.erp.rh.entidade.funcionario;
 
 import com.erp.rh.entidade.contato.Contato;
+import com.erp.rh.entidade.acesso.Acesso;
 import com.erp.rh.entidade.advertencia.Advertencia;
 import com.erp.rh.entidade.endereco.Endereco;
 import com.erp.rh.entidade.suspensao.Suspensao;
@@ -37,7 +38,7 @@ import org.springframework.security.core.userdetails.UserDetails;
  * @author Raul Portela
  */
 @Entity
-public class Funcionario implements Serializable , UserDetails{
+public class Funcionario implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -66,8 +67,7 @@ public class Funcionario implements Serializable , UserDetails{
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate dtAdmission;
 
-	@Column(nullable = false, updatable = true,
-		name = "DISPONIVEL")
+	@Column(nullable = false, updatable = true, name = "DISPONIVEL")
 	private boolean disponivel;
 
 	// true == female
@@ -75,14 +75,14 @@ public class Funcionario implements Serializable , UserDetails{
 	@Column(nullable = false, name = "GENERO")
 	private boolean genero;
 
-	@Column(length = 10, nullable = true, name = "SENHA")
-	private String hashsenha;
-
 	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private Endereco endereco;
 
 	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private Contato contato;
+
+	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	private Acesso acesso;
 
 	@Fetch(FetchMode.SUBSELECT)
 	@OneToMany(mappedBy = "funcionario", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
@@ -206,12 +206,12 @@ public class Funcionario implements Serializable , UserDetails{
 		this.genero = genero;
 	}
 
-	public String getHashsenha() {
-		return hashsenha;
+	public Acesso getAcesso() {
+		return acesso;
 	}
 
-	public void setHashsenha(String hashsenha) {
-		this.hashsenha = hashsenha;
+	public void setAcesso(Acesso acesso) {
+		this.acesso = acesso;
 	}
 
 	public Endereco getEndereco() {
@@ -244,48 +244,6 @@ public class Funcionario implements Serializable , UserDetails{
 
 	public void setSuspensao(List<Suspensao> suspensao) {
 		this.suspensao = suspensao;
-	}
-
-	@Override
-	public Collection<? extends GrantedAuthority> getAuthorities() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public String getPassword() {
-		// TODO Auto-generated method stub
-		return hashsenha;
-	}
-
-	@Override
-	public String getUsername() {
-		// TODO Auto-generated method stub
-		return lastName;
-	}
-
-	@Override
-	public boolean isAccountNonExpired() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean isAccountNonLocked() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean isCredentialsNonExpired() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean isEnabled() {
-		// TODO Auto-generated method stub
-		return false;
 	}
 
 //	public List<Cargo> getCargo() {

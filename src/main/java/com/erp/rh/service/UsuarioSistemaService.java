@@ -16,7 +16,9 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import com.erp.rh.entidade.acesso.Acesso;
 import com.erp.rh.entidade.funcionario.Funcionario;
+import com.erp.rh.repository.acesso.AcessoRepository;
 import com.erp.rh.repository.funcionario.FuncionarioRepository;
 
 /**
@@ -27,14 +29,14 @@ import com.erp.rh.repository.funcionario.FuncionarioRepository;
 public class UsuarioSistemaService implements UserDetailsService {
 
     @Autowired
-    private FuncionarioRepository funcionarioRepository;
+    private AcessoRepository acessoRepository;
 
     @Override
-    public Funcionario loadUserByUsername(String username)
+    public Acesso loadUserByUsername(String username)
             throws UsernameNotFoundException {
-        Funcionario f = funcionarioRepository.findByLastName(username);
-        if (f != null) {
-            return f;
+        Acesso acesso = acessoRepository.findByUsuario(username);
+        if (acesso != null) {
+            return acesso;
         }
         throw new UsernameNotFoundException("Usuário não encontrado");
     }

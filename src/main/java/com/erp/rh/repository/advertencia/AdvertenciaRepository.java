@@ -18,45 +18,10 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface AdvertenciaRepository extends JpaRepository<Advertencia, Long> {
-	
-	
+
 	Funcionario findById(long id);
-        
-        @Override
+
+	@Override
 	List<Advertencia> findAll();
-	
-	/**@PersistenceContext
-	private EntityManager entityManager;
 
-	@Transactional
-	public void save(Funcionario funcionario) {
-		// Salvar cliente
-		if (funcionario.getId() == null) {
-			entityManager.persist(funcionario);
-		} else {
-			// Editar Cliente
-			entityManager.merge(funcionario);
-		}
-	}
-
-	@Transactional
-	public Funcionario findById(Long id) {
-		Query jpqlQyery = entityManager.createNamedQuery("Cliente.findById").setParameter("idFuncionario", id);
-		Funcionario funcionario = (Funcionario) jpqlQyery.getSingleResult();
-		return funcionario;
-	}
-
-	@Transactional
-	public Funcionario findByEmail(String email) {
-		Query jpqlQyery = entityManager.createNamedQuery("Funcionario.findByEmail").setParameter("email", email);
-		Funcionario funcionario = (Funcionario) jpqlQyery.getSingleResult();
-		return funcionario;
-	}
-
-	@Transactional
-	public List<Funcionario> findAll() {
-		Query jpqlQuery = entityManager.createNamedQuery("Funcionario.findAll");
-		List<Funcionario> funcionarios = jpqlQuery.getResultList();
-		return funcionarios;
-	} */
 }
