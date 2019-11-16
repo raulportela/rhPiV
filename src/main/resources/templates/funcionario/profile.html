@@ -52,9 +52,14 @@
                         <div class="card card-profile shadow">
                             <div class="row justify-content-center">
                                 <div class="col-lg-3 order-lg-2">
-                                    <div class="card-profile-image">
+                                    <div class="card-profile-image" th:object="${funcionario}">
                                         <a href="#">
-                                            <img th:src="@{/img/theme/tsuda.png}" class="rounded-circle}">
+                                            <div th:if="${func.genero} == true">
+                                                <img th:src="@{/img/theme/mulher.jpg}" class="rounded-circle}">
+                                            </div>
+                                            <div th:if="${func.genero} == false">
+                                                <img th:src="@{/img/theme/homem.jpg}" class="rounded-circle}">
+                                            </div>
                                         </a>
                                     </div>
                                 </div>
@@ -119,14 +124,22 @@
                                         <div class="row">
                                             <div class="col-lg-6">
                                                 <div class="form-group">
-                                                    <label class="form-control-label" for="input-email">Email </label>
-                                                    <input type="email" id="input-email" class="form-control form-control-alternative" placeholder="email@email.com">
+                                                    <label class="form-control-label" for="input-first-name">Nome
+                                                    </label> <input type="text" id="input-first-name"
+                                                                    class="form-control form-control-alternative"
+                                                                    placeholder="Digite seu nome"
+                                                                    th:classappend="${#fields.hasErrors('firstName')}? is-invalid"
+                                                                    th:field="*{firstName}" readonly>
                                                 </div>
                                             </div>
                                             <div class="col-lg-6">
                                                 <div class="form-group">
-                                                    <label class="form-control-label" for="input-username">Senha</label>
-                                                    <input type="password" id="input-password" class="form-control form-control-alternative" placeholder="••••••">
+                                                    <label class="form-control-label" for="input-last-name">Sobrenome</label>
+                                                    <input type="text" id="input-last-name"
+                                                           class="form-control form-control-alternative"
+                                                           placeholder="Digite seu sobrenome"
+                                                           th:classappend="${#fields.hasErrors('lastName')}? is-invalid"
+                                                           th:field="*{lastName}" readonly>
                                                 </div>
                                             </div>
                                         </div>

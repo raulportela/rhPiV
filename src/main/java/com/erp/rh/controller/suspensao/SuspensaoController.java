@@ -53,7 +53,7 @@ public class SuspensaoController {
         suspensao.setDtAplicacao(LocalDate.now());
         suspensao.setFuncionario(funcionarioRepository.findById(id));
 
-        return new ModelAndView("/advertencia/advertencia")
+        return new ModelAndView("/suspensao/suspensao")
                 .addObject("suspensao", suspensao);
     }
 }

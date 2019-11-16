@@ -14,6 +14,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  *
@@ -30,9 +31,11 @@ public class Suspensao implements Serializable {
     private String reason;
 
     @Column(nullable = false, name = "DTAPLICACAO")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate dtAplicacao;
 
     @Column(nullable = false, updatable = false, name = "DTRETURN")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate dtReturn;
 
     @ManyToOne()
