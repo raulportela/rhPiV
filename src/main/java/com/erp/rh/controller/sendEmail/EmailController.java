@@ -1,9 +1,13 @@
 package com.erp.rh.controller.sendEmail;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 import javax.mail.internet.MimeMessage;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
@@ -34,24 +38,46 @@ public class EmailController {
 		return new ModelAndView("/email/email").addObject("email", new Email());
 	}
 
-	@GetMapping("/listar")
-	public ModelAndView msgPreDefinida (@RequestParam(name = "id", defaultValue = "") Long id,
-	        @RequestParam(name = "msg", defaultValue = "0") String msg) {
-	
-	  
-	
-	
-//		Funcionario funcionario = funcionarioRepository.findById(id);
+	@GetMapping("/promocao/{id}")
+	public ModelAndView msgPromocao(@PathVariable(value = "id") long id
+	/* ,@PathVariable(value = "true") boolean msg */) {
+
+		Funcionario funcionario = funcionarioRepository.findById(id);
 		Email emailDefinido = new Email();
 
-//		if (msg == true) {
-//			emailDefinido.setMensagem("Santo André, 07 de Dezembro de 2016.\r\n" + "\r\n" + "Quem possa interessar\r\n"
-//					+ "\r\n" + "Declaramos para o devido fins que o Sr (a) " + funcionario.getFirstName() + " "
-//					+ funcionario.getLastName() + ", portador do CPF " + funcionario.getCpf()
-//					+ ",foi selecionado pelo RH desta Empresa para fazer parte de nosso quadro de funcionários a partir de "
-//					+ funcionario.getDataAdmissao() + "\r\n" + "\r\n" + "\r\n" + "Sem mais,\r\n" + "\r\n" + "\r\n"
-//					+ "\r\n" + "");
-//		}
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		String admisao = funcionario.getDtAdmission().format(formatter);
+
+		emailDefinido.setMensagem("PROMOÇÃO\r\n" + "\r\n" + "Sr(a). " + funcionario.getFirstName() + " "
+				+ funcionario.getLastName() + "\r\n" + "\r\n"
+				+ "Temos o prazer de lhe comunicar que a partir do dia “inserir data” vossa senhoria passará a exercer o cargo de “informar cargo”.\r\n"
+				+ "\r\n"
+				+ "Estamos certos que você terá sucesso em sua nova função, a qual esperamos que seja exercida com a mesma dedicação e eficiência que \r\n"
+				+ "possibilitou a realização desta promoção.\r\n" + "\r\n"
+				+ "Receba nossos sinceros cumprimentos pela sua ascensão profissional.\r\n" + "\r\n"
+				+ "Cordialmente,\r\n" + "\r\n" + "Recursos Humanos.");
+
+		return new ModelAndView("/email/email").addObject("email", emailDefinido);
+	}
+
+	@GetMapping("/funcionario/{id}")
+	public ModelAndView msgPreDefinida(@PathVariable(value = "id") long id
+	/* ,@PathVariable(value = "true") boolean msg */) {
+
+		Funcionario funcionario = funcionarioRepository.findById(id);
+		Email emailDefinido = new Email();
+
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		String admisao = funcionario.getDtAdmission().format(formatter);
+
+		emailDefinido.setAssunto("CONTRATAÇÃO DE FUNCIONARIO");
+
+		emailDefinido.setMensagem("CONTRATAÇÃO\r\n" + "\r\n" + "Informamos que o Sr (a) " + funcionario.getFirstName()
+				+ " " + funcionario.getLastName() + ", portador do CPF " + funcionario.getCpf() + ",\r\n"
+				+ "foi selecionada para ocupar o cargo de " + funcionario.getCargo() + " a partir de " + admisao
+				+ ". \r\n"
+				+ "Favor (se necessário) solicitar a aquisição dos equipamentos necessários para o novo colaborador exercer suas funções.\r\n"
+				+ "\r\n" + "Atenciosamente,\r\n" + "\r\n" + "Recursos Humanos");
 
 		return new ModelAndView("/email/email").addObject("email", emailDefinido);
 	}
