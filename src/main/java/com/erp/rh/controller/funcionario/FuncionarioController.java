@@ -5,10 +5,15 @@
  */
 package com.erp.rh.controller.funcionario;
 
+import com.erp.rh.entidade.advertencia.Advertencia;
 import com.erp.rh.entidade.email.Email;
 import com.erp.rh.entidade.funcionario.Funcionario;
+import com.erp.rh.entidade.suspensao.Suspensao;
+import com.erp.rh.repository.advertencia.AdvertenciaRepository;
 import com.erp.rh.repository.funcionario.FuncionarioRepository;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.validation.Valid;
 
@@ -33,6 +38,10 @@ public class FuncionarioController {
 
     @Autowired
     FuncionarioRepository funcionarioRepository;
+    
+    @Autowired
+    AdvertenciaRepository advertenciaRepository;
+    
 
     @GetMapping("/listar")
     public ModelAndView listaFuncinarios() {
@@ -79,10 +88,17 @@ public class FuncionarioController {
         return new ModelAndView("/funcionario/cadastrarAlterar").addObject("funcionario", alterarfunc);
     }
 
-    @GetMapping("/perfil")
-    public ModelAndView perfil() {
-        Funcionario funcionario = funcionarioRepository.findById(1l);
-        return new ModelAndView("/funcionario/profile").addObject("funcionario",funcionario);
+    @GetMapping("/perfil/{id}")
+    public ModelAndView perfil(@PathVariable(value = "id") long id) {
+        Funcionario funcionario = funcionarioRepository.findById(id);
+        
+        
+        List<Advertencia> advertencias = funcionario.getAdvertencias();
+        List<Suspensao> suspensoes = funcionario.getSuspensao();
+        return new ModelAndView("/funcionario/profile")
+                .addObject("funcionario",funcionario)
+                .addObject("advertencias", advertencias)
+                .addObject("suspensoes", suspensoes);
     }
 
     @GetMapping("/cadastrar")

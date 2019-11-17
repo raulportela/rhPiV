@@ -41,14 +41,6 @@ public class Suspensao implements Serializable {
     @ManyToOne()
     private Funcionario funcionario;
 
-    public Funcionario getFuncionario() {
-        return funcionario;
-    }
-
-    public void setFuncionario(Funcionario funcionario) {
-        this.funcionario = funcionario;
-    }
-
     public Long getId() {
         return id;
     }
@@ -81,4 +73,13 @@ public class Suspensao implements Serializable {
         this.dtReturn = dtReturn;
     }
 
+    public Funcionario getFuncionario() {
+        return funcionario;
+    }
+
+    public void setFuncionario(Funcionario funcionario) {
+        this.funcionario = funcionario;
+    }
+    
+    
 }

@@ -37,10 +37,9 @@
                 <!-- Header container -->
                 <div class="container-fluid d-flex align-items-center">
                     <div class="row">
-                        <div class="col-lg-7 col-md-10">
-                            <h1 class="display-2 text-white">Hello XPTO</h1>
-                            <p class="text-white mt-0 mb-5">Nessa pagina você pode ver o seu progresso e gerenciar suas atividades </p>
-                            <a href="#!" class="btn btn-info">Editar perfil</a>
+                        <div class="col-lg-10 col-md-12" th:object="${funcionario}">
+                            <h1 class="display-2 text-white" th:text="${funcionario.firstName + ' ' + funcionario.lastName}"></h1>
+                            <p class="text-white mt-0 mb-5">Nessa pagina você pode gerenciar as informações do funcionario.</p>
                         </div>
                     </div>
                 </div>
@@ -53,21 +52,20 @@
                             <div class="row justify-content-center">
                                 <div class="col-lg-3 order-lg-2">
                                     <div class="card-profile-image" th:object="${funcionario}">
-                                        <a href="#">
-                                            <div th:if="${genero} == true">
-                                                <img th:src="@{/img/theme/mulher.jpg}" class="rounded-circle}">
-                                            </div>
-                                            <div th:if="${genero} == false">
-                                                <img th:src="@{/img/theme/homem.jpg}" class="rounded-circle}">
-                                            </div>
-                                        </a>
+                                        <div th:if="${funcionario.genero == true}">
+                                            <img th:src="@{/img/theme/mulher.jpg}" class="rounded-circle">
+                                        </div>
+                                        <div th:if="${funcionario.genero == false}">
+                                            <img th:src="@{/img/theme/homem.jpg}" class="rounded-circle">
+                                        </div>
+
                                     </div>
                                 </div>
                             </div>
                             <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
-                                <div class="d-flex justify-content-between">
-                                    <a href="#" class="btn btn-sm btn-info mr-4">Connect</a>
-                                    <a href="#" class="btn btn-sm btn-default float-right">Chat</a>
+                                <div class="d-flex justify-content-between" th:object="${funcionario}">
+                                    <a th:href="@{/erp/funcionario/buscar/{id}(id = ${funcionario.id})}" class="btn btn-sm btn-info mr-4">Editar</a>
+                                    <a href="" class="btn btn-sm btn-default float-right">Enviar email</a>
                                 </div>
                             </div>
                             <div class="card-body pt-0 pt-md-4">
@@ -75,32 +73,35 @@
                                     <div class="col">
                                         <div class="card-profile-stats d-flex justify-content-center mt-md-5">
                                             <div>
-                                                <span class="heading">22</span>
-                                                <span class="description">Premiações</span>
+                                                <span class="heading" th:text="${#lists.size(advertencias)}"></span>
+                                                <span class="description">Advertencias</span>
                                             </div>
                                             <div>
-                                                <span class="heading">10</span>
-                                                <span class="description">Atividades</span>
+                                                <span class="heading" th:text="${#lists.size(suspensoes)}"></span>
+                                                <span class="description">Suspensões</span>
                                             </div>
 
                                         </div>
                                     </div>
                                 </div>
-                                <div class="text-center">
-                                    <h3>
-                                        Xpto Tsuda<span class="font-weight-light">, 27</span>
-                                    </h3>
+                                <div class="text-center" th:object="${funcionario}">
+                                    <h3 th:text="${funcionario.firstName + ' ' + funcionario.lastName}"></h3>
                                     <div class="h5 font-weight-300">
-                                        <i class="ni location_pin mr-2"></i>Japão, Tokio
+                                        <i class="ni location_pin mr-2"></i><label th:text="${funcionario.endereco.cidade}"></label>
                                     </div>
                                     <div class="h5 mt-4">
-                                        <i class="ni business_briefcase-24 mr-2"></i>Solution Manager
+                                        <i class="ni business_briefcase-24 mr-2" ></i><label th:text="${funcionario.cargo}"></label>
                                     </div>
                                     <div>
-                                        <i class="ni education_hat mr-2"></i>Universidade Senac
+                                        <i class="ni education_hat mr-2"></i><label th:text="${funcionario.departamento}"></label>
                                     </div>
 
-                                    <a href="#">Show more</a>
+                                    <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
+                                        <div class="d-flex justify-content-center">
+                                            <a href="" class="btn btn-sm btn-warning mr-4">Advertir</a>
+                                            <a href="" class="btn btn-sm btn-danger mr-4">Suspender</a>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -110,10 +111,7 @@
                             <div class="card-header bg-white border-0">
                                 <div class="row align-items-center">
                                     <div class="col-8">
-                                        <h3 class="mb-0">Minha conta</h3>
-                                    </div>
-                                    <div class="col-4 text-right">
-                                        <a href="#!" class="btn btn-sm btn-primary">Configurações</a>
+                                        <h3 class="mb-0">Conteúdo da conta</h3>
                                     </div>
                                 </div>
                             </div>
@@ -223,7 +221,7 @@
                                             </div>
                                         </div>
                                         <div class="row">
-                                            
+
                                             <div class="col-lg-3">
                                                 <div class="form-group">
                                                     <label class="form-control-label" for="input-country">Cep</label>
@@ -251,29 +249,67 @@
                                         </div>
                                     </div>
                                     <hr class="my-4" />
-                                    
+
                                     <h6 class="heading-small text-muted mb-4">Informações de Advertencia</h6>
-                                    <div class="pl-lg-4" >
-                                        <div class="row" th:each="advertencia, stat:${funcionario.advertencias}">
-                                            <div class="col-lg-6">
+                                    <div class="pl-lg-4" th:if="${advertencias} != null">
+                                        <div class="row">
+                                            <div class="col-lg-3">
+                                                <label class="form-control-label" for="input-last-name">Data de aplicação</label>
+                                            </div>
+                                            <div class="col-lg-9">
+                                                <label class="form-control-label" for="input-last-name">Motivo</label>
+                                            </div>
+                                        </div>
+                                        <div class="row" th:each="adv, stat:${advertencias}" >
+                                            <div class="col-lg-3">
                                                 <div class="form-group">
-                                                    <label class="form-control-label" for="input-last-name">Data de aplicação</label>
-                                                    <input type="date" id="input-dtnascimento" class="form-control form-control-alternative" 
-                                                           th:classappend="${#fields.hasErrors('advertencia.dtAplicacao')}? is-invalid"
-                                                           th:field="*{advertencia.dtAplicacao}" readonly>
+
+                                                    <p id="input-dtnascimento" class="form-control form-control-alternative" 
+                                                       th:text="${adv.dtAplicacao}">
                                                 </div>
                                             </div>
-                                            <div class="col-lg-6">
+                                            <div class="col-lg-9">
                                                 <div class="form-group">
-                                                    <label class="form-control-label" for="input-last-name">Data de aplicação</label>
-                                                    <input type="date" id="input-dtnascimento" class="form-control form-control-alternative" 
-                                                           th:classappend="${#fields.hasErrors('reason')}? is-invalid"
-                                                           th:field="*{reason}" readonly>
+
+                                                    <input type="text" id="input-dtnascimento" class="form-control form-control-alternative" 
+                                                           th:value="${adv.reason}">
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                     <hr class="my-4" />
+
+                                    <h6 class="heading-small text-muted mb-4">Informações de Suspensao</h6>
+                                    <div class="pl-lg-4" th:if="${suspensoes} != null">
+                                        <div th:each="sps, stat:${suspensoes}" >
+                                            <div class="row" >
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <label class="form-control-label" for="input-dt-apli">Data de aplicação</label>
+                                                        <p id="input-dtnascimento" class="form-control form-control-alternative" 
+                                                           th:text="${sps.dtAplicacao}"></p>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <label class="form-control-label" for="input-dt-return">Data de Retorno</label>
+                                                        <p id="input-dtnascimento" class="form-control form-control-alternative" 
+                                                           th:text="${sps.dtReturn}"></p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    <div class="form-group">
+                                                        <label class="form-control-label" for="input-last-name">Motivo</label>
+                                                        <input type="text" id="input-dtnascimento" class="form-control form-control-alternative" 
+                                                               th:value="${sps.reason}">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <hr class="my-4" />
+                                        </div>
+                                    </div>
                                 </form>
                             </div>
                         </div>

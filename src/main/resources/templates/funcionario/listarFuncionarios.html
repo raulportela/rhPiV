@@ -181,9 +181,8 @@
                                      
                                         <tr th:each="func, stat:${listaFuncionario}" >
                                             <th scope="row">
-                                                
                                                 <div class="media align-items-center">
-                                                    <a th:href="@{/erp/funcionario/buscar/{id}(id = ${func.id})}">
+                                                    <a th:href="@{/erp/funcionario/perfil/{id}(id = ${func.id})}">
                                                         <div class="media-body">
                                                         <span class="mb-0 text-sm"></span>
                                                         <p th:text="${func.firstName + ' ' + func.lastName}"
@@ -209,7 +208,7 @@
 
                                             </td>
                                             <td>
-                                                <p th:text="${func.cargo}" class="font-weight-normal">Supervisor</p>
+                                                <p th:text="${func.cargo}" class="font-weight-normal"></p>
                                             </td>
                                             <td>
                                                 <div class="d-flex align-items-center">

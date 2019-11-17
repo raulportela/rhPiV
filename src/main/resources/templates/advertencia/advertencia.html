@@ -63,8 +63,8 @@
                             <form th:action="@{/erp/advertencia/save}" method="post" th:object="${advertencia}">
                                 <div class="card-body">
                                     <h6 class="heading-small text-muted mb-4">Funcionario advertido</h6>
-                                    <div class="pl-lg-4">
-                                        <div class="row" th:object="${advertencia.funcionario}">
+                                    <div class="pl-lg-4" th:object="${advertencia.funcionario}">
+                                        <div class="row" >
                                             <input type="hidden" id="input-id"
                                                    class="form-control form-control-alternative"
                                                    th:classappend="${#fields.hasErrors('id')}? is-invalid"
@@ -86,7 +86,27 @@
                                                            class="form-control form-control-alternative"
                                                            placeholder="Sobrenome"
                                                            th:classappend="${#fields.hasErrors('lastName')}? is-invalid"
-                                                           th:field="*{lastName}">
+                                                           th:field="*{lastName}" readonly>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row" >
+                                            <div class="col-lg-6">
+                                                <div class="form-group" >
+                                                    <label class="form-control-label" for="input-first-name">Departamento</label> 
+                                                    <input type="text" id="input-departamento"
+                                                           class="form-control form-control-alternative"
+                                                           th:classappend="${#fields.hasErrors('departamento')}? is-invalid"
+                                                           th:field="*{departamento}" readonly>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <div class="form-group">
+                                                    <label class="form-control-label" for="input-last-name">Cargo</label>
+                                                    <input type="text" id="input-cargo"
+                                                           class="form-control form-control-alternative"
+                                                           th:classappend="${#fields.hasErrors('cargo')}? is-invalid"
+                                                           th:field="*{cargo}" readonly>
                                                 </div>
                                             </div>
                                         </div>

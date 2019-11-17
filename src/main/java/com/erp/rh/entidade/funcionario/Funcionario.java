@@ -37,213 +37,209 @@ import org.springframework.format.annotation.DateTimeFormat;
 @Entity
 public class Funcionario implements Serializable {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-	@NotNull
-	@NotBlank(message = "Digite o nome")
-	@Column(length = 30, nullable = false, name = "NOME")
-	private String firstName;
+    @NotNull
+    @NotBlank(message = "Digite o nome")
+    @Column(length = 30, nullable = false, name = "NOME")
+    private String firstName;
 
-	@NotNull
-	@NotBlank(message = "Digite o sobrenome")
-	@Column(length = 50, nullable = false, name = "SOBRENOME")
-	private String lastName;
+    @NotNull
+    @NotBlank(message = "Digite o sobrenome")
+    @Column(length = 50, nullable = false, name = "SOBRENOME")
+    private String lastName;
 
-	@NotNull(message = "Digite o CPF")
-	@Column(length = 11, nullable = false, name = "CPF")
-	private Long cpf;
+    @NotNull(message = "Digite o CPF")
+    @Column(length = 11, nullable = false, name = "CPF")
+    private Long cpf;
 
-	@NotNull(message = "Digite a data de nascimento")
-	@Column(nullable = false, updatable = false, name = "DTBIRTH")
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	private LocalDate dtBirth;
+    @NotNull(message = "Digite a data de nascimento")
+    @Column(nullable = false, updatable = false, name = "DTBIRTH")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate dtBirth;
 
-	@Column(nullable = false, updatable = false, name = "DTADMISSION")
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	private LocalDate dtAdmission;
+    @Column(nullable = false, updatable = false, name = "DTADMISSION")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate dtAdmission;
 
-	@Column(nullable = false, updatable = true, name = "DISPONIVEL")
-	private boolean disponivel;
+    @Column(nullable = false, updatable = true, name = "DISPONIVEL")
+    private boolean disponivel;
 
-	// true == female
-	// false == male
-	@Column(nullable = false, name = "GENERO")
-	private boolean genero;
+    // true == female
+    // false == male
+    @Column(nullable = false, name = "GENERO")
+    private boolean genero;
 
-	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	private Endereco endereco;
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private Endereco endereco;
 
-	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	private Contato contato;
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private Contato contato;
 
-	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	private Acesso acesso;
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private Acesso acesso;
 
-	@Fetch(FetchMode.SUBSELECT)
-	@OneToMany(mappedBy = "funcionario", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	private List<Advertencia> advertencias;
+    @Fetch(FetchMode.SUBSELECT)
+    @OneToMany(mappedBy = "funcionario", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private List<Advertencia> advertencias;
 
-	@Fetch(FetchMode.SUBSELECT)
-	@OneToMany(mappedBy = "funcionario", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	private List<Suspensao> suspensao;
+    @Fetch(FetchMode.SUBSELECT)
+    @OneToMany(mappedBy = "funcionario", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private List<Suspensao> suspensao;
 
-	@Column(length = 20, nullable = true, name = "DEPARTAMENTO")
-	private String departamento;
+    @Column(length = 20, nullable = true, name = "DEPARTAMENTO")
+    private String departamento;
 
-	@Column(length = 50, nullable = true, name = "CARGO")
-	private String cargo;
+    @Column(length = 50, nullable = true, name = "CARGO")
+    private String cargo;
 
-	@Column(nullable = false, updatable = true, name = "DATAADMISSAO")
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	private LocalDate dataAdmissao;
+    @Column(nullable = false, updatable = true, name = "DATAADMISSAO")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate dataAdmissao;
 
-	@Column(nullable = true, updatable = true, name = "DATADEMISSAO")
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	private LocalDate dataDemissao;
+    @Column(nullable = true, updatable = true, name = "DATADEMISSAO")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate dataDemissao;
 
 //    @Fetch(FetchMode.SUBSELECT)
 //    @OneToMany(mappedBy = "funcionario", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 //    private List<Cargo> cargo;
+    public Long getId() {
+        return id;
+    }
 
-	public Long getId() {
-		return id;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	public LocalDate getDataAdmissao() {
-		return dataAdmissao;
-	}
+    public String getFirstName() {
+        return firstName;
+    }
 
-	public void setDataAdmissao(LocalDate dataAdmissao) {
-		this.dataAdmissao = dataAdmissao;
-	}
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
 
-	public LocalDate getDataDemissao() {
-		return dataDemissao;
-	}
+    public String getLastName() {
+        return lastName;
+    }
 
-	public void setDataDemissao(LocalDate dataDemissao) {
-		this.dataDemissao = dataDemissao;
-	}
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
 
-	public String getCargo() {
-		return cargo;
-	}
+    public Long getCpf() {
+        return cpf;
+    }
 
-	public void setCargo(String cargo) {
-		this.cargo = cargo;
-	}
+    public void setCpf(Long cpf) {
+        this.cpf = cpf;
+    }
 
-	public String getDepartamento() {
-		return departamento;
-	}
+    public LocalDate getDtBirth() {
+        return dtBirth;
+    }
 
-	public void setDepartamento(String departamento) {
-		this.departamento = departamento;
-	}
+    public void setDtBirth(LocalDate dtBirth) {
+        this.dtBirth = dtBirth;
+    }
 
-	public LocalDate getDtAdmission() {
-		return dtAdmission;
-	}
+    public LocalDate getDtAdmission() {
+        return dtAdmission;
+    }
 
-	public void setDtAdmission(LocalDate dtAdmission) {
-		this.dtAdmission = dtAdmission;
-	}
+    public void setDtAdmission(LocalDate dtAdmission) {
+        this.dtAdmission = dtAdmission;
+    }
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    public boolean isDisponivel() {
+        return disponivel;
+    }
 
-	public String getFirstName() {
-		return firstName;
-	}
+    public void setDisponivel(boolean disponivel) {
+        this.disponivel = disponivel;
+    }
 
-	public void setFirstName(String firstName) {
-            this.setFirstName(firstName);
-	}
+    public boolean isGenero() {
+        return genero;
+    }
 
-	public String getLastName() {
-		return lastName;
-	}
+    public void setGenero(boolean genero) {
+        this.genero = genero;
+    }
 
-	public void setLastName(String lastName) {
-            this.setLastName(lastName);
-	}
+    public Endereco getEndereco() {
+        return endereco;
+    }
 
-	public Long getCpf() {
-		return cpf;
-	}
+    public void setEndereco(Endereco endereco) {
+        this.endereco = endereco;
+    }
 
-	public void setCpf(Long cpf) {
-            this.setCpf(cpf);
-	}
+    public Contato getContato() {
+        return contato;
+    }
 
-	public LocalDate getDtBirth() {
-		return dtBirth;
-	}
+    public void setContato(Contato contato) {
+        this.contato = contato;
+    }
 
-	public void setDtBirth(LocalDate dtBirth) {
-            this.setDtBirth(dtBirth);
-	}
+    public Acesso getAcesso() {
+        return acesso;
+    }
 
-	public boolean isDisponivel() {
-		return disponivel;
-	}
+    public void setAcesso(Acesso acesso) {
+        this.acesso = acesso;
+    }
 
-	public void setDisponivel(boolean disponivel) {
-		this.disponivel = disponivel;
-	}
+    public List<Advertencia> getAdvertencias() {
+        return advertencias;
+    }
 
-	public boolean isGenero() {
-		return genero;
-	}
+    public void setAdvertencias(List<Advertencia> advertencias) {
+        this.advertencias = advertencias;
+    }
 
-	public void setGenero(boolean genero) {
-		this.genero = genero;
-	}
+    public List<Suspensao> getSuspensao() {
+        return suspensao;
+    }
 
-	public Acesso getAcesso() {
-		return acesso;
-	}
+    public void setSuspensao(List<Suspensao> suspensao) {
+        this.suspensao = suspensao;
+    }
 
-	public void setAcesso(Acesso acesso) {
-		this.acesso = acesso;
-	}
+    public String getDepartamento() {
+        return departamento;
+    }
 
-	public Endereco getEndereco() {
-		return endereco;
-	}
+    public void setDepartamento(String departamento) {
+        this.departamento = departamento;
+    }
 
-	public void setEndereco(Endereco endereco) {
-		this.endereco = endereco;
-	}
+    public String getCargo() {
+        return cargo;
+    }
 
-	public Contato getContato() {
-		return contato;
-	}
+    public void setCargo(String cargo) {
+        this.cargo = cargo;
+    }
 
-	public void setContato(Contato contato) {
-		this.contato = contato;
-	}
+    public LocalDate getDataAdmissao() {
+        return dataAdmissao;
+    }
 
-	public List<Advertencia> getAdvertencias() {
-		return advertencias;
-	}
-        
-	public void setAdvertencias(List<Advertencia> advertencias) {
-		this.advertencias = advertencias;
-	}
+    public void setDataAdmissao(LocalDate dataAdmissao) {
+        this.dataAdmissao = dataAdmissao;
+    }
 
-	public List<Suspensao> getSuspensao() {
-		return suspensao;
-	}
+    public LocalDate getDataDemissao() {
+        return dataDemissao;
+    }
 
-	public void setSuspensao(List<Suspensao> suspensao) {
-		this.suspensao = suspensao;
-	}
-
-
-   
+    public void setDataDemissao(LocalDate dataDemissao) {
+        this.dataDemissao = dataDemissao;
+    }
 
 }
