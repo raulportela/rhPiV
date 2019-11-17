@@ -54,10 +54,10 @@
                                 <div class="col-lg-3 order-lg-2">
                                     <div class="card-profile-image" th:object="${funcionario}">
                                         <a href="#">
-                                            <div th:if="${func.genero} == true">
+                                            <div th:if="${genero} == true">
                                                 <img th:src="@{/img/theme/mulher.jpg}" class="rounded-circle}">
                                             </div>
-                                            <div th:if="${func.genero} == false">
+                                            <div th:if="${genero} == false">
                                                 <img th:src="@{/img/theme/homem.jpg}" class="rounded-circle}">
                                             </div>
                                         </a>
@@ -118,7 +118,7 @@
                                 </div>
                             </div>
                             <div class="card-body">
-                                <form>
+                                <form th:object="${funcionario}">
                                     <h6 class="heading-small text-muted mb-4">Informções de usuario</h6>
                                     <div class="pl-lg-4">
                                         <div class="row">
@@ -127,7 +127,6 @@
                                                     <label class="form-control-label" for="input-first-name">Nome
                                                     </label> <input type="text" id="input-first-name"
                                                                     class="form-control form-control-alternative"
-                                                                    placeholder="Digite seu nome"
                                                                     th:classappend="${#fields.hasErrors('firstName')}? is-invalid"
                                                                     th:field="*{firstName}" readonly>
                                                 </div>
@@ -137,7 +136,6 @@
                                                     <label class="form-control-label" for="input-last-name">Sobrenome</label>
                                                     <input type="text" id="input-last-name"
                                                            class="form-control form-control-alternative"
-                                                           placeholder="Digite seu sobrenome"
                                                            th:classappend="${#fields.hasErrors('lastName')}? is-invalid"
                                                            th:field="*{lastName}" readonly>
                                                 </div>
@@ -146,28 +144,18 @@
                                         <div class="row">
                                             <div class="col-lg-6">
                                                 <div class="form-group">
-                                                    <label class="form-control-label" for="input-first-name">Primeiro nome</label>
-                                                    <input type="text" id="input-first-name" class="form-control form-control-alternative" placeholder="First name" value="Xpto">
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-6">
-                                                <div class="form-group">
-                                                    <label class="form-control-label" for="input-last-name">Sobrenome</label>
-                                                    <input type="text" id="input-last-name" class="form-control form-control-alternative" placeholder="Last name" value="Tsuda">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-lg-6">
-                                                <div class="form-group">
                                                     <label class="form-control-label" for="input-first-name">Cpf</label>
-                                                    <input type="text" id="input-cpf" class="form-control form-control-alternative" placeholder="444.444.444-44">
+                                                    <input type="text" id="input-cpf" class="form-control form-control-alternative" 
+                                                           th:classappend="${#fields.hasErrors('cpf')}? is-invalid"
+                                                           th:field="*{cpf}" readonly>
                                                 </div>
                                             </div>
                                             <div class="col-lg-6">
                                                 <div class="form-group">
                                                     <label class="form-control-label" for="input-last-name">Data de Nascimento</label>
-                                                    <input type="text" id="input-dtnascimento" class="form-control form-control-alternative" placeholder="11/11/2000">
+                                                    <input type="date" id="input-dtnascimento" class="form-control form-control-alternative" 
+                                                           th:classappend="${#fields.hasErrors('dtBirth')}? is-invalid"
+                                                           th:field="*{dtBirth}" readonly>
                                                 </div>
                                             </div>
                                         </div>
@@ -175,18 +163,30 @@
                                     <hr class="my-4" />
                                     <!-- Contato -->
                                     <h6 class="heading-small text-muted mb-4">informações de contato</h6>
-                                    <div class="pl-lg-4">
+                                    <div class="pl-lg-4" th:object="${funcionario.contato}">
                                         <div class="row">
-                                            <div class="col-lg-6">
+                                            <div class="col-lg-3">
                                                 <div class="form-group">
                                                     <label class="form-control-label" for="input-city">Telefone</label>
-                                                    <input type="number" id="input-city" class="form-control form-control-alternative" placeholder="0000-0000">
+                                                    <input type="number" id="input-city" class="form-control form-control-alternative" 
+                                                           th:classappend="${#fields.hasErrors('telefone')}? is-invalid"
+                                                           th:field="*{celular}" readonly>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-3">
+                                                <div class="form-group">
+                                                    <label class="form-control-label" for="input-country">Celular</label>
+                                                    <input type="number" id="input-country" class="form-control form-control-alternative" 
+                                                           th:classappend="${#fields.hasErrors('celular')}? is-invalid"
+                                                           th:field="*{celular}" readonly>
                                                 </div>
                                             </div>
                                             <div class="col-lg-6">
                                                 <div class="form-group">
-                                                    <label class="form-control-label" for="input-country">Celular</label>
-                                                    <input type="number" id="input-country" class="form-control form-control-alternative" placeholder="00000-0000">
+                                                    <label class="form-control-label" for="input-country">Email</label>
+                                                    <input type="text" id="input-country" class="form-control form-control-alternative" 
+                                                           th:classappend="${#fields.hasErrors('email')}? is-invalid"
+                                                           th:field="*{email}" readonly>
                                                 </div>
                                             </div>
                                         </div>
@@ -195,32 +195,80 @@
 
                                     <!-- Address -->
                                     <h6 class="heading-small text-muted mb-4">informações de endereço</h6>
-                                    <div class="pl-lg-4">
+                                    <div class="pl-lg-4" th:object="${funcionario.endereco}">
                                         <div class="row">
-                                            <div class="col-md-12">
+                                            <div class="col-md-5">
                                                 <div class="form-group">
-                                                    <label class="form-control-label" for="input-address">Endereço</label>
-                                                    <input id="input-address" class="form-control form-control-alternative" placeholder="Home Address" value="Rua do senac, 267 - Socorro" type="text">
+                                                    <label class="form-control-label" for="input-address">Rua</label>
+                                                    <input id="input-address" type="text" class="form-control form-control-alternative" 
+                                                           th:classappend="${#fields.hasErrors('rua')}? is-invalid"
+                                                           th:field="*{rua}" readonly>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-2">
+                                                <div class="form-group">
+                                                    <label class="form-control-label" for="input-city">Numero</label>
+                                                    <input type="text" id="input-city" class="form-control form-control-alternative" 
+                                                           th:classappend="${#fields.hasErrors('numero')}? is-invalid"
+                                                           th:field="*{numero}" readonly>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-5">
+                                                <div class="form-group">
+                                                    <label class="form-control-label" for="input-city">Bairro</label>
+                                                    <input type="text" id="input-city" class="form-control form-control-alternative" 
+                                                           th:classappend="${#fields.hasErrors('bairro')}? is-invalid"
+                                                           th:field="*{bairro}" readonly>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-lg-4">
-                                                <div class="form-group">
-                                                    <label class="form-control-label" for="input-city">Cidade</label>
-                                                    <input type="text" id="input-city" class="form-control form-control-alternative" placeholder="City" value="São Paulo">
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-4">
-                                                <div class="form-group">
-                                                    <label class="form-control-label" for="input-country">País</label>
-                                                    <input type="text" id="input-country" class="form-control form-control-alternative" placeholder="Country" value="Brasil">
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-4">
+                                            
+                                            <div class="col-lg-3">
                                                 <div class="form-group">
                                                     <label class="form-control-label" for="input-country">Cep</label>
-                                                    <input type="number" id="input-postal-code" class="form-control form-control-alternative" value="000-0000" placeholder="Cep">
+                                                    <input type="text" id="input-country" class="form-control form-control-alternative" 
+                                                           th:classappend="${#fields.hasErrors('cep')}? is-invalid"
+                                                           th:field="*{cep}" readonly>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <div class="form-group">
+                                                    <label class="form-control-label" for="input-country">Cidade</label>
+                                                    <input type="text" id="input-postal-code" class="form-control form-control-alternative" 
+                                                           th:classappend="${#fields.hasErrors('cidade')}? is-invalid"
+                                                           th:field="*{cidade}" readonly>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-5">
+                                                <div class="form-group">
+                                                    <label class="form-control-label" for="input-country">Complemento</label>
+                                                    <input type="text" id="input-postal-code" class="form-control form-control-alternative" 
+                                                           th:classappend="${#fields.hasErrors('complemento')}? is-invalid"
+                                                           th:field="*{complemento}" readonly>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr class="my-4" />
+                                    
+                                    <h6 class="heading-small text-muted mb-4">Informações de Advertencia</h6>
+                                    <div class="pl-lg-4" >
+                                        <div class="row" th:each="advertencia, stat:${funcionario.advertencias}">
+                                            <div class="col-lg-6">
+                                                <div class="form-group">
+                                                    <label class="form-control-label" for="input-last-name">Data de aplicação</label>
+                                                    <input type="date" id="input-dtnascimento" class="form-control form-control-alternative" 
+                                                           th:classappend="${#fields.hasErrors('advertencia.dtAplicacao')}? is-invalid"
+                                                           th:field="*{advertencia.dtAplicacao}" readonly>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <div class="form-group">
+                                                    <label class="form-control-label" for="input-last-name">Data de aplicação</label>
+                                                    <input type="date" id="input-dtnascimento" class="form-control form-control-alternative" 
+                                                           th:classappend="${#fields.hasErrors('reason')}? is-invalid"
+                                                           th:field="*{reason}" readonly>
                                                 </div>
                                             </div>
                                         </div>

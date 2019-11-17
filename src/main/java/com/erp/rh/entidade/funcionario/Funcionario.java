@@ -12,7 +12,6 @@ import com.erp.rh.entidade.endereco.Endereco;
 import com.erp.rh.entidade.suspensao.Suspensao;
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.Collection;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -30,8 +29,6 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
 
 /**
  *
@@ -163,7 +160,7 @@ public class Funcionario implements Serializable {
 	}
 
 	public void setFirstName(String firstName) {
-		this.firstName = firstName;
+            this.setFirstName(firstName);
 	}
 
 	public String getLastName() {
@@ -171,7 +168,7 @@ public class Funcionario implements Serializable {
 	}
 
 	public void setLastName(String lastName) {
-		this.lastName = lastName;
+            this.setLastName(lastName);
 	}
 
 	public Long getCpf() {
@@ -179,7 +176,7 @@ public class Funcionario implements Serializable {
 	}
 
 	public void setCpf(Long cpf) {
-		this.cpf = cpf;
+            this.setCpf(cpf);
 	}
 
 	public LocalDate getDtBirth() {
@@ -187,7 +184,7 @@ public class Funcionario implements Serializable {
 	}
 
 	public void setDtBirth(LocalDate dtBirth) {
-		this.dtBirth = dtBirth;
+            this.setDtBirth(dtBirth);
 	}
 
 	public boolean isDisponivel() {
@@ -233,7 +230,7 @@ public class Funcionario implements Serializable {
 	public List<Advertencia> getAdvertencias() {
 		return advertencias;
 	}
-
+        
 	public void setAdvertencias(List<Advertencia> advertencias) {
 		this.advertencias = advertencias;
 	}
@@ -246,12 +243,7 @@ public class Funcionario implements Serializable {
 		this.suspensao = suspensao;
 	}
 
-//	public List<Cargo> getCargo() {
-//		return cargo;
-//	}
-//
-//	public void setCargo(List<Cargo> cargo) {
-//		this.cargo = cargo;
-//	}
+
+   
 
 }
