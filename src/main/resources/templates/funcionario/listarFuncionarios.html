@@ -42,22 +42,58 @@
                                 <div class="card card-stats mb-4 mb-xl-0">
                                     <div class="card-body">
                                         <div class="row">
-                                            <div class="col">
-                                                <h5 class="card-title text-uppercase text-muted mb-0">Funcionarios
-                                                    Trabalhando</h5>
-                                                <span class="h2 font-weight-bold mb-0">88</span>
-                                            </div>
-                                            <div class="col-auto">
-                                                <div
-                                                    class="icon icon-shape bg-danger text-white rounded-circle shadow">
-                                                    <i class="fas fa-chart-bar"></i>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <p class="mt-3 mb-0 text-muted text-sm">
-                                            <span class="text-success mr-2"><i
-                                                    class="fa fa-arrow-up"></i> 3.48%</span> <span class="text-nowrap">Hoje</span>
-                                        </p>
+										<div class="col">
+											<h5 class="card-title text-uppercase text-muted mb-0">Funcionarios
+												Trabalhando</h5>
+											<span class="h2 font-weight-bold mb-0" th:text="${AllFuncionario}">88</span>
+										</div>
+										<div class="col-auto">
+											<div
+												class="icon icon-shape bg-danger text-white rounded-circle shadow">
+												<i class="fas fa-chart-bar"></i>
+											</div>
+										</div>
+									</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-lg-6">
+                                <div class="card card-stats mb-4 mb-xl-0">
+                                    <div class="card-body">
+                                      <div class="row">
+										<div class="col">
+											<h5 class="card-title text-uppercase text-muted mb-0">Funcionarios Novos 
+											</h5>
+											<h6 class="card-title text-uppercase text-muted mb-0">Essa Semana
+											</h6>
+												<span class="h2 font-weight-bold mb-0"  th:text="${AllRecentes}"></span>
+										</div>
+										<div class="col-auto">
+											<div
+												class="icon icon-shape bg-warning text-white rounded-circle shadow">
+												<i class="fas fa-chart-pie"></i>
+											</div>
+										</div>
+									</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-lg-6">
+                                <div class="card card-stats mb-4 mb-xl-0">
+                                    <div class="card-body">
+                                       <div class="row">
+										<div class="col">
+											<h5 class="card-title text-uppercase text-muted mb-0">Total de Suspensões
+												</h5>
+											<span class="h2 font-weight-bold mb-0"  th:text="${AllSuspensao}"></span>
+										</div>
+										<div class="col-auto">
+											<div
+												class="icon icon-shape bg-yellow text-white rounded-circle shadow">
+												<i class="fas fa-chart-line"></i>
+											</div>
+										</div>
+									</div>
                                     </div>
                                 </div>
                             </div>
@@ -65,71 +101,18 @@
                                 <div class="card card-stats mb-4 mb-xl-0">
                                     <div class="card-body">
                                         <div class="row">
-                                            <div class="col">
-                                                <h5 class="card-title text-uppercase text-muted mb-0">Novos
-                                                    Funcionarios</h5>
-                                                <span class="h2 font-weight-bold mb-0">4</span>
-                                            </div>
-                                            <div class="col-auto">
-                                                <div
-                                                    class="icon icon-shape bg-warning text-white rounded-circle shadow">
-                                                    <i class="fas fa-chart-pie"></i>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <p class="mt-3 mb-0 text-muted text-sm">
-                                            <span class="text-danger mr-2"><i
-                                                    class="fas fa-arrow-down"></i> 3.48%</span> <span
-                                                class="text-nowrap">Desde semana passada</span>
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-3 col-lg-6">
-                                <div class="card card-stats mb-4 mb-xl-0">
-                                    <div class="card-body">
-                                        <div class="row">
-                                            <div class="col">
-                                                <h5 class="card-title text-uppercase text-muted mb-0">Processos
-                                                    abertos</h5>
-                                                <span class="h2 font-weight-bold mb-0">15</span>
-                                            </div>
-                                            <div class="col-auto">
-                                                <div
-                                                    class="icon icon-shape bg-yellow text-white rounded-circle shadow">
-                                                    <i class="fas fa-chart-line"></i>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <p class="mt-3 mb-0 text-muted text-sm">
-                                            <span class="text-warning mr-2"><i
-                                                    class="fas fa-arrow-down"></i> 1.10%</span> <span
-                                                class="text-nowrap">Passivos à atraso</span>
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-3 col-lg-6">
-                                <div class="card card-stats mb-4 mb-xl-0">
-                                    <div class="card-body">
-                                        <div class="row">
-                                            <div class="col">
-                                                <h5 class="card-title text-uppercase text-muted mb-0">Sua
-                                                    Performance</h5>
-                                                <span class="h2 font-weight-bold mb-0">15,65%</span>
-                                            </div>
-                                            <div class="col-auto">
-                                                <div
-                                                    class="icon icon-shape bg-info text-white rounded-circle shadow">
-                                                    <i class="fas fa-percent"></i>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <p class="mt-3 mb-0 text-muted text-sm">
-                                            <span class="text-success mr-2"><i
-                                                    class="fas fa-arrow-up"></i> 12%</span> <span class="text-nowrap">Desde
-                                                o mês passado</span>
-                                        </p>
+										<div class="col">
+											<h5 class="card-title text-uppercase text-muted mb-0">Total de Advertências
+												</h5>
+											<span class="h2 font-weight-bold mb-0" th:text="${AllAdvertencias}"></span>
+										</div>
+										<div class="col-auto">
+											<div
+												class="icon icon-shape bg-info text-white rounded-circle shadow">
+												<i class="fas fa-percent"></i>
+											</div>
+										</div>
+									</div>
                                     </div>
                                 </div>
                             </div>
@@ -195,7 +178,7 @@
                                                 </div>
                                             </th>
                                             <td>
-                                                <p class="font-weight-normal" th:text="${func.departamento}"></p>
+                                              <p th:text="${func.departamento}"  class="font-weight-normal"></p>
                                             </td>
                                             <td>
                                                 <div th:if="${func.disponivel} == true">
@@ -215,14 +198,7 @@
                                             </td>
                                             <td>
                                                 <div class="d-flex align-items-center">
-                                                    <span class="mr-2">60%</span>
-                                                    <div>
-                                                        <div class="progress">
-                                                            <div class="progress-bar bg-warning" role="progressbar"
-                                                                 aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"
-                                                                 style="width: 60%;"></div>
-                                                        </div>
-                                                    </div>
+                                                    <span class="mr-2" th:text="${func.ferias}">%</span>
                                                 </div>
                                             </td>
                                             <td class="text-right">

@@ -8,7 +8,7 @@ package com.erp.rh.controller.funcionario;
 import com.erp.rh.entidade.advertencia.Advertencia;
 import com.erp.rh.entidade.email.Email;
 import com.erp.rh.entidade.funcionario.Funcionario;
-import com.erp.rh.entidade.suspensao.Suspensao;
+import com.erp.rh.repository.Suspensao.SuspensaoRepository;
 import com.erp.rh.repository.advertencia.AdvertenciaRepository;
 import com.erp.rh.repository.funcionario.FuncionarioRepository;
 import java.time.LocalDate;
@@ -43,51 +43,113 @@ public class FuncionarioController {
     AdvertenciaRepository advertenciaRepository;
     
 
-    @GetMapping("/listar")
-    public ModelAndView listaFuncinarios() {
-        int i = 10;
-        return new ModelAndView("/funcionario/listarFuncionarios")
-                .addObject("listaFuncionario", funcionarioRepository.findAll()).addObject("email", new Email());
-    }
+	@Autowired
+	FuncionarioRepository funcionarioRepository;
 
-    @PostMapping("/save")
-    public ModelAndView save(@ModelAttribute("funcionario") @Valid Funcionario funcionario, BindingResult bindingResult,
-            RedirectAttributes redirectAttributes) {
-        if (bindingResult.hasErrors()) {
-            return new ModelAndView("/funcionario/cadastrarAlterar");
-        }
+	@Autowired
+	AdvertenciaRepository advertenciaRepository;
 
-        if (funcionario.getId() == null) {
-            funcionario.setDisponivel(true);
-            funcionario.setDtAdmission(LocalDate.now());
-            funcionarioRepository.save(funcionario);
 
-            redirectAttributes.addFlashAttribute("mensagemSucesso",
-                    "Funcionario " + funcionario.getFirstName() + " cadastrado com sucesso");
-        } else {
-            if (funcionario.getDataDemissao() == null) {
-                funcionario.setDisponivel(true);
+	@GetMapping("/listar")
+	public ModelAndView listaFuncinarios() {
+	
+		
+		
+		List<Funcionario> funcionarios = new ArrayList<Funcionario>();
 
-            } else {
+		for (Funcionario funcionario : funcionarioRepository.findAll()) {
 
-                funcionario.setDisponivel(false);
-            }
+			String porcentagem = String.valueOf(100 * funcionario.getDataAdmissao().getDayOfYear() / 345);
+			funcionario.setFerias(porcentagem + "%");
+			funcionarios.add(funcionario);
 
-            redirectAttributes.addFlashAttribute("mensagemSucesso",
-                    "Funcionario " + funcionario.getFirstName() + " Alterado com sucesso");
-            funcionarioRepository.save(funcionario);
-        }
+		}
+		
+		return new ModelAndView("/funcionario/listarFuncionarios")
+				.addObject("listaFuncionario", funcionarios).addObject("email", new Email());
+	}
 
-        return new ModelAndView("redirect:/erp/funcionario/listar");
+	@PostMapping("/save")
+	public ModelAndView save(@ModelAttribute("funcionario") @Valid Funcionario funcionario, BindingResult bindingResult,
+			RedirectAttributes redirectAttributes) {
+		if (bindingResult.hasErrors()) {
+			return new ModelAndView("/funcionario/cadastrarAlterar");
+		}
 
-    }
+		if (funcionario.getId() == null) {
+			funcionario.setDisponivel(true);
+			funcionario.setDtAdmission(LocalDate.now());
+			funcionario.getAcesso().setId(funcionario.getId());
+			funcionario.getEndereco().setId(funcionario.getId());
+			funcionario.getContato().setId(funcionario.getId());
+			funcionarioRepository.save(funcionario);
 
-    @GetMapping("/buscar/{id}")
-    public ModelAndView funcinarioById(@PathVariable(value = "id") long id) {
-        Funcionario alterarfunc = funcionarioRepository.findById(id);
-        return new ModelAndView("/funcionario/cadastrarAlterar").addObject("funcionario", alterarfunc);
-    }
+			redirectAttributes.addFlashAttribute("mensagemSucesso",
+					"Funcionario " + funcionario.getFirstName() + " cadastrado com sucesso");
+		} else {
+			if (funcionario.getDataDemissao() == null) {
+				funcionario.setDisponivel(true);
 
+
+				funcionario.setDisponivel(false);
+			}
+
+			
+			funcionario.getAcesso().setId(funcionario.getId());
+			funcionario.getEndereco().setId(funcionario.getId());
+			funcionario.getContato().setId(funcionario.getId());
+			redirectAttributes.addFlashAttribute("mensagemSucesso",
+					"Funcionario " + funcionario.getFirstName() + " Alterado com sucesso");
+			funcionarioRepository.save(funcionario);
+		}
+
+		return new ModelAndView("redirect:/erp/funcionario/listar");
+
+	}
+
+	@GetMapping("/buscar/{id}")
+	public ModelAndView funcinarioById(@PathVariable(value = "id") long id) {
+		Funcionario alterarfunc = funcionarioRepository.findById(id);
+		return new ModelAndView("/funcionario/cadastrarAlterar").addObject("funcionario", alterarfunc);
+	}
+
+	@GetMapping("/perfil")
+	public ModelAndView perfil() {
+		Funcionario funcionario = funcionarioRepository.findById(1l);
+		return new ModelAndView("/funcionario/profile").addObject("funcionario", funcionario);
+	}
+
+	@GetMapping("/cadastrar")
+	public ModelAndView cadastrar() {
+		return new ModelAndView("/funcionario/cadastrarAlterar").addObject("funcionario", new Funcionario());
+	}
+
+	@ModelAttribute("AllFuncionario")
+	public int listaFuncionarios() {
+		return funcionarioRepository.findAll().size();
+
+	}
+
+	@ModelAttribute("AllAdvertencias")
+	public int listaAdvertencias() {
+		return advertenciaRepository.findAll().size();
+
+	}
+
+	@ModelAttribute("AllSuspensao")
+	public int listaSuspensao() {
+		return suspensaoRepository.findAll().size();
+
+	}
+
+	@ModelAttribute("AllRecentes")
+	public int listaNovosFuncionario() {
+
+		return funcionarioRepository.findByDataAdmissaoBetween(LocalDate.now().plusDays(-5), LocalDate.now()).size();
+
+	}
+
+}
     @GetMapping("/perfil/{id}")
     public ModelAndView perfil(@PathVariable(value = "id") long id) {
         Funcionario funcionario = funcionarioRepository.findById(id);
@@ -100,10 +162,3 @@ public class FuncionarioController {
                 .addObject("advertencias", advertencias)
                 .addObject("suspensoes", suspensoes);
     }
-
-    @GetMapping("/cadastrar")
-    public ModelAndView cadastrar() {
-        return new ModelAndView("/funcionario/cadastrarAlterar").addObject("funcionario", new Funcionario());
-    }
-
-}

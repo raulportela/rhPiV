@@ -23,6 +23,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
@@ -51,21 +52,12 @@ public class Funcionario implements Serializable {
     @Column(length = 50, nullable = false, name = "SOBRENOME")
     private String lastName;
 
+
+
+
     @NotNull(message = "Digite o CPF")
     @Column(length = 11, nullable = false, name = "CPF")
     private Long cpf;
-
-    @NotNull(message = "Digite a data de nascimento")
-    @Column(nullable = false, updatable = false, name = "DTBIRTH")
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private LocalDate dtBirth;
-
-    @Column(nullable = false, updatable = false, name = "DTADMISSION")
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private LocalDate dtAdmission;
-
-    @Column(nullable = false, updatable = true, name = "DISPONIVEL")
-    private boolean disponivel;
 
     // true == female
     // false == male
@@ -89,11 +81,14 @@ public class Funcionario implements Serializable {
     @OneToMany(mappedBy = "funcionario", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Suspensao> suspensao;
 
-    @Column(length = 20, nullable = true, name = "DEPARTAMENTO")
-    private String departamento;
+    @NotNull(message = "Digite a data de nascimento")
+    @Column(nullable = false, updatable = false, name = "DTBIRTH")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate dtBirth;
 
-    @Column(length = 50, nullable = true, name = "CARGO")
-    private String cargo;
+    @Column(nullable = false, updatable = false, name = "DTADMISSION")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate dtAdmission;
 
     @Column(nullable = false, updatable = true, name = "DATAADMISSAO")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -103,16 +98,20 @@ public class Funcionario implements Serializable {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate dataDemissao;
 
+	@Transient
+	private String ferias;
+	
+	@Column(length = 50,nullable = true,updatable = true, name = "SALARIO")
+	private String salario; 
+
 //    @Fetch(FetchMode.SUBSELECT)
 //    @OneToMany(mappedBy = "funcionario", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 //    private List<Cargo> cargo;
-    public Long getId() {
-        return id;
-    }
+    @Column(nullable = false, updatable = true, name = "DISPONIVEL")
+    private boolean disponivel;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+    @Column(length = 20, nullable = true, name = "DEPARTAMENTO")
+    private String departamento;
 
     public String getFirstName() {
         return firstName;
@@ -162,33 +161,29 @@ public class Funcionario implements Serializable {
         this.disponivel = disponivel;
     }
 
-    public boolean isGenero() {
-        return genero;
-    }
+    @Column(length = 50, nullable = true, name = "CARGO")
+    private String cargo;
 
     public void setGenero(boolean genero) {
         this.genero = genero;
     }
 
-    public Endereco getEndereco() {
-        return endereco;
+    public Long getId() {
+        return id;
     }
 
     public void setEndereco(Endereco endereco) {
         this.endereco = endereco;
     }
 
-    public Contato getContato() {
-        return contato;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public void setContato(Contato contato) {
         this.contato = contato;
     }
 
-    public Acesso getAcesso() {
-        return acesso;
-    }
 
     public void setAcesso(Acesso acesso) {
         this.acesso = acesso;
@@ -230,16 +225,19 @@ public class Funcionario implements Serializable {
         return dataAdmissao;
     }
 
-    public void setDataAdmissao(LocalDate dataAdmissao) {
-        this.dataAdmissao = dataAdmissao;
+    public boolean isGenero() {
+        return genero;
     }
 
     public LocalDate getDataDemissao() {
         return dataDemissao;
     }
 
-    public void setDataDemissao(LocalDate dataDemissao) {
-        this.dataDemissao = dataDemissao;
+    public Endereco getEndereco() {
+        return endereco;
     }
 
 }
+    public Contato getContato() {
+        return contato;
+    }
