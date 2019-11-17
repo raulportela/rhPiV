@@ -23,6 +23,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
@@ -43,28 +44,28 @@ public class Funcionario implements Serializable {
 
 	@NotNull
 	@NotBlank(message = "Digite o nome")
-	@Column(length = 30, nullable = false, name = "NOME")
+	@Column(length = 30, nullable = false, updatable = true,name = "NOME")
 	private String firstName;
 
 	@NotNull
 	@NotBlank(message = "Digite o sobrenome")
-	@Column(length = 50, nullable = false, name = "SOBRENOME")
+	@Column(length = 50, nullable = true, updatable = true, name = "SOBRENOME")
 	private String lastName;
 
 	@NotNull(message = "Digite o CPF")
-	@Column(length = 11, nullable = false, name = "CPF")
+	@Column(length = 11, nullable = true, updatable = true,name = "CPF")
 	private Long cpf;
 
 	@NotNull(message = "Digite a data de nascimento")
-	@Column(nullable = false, updatable = false, name = "DTBIRTH")
+	@Column(nullable = true, updatable = true, name = "DTBIRTH")
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate dtBirth;
 
-	@Column(nullable = false, updatable = false, name = "DTADMISSION")
+	@Column(nullable = true, updatable = true, name = "DTADMISSION")
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate dtAdmission;
 
-	@Column(nullable = false, updatable = true, name = "DISPONIVEL")
+	@Column(nullable = true, updatable = true, name = "DISPONIVEL")
 	private boolean disponivel;
 
 	// true == female
@@ -89,10 +90,10 @@ public class Funcionario implements Serializable {
 	@OneToMany(mappedBy = "funcionario", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private List<Suspensao> suspensao;
 
-	@Column(length = 20, nullable = true, name = "DEPARTAMENTO")
+	@Column(length = 20, nullable = false, name = "DEPARTAMENTO")
 	private String departamento;
 
-	@Column(length = 50, nullable = true, name = "CARGO")
+	@Column(length = 50, nullable = false, name = "CARGO")
 	private String cargo;
 
 	@Column(nullable = false, updatable = true, name = "DATAADMISSAO")
@@ -103,12 +104,37 @@ public class Funcionario implements Serializable {
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate dataDemissao;
 
+	@Transient
+	private String ferias;
+	
+	@Column(length = 50,nullable = true,updatable = true, name = "SALARIO")
+	private String salario; 
+
 //    @Fetch(FetchMode.SUBSELECT)
 //    @OneToMany(mappedBy = "funcionario", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 //    private List<Cargo> cargo;
+	
+	
+	
 
 	public Long getId() {
 		return id;
+	}
+
+	public String getSalario() {
+		return salario;
+	}
+
+	public void setSalario(String salario) {
+		this.salario = salario;
+	}
+
+	public String getFerias() {
+		return ferias;
+	}
+
+	public void setFerias(String ferias) {
+		this.ferias = ferias;
 	}
 
 	public LocalDate getDataAdmissao() {
@@ -160,7 +186,7 @@ public class Funcionario implements Serializable {
 	}
 
 	public void setFirstName(String firstName) {
-            this.setFirstName(firstName);
+		this.setFirstName(firstName);
 	}
 
 	public String getLastName() {
@@ -168,7 +194,7 @@ public class Funcionario implements Serializable {
 	}
 
 	public void setLastName(String lastName) {
-            this.setLastName(lastName);
+		this.setLastName(lastName);
 	}
 
 	public Long getCpf() {
@@ -176,7 +202,7 @@ public class Funcionario implements Serializable {
 	}
 
 	public void setCpf(Long cpf) {
-            this.setCpf(cpf);
+		this.setCpf(cpf);
 	}
 
 	public LocalDate getDtBirth() {
@@ -184,7 +210,7 @@ public class Funcionario implements Serializable {
 	}
 
 	public void setDtBirth(LocalDate dtBirth) {
-            this.setDtBirth(dtBirth);
+		this.setDtBirth(dtBirth);
 	}
 
 	public boolean isDisponivel() {
@@ -230,7 +256,7 @@ public class Funcionario implements Serializable {
 	public List<Advertencia> getAdvertencias() {
 		return advertencias;
 	}
-        
+
 	public void setAdvertencias(List<Advertencia> advertencias) {
 		this.advertencias = advertencias;
 	}
@@ -242,8 +268,5 @@ public class Funcionario implements Serializable {
 	public void setSuspensao(List<Suspensao> suspensao) {
 		this.suspensao = suspensao;
 	}
-
-
-   
 
 }

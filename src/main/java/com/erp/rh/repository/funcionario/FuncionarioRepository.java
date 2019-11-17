@@ -6,6 +6,8 @@
 package com.erp.rh.repository.funcionario;
 
 import com.erp.rh.entidade.funcionario.Funcionario;
+
+import java.time.LocalDate;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -25,7 +27,7 @@ public interface FuncionarioRepository extends JpaRepository<Funcionario, Long> 
 	Funcionario findById(long id);
 	Funcionario findByLastName(String LastName);
 	
-	
+	List<Funcionario> findByDataAdmissaoBetween(LocalDate dataInicial, LocalDate dataAtual);
 	List<Funcionario> findAll();
 	
 	/**@PersistenceContext

@@ -119,7 +119,7 @@
                                                            th:field="*{dtBirth}" required>
                                                 </div>
                                             </div>
-                                            <div class="col-lg-6">
+                                          <div class="col-lg-3">
                                                 <div class="form-group">
                                                     <div class="form-group">
                                                         <label for="exampleFormControlSelect1">Genero</label> <select
@@ -131,6 +131,20 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            <div class="col-lg-3">
+											<div class="form-group">
+												<div class="form-group">
+													<label class="form-control-label" for="input-salario" >Salário</label>
+													 <input
+														type="number" id="input-salario"
+														class="form-control form-control-alternative"
+														placeholder="Digite o salario"
+														th:classappend="${#fields.hasErrors('salario')}? is-invalid"
+														th:field="*{salario}" required>
+													
+												</div>
+											</div>
+										</div>
 
                                             <div class="col-lg-3">
                                                 <div class="form-group">
