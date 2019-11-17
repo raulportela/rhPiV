@@ -98,8 +98,8 @@
 
                                     <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
                                         <div class="d-flex justify-content-center">
-                                            <a href="" class="btn btn-sm btn-warning mr-4">Advertir</a>
-                                            <a href="" class="btn btn-sm btn-danger mr-4">Suspender</a>
+                                            <a th:href="@{/erp/advertencia/aplicar/{id}(id = ${func.id})}" class="btn btn-sm btn-warning mr-4">Advertir</a>
+                                            <a th:href="@{/erp/suspensao/aplicar/{id}(id = ${func.id})}" class="btn btn-sm btn-danger mr-4">Suspender</a>
                                         </div>
                                     </div>
                                 </div>
@@ -250,7 +250,11 @@
                                     </div>
                                     <hr class="my-4" />
 
+                                    
                                     <h6 class="heading-small text-muted mb-4">Informações de Advertencia</h6>
+                                    <!-- <div th:text="${#lists.size(advertencias) == 0}">
+                                        <h4 class="heading-small text-muted mb-4">Não há advertencias à exibir.</h4>
+                                    </div> -->
                                     <div class="pl-lg-4" th:if="${advertencias} != null">
                                         <div class="row">
                                             <div class="col-lg-3">
@@ -280,6 +284,9 @@
                                     <hr class="my-4" />
 
                                     <h6 class="heading-small text-muted mb-4">Informações de Suspensao</h6>
+                                    <!-- <div th:text="${#lists.size(suspensoes) == 0}">
+                                        <h4 class="heading-small text-muted mb-4">Não há suspensões à exibir.</h4>
+                                    </div> -->
                                     <div class="pl-lg-4" th:if="${suspensoes} != null">
                                         <div th:each="sps, stat:${suspensoes}" >
                                             <div class="row" >
