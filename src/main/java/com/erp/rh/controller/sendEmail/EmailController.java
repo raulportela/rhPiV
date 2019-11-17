@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -33,10 +34,14 @@ public class EmailController {
 		return new ModelAndView("/email/email").addObject("email", new Email());
 	}
 
-	@GetMapping("/funcionario/{id}")
-	public ModelAndView msgPreDefinida(@PathVariable(value = "id") long id
-			/*,@PathVariable(value = "true") boolean msg */) {
-		Funcionario funcionario = funcionarioRepository.findById(id);
+	@GetMapping("/listar")
+	public ModelAndView msgPreDefinida (@RequestParam(name = "id", defaultValue = "") Long id,
+	        @RequestParam(name = "msg", defaultValue = "0") String msg) {
+	
+	  
+	
+	
+//		Funcionario funcionario = funcionarioRepository.findById(id);
 		Email emailDefinido = new Email();
 
 //		if (msg == true) {
