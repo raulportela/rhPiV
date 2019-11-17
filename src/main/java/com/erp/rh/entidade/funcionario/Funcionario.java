@@ -118,7 +118,7 @@ public class Funcionario implements Serializable {
     }
 
     public void setFirstName(String firstName) {
-        this.firstName = firstName;
+        this.setFirstName(firstName);
     }
 
     public String getLastName() {
@@ -126,7 +126,7 @@ public class Funcionario implements Serializable {
     }
 
     public void setLastName(String lastName) {
-        this.lastName = lastName;
+        this.setLastName(lastName);
     }
 
     public Long getCpf() {
@@ -134,7 +134,7 @@ public class Funcionario implements Serializable {
     }
 
     public void setCpf(Long cpf) {
-        this.cpf = cpf;
+        this.setCpf(cpf);
     }
 
     public LocalDate getDtBirth() {
@@ -142,7 +142,7 @@ public class Funcionario implements Serializable {
     }
 
     public void setDtBirth(LocalDate dtBirth) {
-        this.dtBirth = dtBirth;
+        this.setDtBirth(dtBirth);
     }
 
     public LocalDate getDtAdmission() {
@@ -237,7 +237,39 @@ public class Funcionario implements Serializable {
         return endereco;
     }
 
-}
-    public Contato getContato() {
+    public String getFerias() {
+        return ferias;
+    }
+
+    public void setFerias(String ferias) {
+        this.ferias = ferias;
+    }
+
+    public String getSalario() {
+        return salario;
+    }
+
+    public void setSalario(String salario) {
+        this.salario = salario;
+    }
+
+        public Contato getContato() {
         return contato;
     }
+
+    public Acesso getAcesso() {
+        return acesso;
+    }
+
+    
+    public void setDataAdmissao(LocalDate dataAdmissao) {
+        this.dataAdmissao = dataAdmissao;
+    }
+
+    public void setDataDemissao(LocalDate dataDemissao) {
+        this.dataDemissao = dataDemissao;
+    }
+    
+    
+}
+    
