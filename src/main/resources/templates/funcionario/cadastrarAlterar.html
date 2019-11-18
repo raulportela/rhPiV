@@ -16,372 +16,374 @@
 <!DOCTYPE html>
 <html lang="en">
 
-    <!-- Cabeçalho importado -->
-    <head th:include="fragments/head :: head">
+<!-- Cabeçalho importado -->
+<head th:include="fragments/head :: head">
 
 
-    </head>
+</head>
 
-    <script>
-        //Mascara CPF
-        $(document).ready(function () {
-            $('#cpf').mask('999.999.999-99');
-        });
-    </script>
+<script>
+	//Mascara CPF
+	$(document).ready(function() {
+		$('#cpf').mask('999.999.999-99');
+	});
+</script>
 
-    <body class="">
-        <nav
-            class="navbar navbar-vertical fixed-left navbar-expand-md navbar-light bg-white"
-            id="sidenav-main">
-            <!--  Nav Left (Menu do lado Esquedo) -->
-            <nav th:include="fragments/nav :: nav"></nav>
-        </nav>
+<body class="">
+	<nav
+		class="navbar navbar-vertical fixed-left navbar-expand-md navbar-light bg-white"
+		id="sidenav-main">
+		<!--  Nav Left (Menu do lado Esquedo) -->
+		<nav th:include="fragments/nav :: nav"></nav>
+	</nav>
 
-        <div class="main-content">
+	<div class="main-content">
 
-            <!--  Nav Up (parte de cima) -->
-            <nav th:include="fragments/nav2 :: nav2"></nav>
+		<!--  Nav Up (parte de cima) -->
+		<nav th:include="fragments/nav2 :: nav2"></nav>
 
-            <!-- Header -->
-            <div class="header pb-5 pt-5 pt-lg-8 d-flex align-items-center"
-                 style="min-height: 300px; background-size: cover; background-position: center top;">
-                <!-- Mask -->
-                <span class="mask bg-gradient-default opacity-8"></span>
-                <!-- Header container -->
-                <div class="container-fluid d-flex align-items-center">
-                    <div class="row">
-                        <div class="col-lg-12 col-md-10" th:object="${funcionario}">
-                            <h1 class="display-3 text-white" th:if="${funcionario.id} == null">Cadastro</h1>
-                            <h1 class="display-3 text-white" th:if="${funcionario.id} != null">Alterar</h1>
-                            <p class="text-white mt-0 mb-7">É necessario o preenchimento
-                                de todas Informções que contém *</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Page content -->
-            <div class="container-fluid mt--7">
-                <div class="row">
-                    <div class="col-xl-12 order-xl-1">
-                        <div class="card bg-secondary shadow">
-                            <div class="card-header bg-white border-0">
-                                <div class="row align-items-center">
-                                    <div class="col-8">
-                                        <h3 class="mb-0">Cadastrar Funcionario</h3>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card-body">
-                                <form th:action="@{/erp/funcionario/save}" method="post"
-                                      th:object="${funcionario}">
-                                    <h6 class="heading-small text-muted mb-4">Informções de
-                                        usuario</h6>
-                                    <input type="hidden" th:if="*{id != null}" th:field="*{id}" />
-                                    <div class="pl-lg-4">
-                                        <div class="row">
-                                            <div class="col-lg-6">
-                                                <div class="form-group">
-                                                    <label class="form-control-label" for="input-first-name">Nome
-                                                    </label> <input type="text" id="input-first-name"
-                                                                    class="form-control form-control-alternative"
-                                                                    placeholder="Digite seu nome"
-                                                                    th:classappend="${#fields.hasErrors('firstName')}? is-invalid"
-                                                                    th:field="*{firstName}" required>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-6">
-                                                <div class="form-group">
-                                                    <label class="form-control-label" for="input-last-name">Sobrenome</label>
-                                                    <input type="text" id="input-last-name"
-                                                           class="form-control form-control-alternative"
-                                                           placeholder="Digite seu sobrenome"
-                                                           th:classappend="${#fields.hasErrors('lastName')}? is-invalid"
-                                                           th:field="*{lastName}" required>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-lg-6">
-                                                <div class="form-group">
-                                                    <label class="form-control-label" for="input-first-name">CPF</label>
-                                                    <input type="text" id="input-cpf"
-                                                           class="form-control cpf-mask" placeholder="XXX.XXX.XXX-XX"
-                                                           th:classappend="${#fields.hasErrors('cpf')}? is-invalid"
-                                                           th:field="*{cpf}" required>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-6">
-                                                <div class="form-group">
-                                                    <label class="form-control-label" for="input-last-name">Nascimento</label>
-                                                    <input type="date" id="input-dtnascimento"
-                                                           class="form-control form-control-alternative"
-                                                           placeholder="XX/XX/XXXX" maxlength="10"
-                                                           th:field="*{dtBirth}" required>
-                                                </div>
-                                            </div>
-                                          <div class="col-lg-3">
-                                                <div class="form-group">
-                                                    <div class="form-group">
-                                                        <label for="exampleFormControlSelect1">Genero</label> <select
-                                                            class="form-control" id="exampleFormControlSelect1"
-                                                            th:field="*{genero}">
-                                                            <option th:value="true" th:text="Feminino"></option>
-                                                            <option th:value="false" th:text="Masculino"></option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-3">
+		<!-- Header -->
+		<div class="header pb-5 pt-5 pt-lg-8 d-flex align-items-center"
+			style="min-height: 300px; background-size: cover; background-position: center top;">
+			<!-- Mask -->
+			<span class="mask bg-gradient-default opacity-8"></span>
+			<!-- Header container -->
+			<div class="container-fluid d-flex align-items-center">
+				<div class="row">
+					<div class="col-lg-12 col-md-10" th:object="${funcionario}">
+						<h1 class="display-3 text-white" th:if="${funcionario.id} == null">Cadastro</h1>
+						<h1 class="display-3 text-white" th:if="${funcionario.id} != null">Alterar</h1>
+						<p class="text-white mt-0 mb-7">É necessario o preenchimento
+							de todas Informções que contém *</p>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Page content -->
+		<div class="container-fluid mt--7">
+			<div class="row">
+				<div class="col-xl-12 order-xl-1">
+					<div class="card bg-secondary shadow">
+						<form th:action="@{/erp/funcionario/save}" method="post"
+							th:object="${funcionario}">
+							<input type="hidden" th:if="*{id != null}" th:field="*{id}" />
+							<div class="card-header bg-white border-0">
+								<div class="row align-items-center">
+									<div class="col-8">
+										<h3 class="mb-0">Cadastrar Funcionario</h3>
+									</div>
+								</div>
+							</div>
+
+							<div class="card-body">
+								<h6 class="heading-small text-muted mb-4">Informções de
+									usuario</h6>
+								<div class="pl-lg-4">
+									<div class="row">
+										<div class="col-lg-6">
+											<div class="form-group">
+												<label class="form-control-label" for="input-first-name">Nome
+												</label> <input type="text" id="input-first-name"
+													class="form-control form-control-alternative"
+													placeholder="Digite seu nome"
+													th:classappend="${#fields.hasErrors('firstName')}? is-invalid"
+													th:field="*{firstName}" required>
+											</div>
+										</div>
+										<div class="col-lg-6">
+											<div class="form-group">
+												<label class="form-control-label" for="input-last-name">Sobrenome</label>
+												<input type="text" id="input-last-name"
+													class="form-control form-control-alternative"
+													placeholder="Digite seu sobrenome"
+													th:classappend="${#fields.hasErrors('lastName')}? is-invalid"
+													th:field="*{lastName}" required>
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-lg-6">
+											<div class="form-group">
+												<label class="form-control-label" for="input-first-name">CPF</label>
+												<input type="text" id="input-cpf"
+													class="form-control cpf-mask" placeholder="XXX.XXX.XXX-XX"
+													th:classappend="${#fields.hasErrors('cpf')}? is-invalid"
+													th:field="*{cpf}" required>
+											</div>
+										</div>
+										<div class="col-lg-6">
+											<div class="form-group">
+												<label class="form-control-label" for="input-last-name">Nascimento</label>
+												<input type="date" id="input-dtnascimento"
+													class="form-control form-control-alternative"
+													placeholder="XX/XX/XXXX" maxlength="10"
+													th:field="*{dtBirth}" required>
+											</div>
+										</div>
+										<div class="col-lg-3">
 											<div class="form-group">
 												<div class="form-group">
-													<label class="form-control-label" for="input-salario" >Salário</label>
-													 <input
-														type="number" id="input-salario"
+													<label for="exampleFormControlSelect1">Genero</label> <select
+														class="form-control" id="exampleFormControlSelect1"
+														th:field="*{genero}">
+														<option th:value="true" th:text="Feminino"></option>
+														<option th:value="false" th:text="Masculino"></option>
+													</select>
+												</div>
+											</div>
+										</div>
+										<div class="col-lg-3">
+											<div class="form-group">
+												<div class="form-group">
+													<label class="form-control-label" for="input-salario">Salário</label>
+													<input type="number" id="input-salario"
 														class="form-control form-control-alternative"
 														placeholder="Digite o salario"
 														th:classappend="${#fields.hasErrors('salario')}? is-invalid"
 														th:field="*{salario}" required>
-													
+
 												</div>
 											</div>
 										</div>
 
-                                            <div class="col-lg-3">
-                                                <div class="form-group">
-                                                    <div class="form-group">
-                                                        <label>Departamento</label> <select class="form-control"
-                                                                                            th:field="*{departamento}">
+										<div class="col-lg-3">
+											<div class="form-group">
+												<div class="form-group">
+													<label>Departamento</label> <select class="form-control"
+														th:field="*{departamento}">
 
-                                                            <option th:value="RH" th:text="RH"></option>
-                                                            <option th:value="Comercial" th:text="Comercial"></option>
-                                                            <option th:value="Operações" th:text="Operações"></option>
-                                                            <option th:value="Financeiro" th:text="Financeiro"></option>
-                                                            <option th:value="T.I" th:text="T.I"></option>
-                                                            <option th:value="Materiais" th:text="Materiais"></option>
-                                                            <option th:value="Logística" th:text="Logística"></option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                            </div>
+														<option th:value="RH" th:text="RH"></option>
+														<option th:value="Comercial" th:text="Comercial"></option>
+														<option th:value="Operações" th:text="Operações"></option>
+														<option th:value="Financeiro" th:text="Financeiro"></option>
+														<option th:value="T.I" th:text="T.I"></option>
+														<option th:value="Materiais" th:text="Materiais"></option>
+														<option th:value="Logística" th:text="Logística"></option>
+													</select>
+												</div>
+											</div>
+										</div>
 
-                                            <div class="col-lg-3">
-                                                <div class="form-group">
-                                                    <div class="form-group">
-                                                        <label>Cargo</label> <select class="form-control"
-                                                                                     th:field="*{cargo}">
+										<div class="col-lg-3">
+											<div class="form-group">
+												<div class="form-group">
+													<label>Cargo</label> <select class="form-control"
+														th:field="*{cargo}">
 
-                                                            <option th:value="Ass.Administrativo">Assistente
-                                                                Administrativo</option>
+														<option th:value="Ass.Administrativo">Assistente
+															Administrativo</option>
 
-                                                            <option th:value="Estag.Marketing">Estagario em
-                                                                Marketing</option>
+														<option th:value="Estag.Marketing">Estagario em
+															Marketing</option>
 
-                                                            <option th:value="Gere.Geral">Gerente de
-                                                                Serviços Gerais</option>
+														<option th:value="Gere.Geral">Gerente de
+															Serviços Gerais</option>
 
-                                                            <option th:value="Ass.Financeiro">Assistence
-                                                                Financeiro</option>
+														<option th:value="Ass.Financeiro">Assistence
+															Financeiro</option>
 
-                                                            <option th:value="Desen.Java">Analista Java</option>
+														<option th:value="Desen.Java">Analista Java</option>
 
-                                                            <option th:value="Aux.Produção">Auxiliar de
-                                                                Produção</option>
+														<option th:value="Aux.Produção">Auxiliar de
+															Produção</option>
 
-                                                            <option th:value="Aux.Estoque">Auxiliar de
-                                                                Estoque</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                            </div>
+														<option th:value="Aux.Estoque">Auxiliar de
+															Estoque</option>
+													</select>
+												</div>
+											</div>
+										</div>
 
-                                            <div class="col-lg-6">
-                                                <div class="form-group">
-                                                    <label class="form-control-label" for="input-last-name">Data
-                                                        de admissão</label> <input type="date" id="input-dtnascimento"
-                                                                               class="form-control form-control-alternative"
-                                                                               placeholder="XX/XX/XXXX" maxlength="10"
-                                                                               th:field="*{dataAdmissao}" required>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-6">
-                                                <div class="form-group">
-                                                    <label class="form-control-label" for="input-last-name">Data
-                                                        de demissão</label> <input type="date" id="input-dtnascimento"
-                                                                               class="form-control form-control-alternative"
-                                                                               placeholder="XX/XX/XXXX" maxlength="10"
-                                                                               th:field="*{dataDemissao}">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                            </div>
-                            <hr class="my-4" />
-                            <!-- Acesso -->
+										<div class="col-lg-6">
+											<div class="form-group">
+												<label class="form-control-label" for="input-last-name">Data
+													de admissão</label> <input type="date" id="input-dtnascimento"
+													class="form-control form-control-alternative"
+													placeholder="XX/XX/XXXX" maxlength="10"
+													th:field="*{dataAdmissao}" required>
+											</div>
+										</div>
+										<div class="col-lg-6">
+											<div class="form-group">
+												<label class="form-control-label" for="input-last-name">Data
+													de demissão</label> <input type="date" id="input-dtnascimento"
+													class="form-control form-control-alternative"
+													placeholder="XX/XX/XXXX" maxlength="10"
+													th:field="*{dataDemissao}">
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<hr class="my-4" />
 
-                            <div class="card-body">
-                                <h6 class="heading-small text-muted mb-4">informações de
-                                    Acesso</h6>
-                                <div class="pl-lg-4" th:object="${funcionario.acesso}">
-                                    <!-- 							<input type="hidden" th:if="*{id != null}" th:field="*{id}" /> -->
-                                    <div class="row">
-                                        <div class="col-lg-6">
-                                            <div class="form-group">
-                                                <label class="form-control-label" for="input-city">Login</label>
-                                                <input type="text" id="input-city"
-                                                       class="form-control form-control-alternative"
-                                                       placeholder="Nome de Usuário"
-                                                       th:classappend="${#fields.hasErrors('usuario')}? is-invalid"
-                                                       th:field="*{usuario}">
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <div class="form-group">
-                                                <label class="form-control-label" for="input-country">Senha</label>
-                                                <input type="password" id="input-country"
-                                                       class="form-control form-control-alternative"
-                                                       placeholder="password"
-                                                       th:classappend="${#fields.hasErrors('hashsenha')}? is-invalid"
-                                                       th:field="*{hashsenha}" required>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+							<!-- Acesso -->
+							<div class="card-body">
+								<input type="hidden" th:if="*{acesso} != null"
+									th:field="*{acesso}" th:placeholder="*{acesso}" />
+								<h6 class="heading-small text-muted mb-4">informações de
+									Acesso</h6>
+								<div class="pl-lg-4" th:object="${funcionario.acesso}">
+									<div class="row">
+										<div class="col-lg-6">
+											<div class="form-group">
+												<label class="form-control-label" for="input-city">Login</label>
+												<input type="text" id="input-city"
+													class="form-control form-control-alternative"
+													placeholder="Nome de Usuário"
+													th:classappend="${#fields.hasErrors('usuario')}? is-invalid"
+													th:field="*{usuario}">
+											</div>
+										</div>
+										<div class="col-lg-6">
+											<div class="form-group">
+												<label class="form-control-label" for="input-country">Senha</label>
+												<input type="password" id="input-country"
+													class="form-control form-control-alternative"
+													placeholder="password"
+													th:classappend="${#fields.hasErrors('hashsenha')}? is-invalid"
+													th:field="*{hashsenha}" required>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
 
-                            <!-- Contato -->
-                            <div class="card-body">
-                                <h6 class="heading-small text-muted mb-4">informações de
-                                    contato</h6>
-                                <div class="pl-lg-4" th:object="${funcionario.contato}">
-                                    <!-- 							<input type="hidden" th:if="*{id != null}" th:field="*{id}" /> -->
-                                    <div class="row">
-                                        <div class="col-lg-6">
-                                            <div class="form-group">
-                                                <label class="form-control-label" for="input-city">Telefone</label>
-                                                <input type="number" id="input-city"
-                                                       class="form-control form-control-alternative"
-                                                       placeholder="(XX) XXXX-XXXX"
-                                                       th:classappend="${#fields.hasErrors('telefone')}? is-invalid"
-                                                       th:field="*{telefone}">
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <div class="form-group">
-                                                <label class="form-control-label" for="input-country">Celular</label>
-                                                <input type="number" id="input-country"
-                                                       class="form-control form-control-alternative"
-                                                       placeholder="(XX) XXXX-XXXX"
-                                                       th:classappend="${#fields.hasErrors('celular')}? is-invalid"
-                                                       th:field="*{celular}" required>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <div class="form-group">
-                                                <label class="form-control-label" for="input-email">Email</label>
-                                                <input type="email" id="input-email"
-                                                       class="form-control form-control-alternative"
-                                                       placeholder="email@email.com"
-                                                       th:classappend="${#fields.hasErrors('email')}? is-invalid"
-                                                       th:field="*{email}" required>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <hr class="my-4" />
+							<!-- Contato -->
+							<div class="card-body">
+								<input type="hidden" th:if="*{contato} != null"
+									th:field="*{contato}" th:placeholder="*{contato}" />
+								<h6 class="heading-small text-muted mb-4">informações de
+									contato</h6>
+								<div class="pl-lg-4" th:object="${funcionario.contato}">
+									<div class="row">
+										<div class="col-lg-6">
+											<div class="form-group">
+												<label class="form-control-label" for="input-city">Telefone</label>
+												<input type="number" id="input-city"
+													class="form-control form-control-alternative"
+													placeholder="(XX) XXXX-XXXX"
+													th:classappend="${#fields.hasErrors('telefone')}? is-invalid"
+													th:field="*{telefone}">
+											</div>
+										</div>
+										<div class="col-lg-6">
+											<div class="form-group">
+												<label class="form-control-label" for="input-country">Celular</label>
+												<input type="number" id="input-country"
+													class="form-control form-control-alternative"
+													placeholder="(XX) XXXX-XXXX"
+													th:classappend="${#fields.hasErrors('celular')}? is-invalid"
+													th:field="*{celular}" required>
+											</div>
+										</div>
+										<div class="col-lg-6">
+											<div class="form-group">
+												<label class="form-control-label" for="input-email">Email</label>
+												<input type="email" id="input-email"
+													class="form-control form-control-alternative"
+													placeholder="email@email.com"
+													th:classappend="${#fields.hasErrors('email')}? is-invalid"
+													th:field="*{email}" required>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<hr class="my-4" />
 
-                            <!-- Address -->
-                            <div class="card-body">
-                                <h6 class="heading-small text-muted mb-4">informações de
-                                    endereço</h6>
-                                <div class="pl-lg-4" th:object="${funcionario.endereco}">
-                                    <!-- 							<<input type="hidden" th:if="*{id != null}" th:field="*{id}" /> -->
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label class="form-control-label" for="input-address">Rua</label>
-                                                <input id="input-address"
-                                                       class="form-control form-control-alternative"
-                                                       placeholder="Digite o nome de sua rua" type="text"
-                                                       th:classappend="${#fields.hasErrors('rua')}? is-invalid"
-                                                       th:field="*{rua}" required>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label class="form-control-label" for="input-address">Numero</label>
-                                                <input id="input-address"
-                                                       class="form-control form-control-alternative"
-                                                       placeholder="Ex: 10" type="text"
-                                                       th:classappend="${#fields.hasErrors('numero')}? is-invalid"
-                                                       th:field="*{numero}" required>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label class="form-control-label" for="input-address">Bairro</label>
-                                                <input id="input-address"
-                                                       class="form-control form-control-alternative"
-                                                       placeholder="Informe seu Bairro" type="text"
-                                                       th:classappend="${#fields.hasErrors('bairro')}? is-invalid"
-                                                       th:field="*{bairro}" required>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label class="form-control-label" for="input-country">CEP</label>
-                                                <input type="number" id="input-postal-code"
-                                                       class="form-control form-control-alternative"
-                                                       placeholder="XXX-XXXX"
-                                                       th:classappend="${#fields.hasErrors('cep')}? is-invalid"
-                                                       th:field="*{cep}" required>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label class="form-control-label" for="input-country">Complemento</label>
-                                                <input type="text" id="input-country"
-                                                       class="form-control form-control-alternative"
-                                                       placeholder="EX: BL3 APTO 33"
-                                                       th:classappend="${#fields.hasErrors('complemento')}? is-invalid"
-                                                       th:field="*{complemento}">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label class="form-control-label" for="input-city">Cidade</label>
-                                                <input type="text" id="input-city"
-                                                       class="form-control form-control-alternative"
-                                                       placeholder="EX: São Paulo"
-                                                       th:classappend="${#fields.hasErrors('cidade')}? is-invalid"
-                                                       th:field="*{cidade}" required>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div>
+							<!-- Address -->
+							<div class="card-body">
+								<input type="hidden" th:if="*{endereco} != null"
+									th:field="*{endereco}" th:placeholder="*{acesso}" />
+								<h6 class="heading-small text-muted mb-4">informações de
+									endereço</h6>
+								<div class="pl-lg-4" th:object="${funcionario.endereco}">
+									<div class="row">
+										<div class="col-md-6">
+											<div class="form-group">
+												<label class="form-control-label" for="input-address">Rua</label>
+												<input id="input-address"
+													class="form-control form-control-alternative"
+													placeholder="Digite o nome de sua rua" type="text"
+													th:classappend="${#fields.hasErrors('rua')}? is-invalid"
+													th:field="*{rua}" required>
+											</div>
+										</div>
+										<div class="col-md-6">
+											<div class="form-group">
+												<label class="form-control-label" for="input-address">Numero</label>
+												<input id="input-address"
+													class="form-control form-control-alternative"
+													placeholder="Ex: 10" type="text"
+													th:classappend="${#fields.hasErrors('numero')}? is-invalid"
+													th:field="*{numero}" required>
+											</div>
+										</div>
+										<div class="col-md-6">
+											<div class="form-group">
+												<label class="form-control-label" for="input-address">Bairro</label>
+												<input id="input-address"
+													class="form-control form-control-alternative"
+													placeholder="Informe seu Bairro" type="text"
+													th:classappend="${#fields.hasErrors('bairro')}? is-invalid"
+													th:field="*{bairro}" required>
+											</div>
+										</div>
+										<div class="col-md-6">
+											<div class="form-group">
+												<label class="form-control-label" for="input-country">CEP</label>
+												<input type="number" id="input-postal-code"
+													class="form-control form-control-alternative"
+													placeholder="XXX-XXXX"
+													th:classappend="${#fields.hasErrors('cep')}? is-invalid"
+													th:field="*{cep}" required>
+											</div>
+										</div>
+										<div class="col-md-6">
+											<div class="form-group">
+												<label class="form-control-label" for="input-country">Complemento</label>
+												<input type="text" id="input-country"
+													class="form-control form-control-alternative"
+													placeholder="EX: BL3 APTO 33"
+													th:classappend="${#fields.hasErrors('complemento')}? is-invalid"
+													th:field="*{complemento}">
+											</div>
+										</div>
+										<div class="col-md-6">
+											<div class="form-group">
+												<label class="form-control-label" for="input-city">Cidade</label>
+												<input type="text" id="input-city"
+													class="form-control form-control-alternative"
+													placeholder="EX: São Paulo"
+													th:classappend="${#fields.hasErrors('cidade')}? is-invalid"
+													th:field="*{cidade}" required>
+											</div>
+										</div>
+									</div>
+									<div>
+										<a th:href="@{/erp/funcionario/listar}" class="btn btn-dark">Cancelar</a> <input
+											th:if="${funcionario.id} == null" type="submit"
+											class="btn btn-info" value="Cadastrar"> <input
+											th:if="${funcionario.id} != null" type="submit"
+											class="btn btn-info" value="Alterar">
+									</div>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
 
+		<!-- Footer -->
+		<footer th:include="fragments/footer :: footer"></footer>
+	</div>
+	</div>
 
-                                        <a th:href="@{/erp/home}" class="btn btn-dark">Cancelar</a> <input
-                                            th:if="${funcionario.id} == null" type="submit"
-                                            class="btn btn-info" value="Cadastrar"> <input
-                                            th:if="${funcionario.id} != null" type="submit"
-                                            class="btn btn-info" value="Alterar">
-                                    </div>
-                                </div>
-                            </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Footer -->
-            <footer th:include="fragments/footer :: footer"></footer>
-        </div>
-    </div>
-
-    <!-- Scripts-->
-    <div th:include="fragments/scripts :: scripts"></div>
+	<!-- Scripts-->
+	<div th:include="fragments/scripts :: scripts"></div>
 
 </body>
 </html>

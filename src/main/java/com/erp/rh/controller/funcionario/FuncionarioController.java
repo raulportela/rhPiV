@@ -73,9 +73,6 @@ public class FuncionarioController {
         if (funcionario.getId() == null) {
             funcionario.setDisponivel(true);
             funcionario.setDtAdmission(LocalDate.now());
-            funcionario.getAcesso().setId(funcionario.getId());
-            funcionario.getEndereco().setId(funcionario.getId());
-            funcionario.getContato().setId(funcionario.getId());
             funcionarioRepository.save(funcionario);
 
             redirectAttributes.addFlashAttribute("mensagemSucesso",
@@ -84,12 +81,11 @@ public class FuncionarioController {
             if (funcionario.getDataDemissao() == null) {
                 funcionario.setDisponivel(true);
 
+            } else {
+
                 funcionario.setDisponivel(false);
             }
 
-            funcionario.getAcesso().setId(funcionario.getId());
-            funcionario.getEndereco().setId(funcionario.getId());
-            funcionario.getContato().setId(funcionario.getId());
             redirectAttributes.addFlashAttribute("mensagemSucesso",
                     "Funcionario " + funcionario.getFirstName() + " Alterado com sucesso");
             funcionarioRepository.save(funcionario);
