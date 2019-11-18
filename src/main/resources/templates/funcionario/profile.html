@@ -98,8 +98,8 @@
 
                                     <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
                                         <div class="d-flex justify-content-center">
-                                            <a th:href="@{/erp/advertencia/aplicar/{id}(id = ${func.id})}" class="btn btn-sm btn-warning mr-4">Advertir</a>
-                                            <a th:href="@{/erp/suspensao/aplicar/{id}(id = ${func.id})}" class="btn btn-sm btn-danger mr-4">Suspender</a>
+                                            <a th:href="@{/erp/advertencia/aplicar/{id}(id = ${funcionario.id})}" class="btn btn-sm btn-warning mr-4">Advertir</a>
+                                            <a th:href="@{/erp/suspensao/aplicar/{id}(id = ${funcionario.id})}" class="btn btn-sm btn-danger mr-4">Suspender</a>
                                         </div>
                                     </div>
                                 </div>
@@ -269,14 +269,14 @@
                                                 <div class="form-group">
 
                                                     <p id="input-dtnascimento" class="form-control form-control-alternative" 
-                                                       th:text="${adv.dtAplicacao}">
+                                                       th:text="${adv.dtAplicacao}"readondly>
                                                 </div>
                                             </div>
                                             <div class="col-lg-9">
                                                 <div class="form-group">
 
                                                     <input type="text" id="input-dtnascimento" class="form-control form-control-alternative" 
-                                                           th:value="${adv.reason}">
+                                                           th:value="${adv.reason}" readondly>
                                                 </div>
                                             </div>
                                         </div>
@@ -294,14 +294,14 @@
                                                     <div class="form-group">
                                                         <label class="form-control-label" for="input-dt-apli">Data de aplicação</label>
                                                         <p id="input-dtnascimento" class="form-control form-control-alternative" 
-                                                           th:text="${sps.dtAplicacao}"></p>
+                                                           th:text="${sps.dtAplicacao}" readondly></p>
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <div class="form-group">
                                                         <label class="form-control-label" for="input-dt-return">Data de Retorno</label>
                                                         <p id="input-dtnascimento" class="form-control form-control-alternative" 
-                                                           th:text="${sps.dtReturn}"></p>
+                                                           th:text="${sps.dtReturn}" readondly></p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -310,7 +310,7 @@
                                                     <div class="form-group">
                                                         <label class="form-control-label" for="input-last-name">Motivo</label>
                                                         <input type="text" id="input-dtnascimento" class="form-control form-control-alternative" 
-                                                               th:value="${sps.reason}">
+                                                               th:value="${sps.reason}" readondly>
                                                     </div>
                                                 </div>
                                             </div>
