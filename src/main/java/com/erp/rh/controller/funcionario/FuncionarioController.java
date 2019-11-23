@@ -53,7 +53,7 @@ public class FuncionarioController {
 
 		for (Funcionario funcionario : funcionarioRepository.findAll()) {
 
-			String porcentagem = String.valueOf(100 * funcionario.getDataAdmissao().getDayOfYear() / 345);
+			String porcentagem = String.valueOf(100 - (100 * funcionario.getDataAdmissao().getDayOfYear() / 365 ));
 			funcionario.setFerias(porcentagem + "%");
 			funcionarios.add(funcionario);
 
