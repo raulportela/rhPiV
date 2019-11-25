@@ -66,9 +66,9 @@ public class FuncionarioController {
 	@PostMapping("/save")
 	public ModelAndView save(@ModelAttribute("funcionario") @Valid Funcionario funcionario, BindingResult bindingResult,
 			RedirectAttributes redirectAttributes) {
-		if (bindingResult.hasErrors()) {
-			return new ModelAndView("/funcionario/cadastrarAlterar");
-		}
+		//if (bindingResult.hasErrors()) {
+		//	return new ModelAndView("/funcionario/cadastrarAlterar");
+		//}
 
 		if (funcionario.getId() == null) {
 			if (funcionario.getAcesso().getUsername().equals("") || funcionario.getAcesso().getPassword().equals("")) {
