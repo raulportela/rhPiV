@@ -134,7 +134,7 @@
                             <div class="row">
                                 <div class="col-3">
                                     <div class="card-header border-0">
-                                        <h3 class="mb-0">Funcionarios</h3>
+                                        <h3 class="mb-0">Departamentos</h3>
                                     </div>
                                 </div>
                                 <div class="col-6">
@@ -144,12 +144,7 @@
                                              role="alert"></div>
                                     </div>
                                 </div>
-                                <div class="col-3">
-                                    <a href="/erp/funcionario/cadastrar">
-                                        <button type="button" class="btn btn-primary my-4"
-                                                name="novoFuncionario">Novo Funcionario</button>
-                                    </a>
-                                </div>
+                                
                             </div>
 
 
@@ -166,29 +161,75 @@
                                     <tbody>
                                         <tr>
                                             <th scope="row">
-                                                <div class="media align-items-center">
-                                                    <div class="media-body">
-                                                        <span class="mb-0 text-sm"></span>
-                                                        <p lass="font-weight-normal">RH</p>
-                                                    </div> 
-                                                </div>
+                                                <span class="mb-0 text-sm"></span>
+                                                <p 
+                                                    class="font-weight-normal">Produção</p>
                                             </th>
                                             <td>
-                                                <a class="dropdown-item"
-                                                   th:href="@{/erp/departamento/novo/{par}(id = ${1})}">Enviar
-                                                    Email</a> <a class="dropdown-item"
-                                        </td>
-                                    </tr> 
-                                </tbody>
-                            </table>
+                                                <a class="btn btn-sm btn-default"
+                                                   th:href="@{/erp/email/departamento/{par}(par = ${1})}">Enviar
+                                                    Email</a> 
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">
+                                                <span class="mb-0 text-sm"></span>
+                                                <p 
+                                                    class="font-weight-normal">Materiais</p>
+                                            </th>
+                                            <td>
+                                                <a class="btn btn-sm btn-default"
+                                                   th:href="@{/erp/email/departamento/{par}(par = ${2})}">Enviar
+                                                    Email</a> 
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">
+                                                <span class="mb-0 text-sm"></span>
+                                                <p 
+                                                    class="font-weight-normal">Administração</p>
+                                            </th>
+                                            <td>
+                                                <a class="btn btn-sm btn-default"
+                                                   th:href="@{/erp/email/departamento/{par}(par = ${3})}">Enviar
+                                                    Email</a> 
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">
+                                                <span class="mb-0 text-sm"></span>
+                                                <p 
+                                                    class="font-weight-normal">Financeiro</p>
+                                            </th>
+                                            <td>
+                                                <a class="btn btn-sm btn-default"
+                                                   th:href="@{/erp/email/departamento/{par}(par = ${4})}">Enviar
+                                                    Email</a> 
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">
+                                                <span class="mb-0 text-sm"></span>
+                                                <p 
+                                                    class="font-weight-normal">Logistica</p>
+                                            </th>
+                                            <td>
+                                                <a class="btn btn-sm btn-default"
+                                                   th:href="@{/erp/email/departamento/{par}(par = ${5})}">Enviar
+                                                    Email</a> 
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
+                    <!-- Footer -->
+                    
                 </div>
-                <!-- Footer -->
                 <footer th:include="fragments/footer :: footer"></footer>
-            </div>
-            <!-- Scripts-->
-            <div th:include="fragments/scripts :: scripts"></div>
-            </body>
+                <!-- Scripts-->
+                <div th:include="fragments/scripts :: scripts"></div>
+                </body>
 
-            </html>
+                </html>

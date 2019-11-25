@@ -40,10 +40,34 @@ public class EmailController {
 
     @GetMapping("/departamento/{par}")
     public ModelAndView departamento(@PathVariable(value = "par") int par) {
-        if(par == 1){
-            
+        Email emailDefinido = new Email();
+        
+        
+        switch (par) {
+            case 1:
+                emailDefinido.setDestinatario("erp.mproducao@gmail.com");
+                emailDefinido.setAssunto("Contato DP Produção");
+                break;
+            case 2:
+                emailDefinido.setDestinatario("erp.materiais.tads@gmail.com");
+                emailDefinido.setAssunto("Contato DP Materiais");
+                break;
+            case 3:
+                emailDefinido.setDestinatario("adm.efmm@gmail.com");
+                emailDefinido.setAssunto("Contato DP Administração");
+                break;
+            case 4:
+                emailDefinido.setDestinatario("erp.tfinanceiro@gmail.com");
+                emailDefinido.setAssunto("Contato DP Financeiro");
+                break;
+            case 5:
+                emailDefinido.setDestinatario("logistica.erpp@gmail.com");
+                emailDefinido.setAssunto("Contato DP Logistica");
+                break;
+            default:
+                break;
         }
-        return new ModelAndView("/email/email").addObject("email", new Email());
+        return new ModelAndView("/email/email").addObject("email", emailDefinido);
     }
 
     @GetMapping("/promocao/{id}")
