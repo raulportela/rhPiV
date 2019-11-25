@@ -42,58 +42,18 @@
                                 <div class="card card-stats mb-4 mb-xl-0">
                                     <div class="card-body">
                                         <div class="row">
-										<div class="col">
-											<h5 class="card-title text-uppercase text-muted mb-0">Funcionarios
-												Trabalhando</h5>
-											<span class="h2 font-weight-bold mb-0" th:text="${AllFuncionario}">88</span>
-										</div>
-										<div class="col-auto">
-											<div
-												class="icon icon-shape bg-danger text-white rounded-circle shadow">
-												<i class="fas fa-chart-bar"></i>
-											</div>
-										</div>
-									</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-3 col-lg-6">
-                                <div class="card card-stats mb-4 mb-xl-0">
-                                    <div class="card-body">
-                                      <div class="row">
-										<div class="col">
-											<h5 class="card-title text-uppercase text-muted mb-0">Funcionarios Novos 
-											</h5>
-											<h6 class="card-title text-uppercase text-muted mb-0">Essa Semana
-											</h6>
-												<span class="h2 font-weight-bold mb-0"  th:text="${AllRecentes}"></span>
-										</div>
-										<div class="col-auto">
-											<div
-												class="icon icon-shape bg-warning text-white rounded-circle shadow">
-												<i class="fas fa-chart-pie"></i>
-											</div>
-										</div>
-									</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-3 col-lg-6">
-                                <div class="card card-stats mb-4 mb-xl-0">
-                                    <div class="card-body">
-                                       <div class="row">
-										<div class="col">
-											<h5 class="card-title text-uppercase text-muted mb-0">Total de Suspensões
-												</h5>
-											<span class="h2 font-weight-bold mb-0"  th:text="${AllSuspensao}"></span>
-										</div>
-										<div class="col-auto">
-											<div
-												class="icon icon-shape bg-yellow text-white rounded-circle shadow">
-												<i class="fas fa-chart-line"></i>
-											</div>
-										</div>
-									</div>
+                                            <div class="col">
+                                                <h5 class="card-title text-uppercase text-muted mb-0">Funcionarios
+                                                    Trabalhando</h5>
+                                                <span class="h2 font-weight-bold mb-0" th:text="${AllFuncionario}">88</span>
+                                            </div>
+                                            <div class="col-auto">
+                                                <div
+                                                    class="icon icon-shape bg-danger text-white rounded-circle shadow">
+                                                    <i class="fas fa-chart-bar"></i>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -101,18 +61,58 @@
                                 <div class="card card-stats mb-4 mb-xl-0">
                                     <div class="card-body">
                                         <div class="row">
-										<div class="col">
-											<h5 class="card-title text-uppercase text-muted mb-0">Total de Advertências
-												</h5>
-											<span class="h2 font-weight-bold mb-0" th:text="${AllAdvertencias}"></span>
-										</div>
-										<div class="col-auto">
-											<div
-												class="icon icon-shape bg-info text-white rounded-circle shadow">
-												<i class="fas fa-percent"></i>
-											</div>
-										</div>
-									</div>
+                                            <div class="col">
+                                                <h5 class="card-title text-uppercase text-muted mb-0">Funcionarios Novos 
+                                                </h5>
+                                                <h6 class="card-title text-uppercase text-muted mb-0">Essa Semana
+                                                </h6>
+                                                <span class="h2 font-weight-bold mb-0"  th:text="${AllRecentes}"></span>
+                                            </div>
+                                            <div class="col-auto">
+                                                <div
+                                                    class="icon icon-shape bg-warning text-white rounded-circle shadow">
+                                                    <i class="fas fa-chart-pie"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-lg-6">
+                                <div class="card card-stats mb-4 mb-xl-0">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col">
+                                                <h5 class="card-title text-uppercase text-muted mb-0">Total de Suspensões
+                                                </h5>
+                                                <span class="h2 font-weight-bold mb-0"  th:text="${AllSuspensao}"></span>
+                                            </div>
+                                            <div class="col-auto">
+                                                <div
+                                                    class="icon icon-shape bg-yellow text-white rounded-circle shadow">
+                                                    <i class="fas fa-cut"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-lg-6">
+                                <div class="card card-stats mb-4 mb-xl-0">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col">
+                                                <h5 class="card-title text-uppercase text-muted mb-0">Total de Advertências
+                                                </h5>
+                                                <span class="h2 font-weight-bold mb-0" th:text="${AllAdvertencias}"></span>
+                                            </div>
+                                            <div class="col-auto">
+                                                <div
+                                                    class="icon icon-shape bg-info text-white rounded-circle shadow">
+                                                    <i class="fas fa-frog"></i>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -148,7 +148,7 @@
 
 
                             <div class="table-responsive">
-                                
+
                                 <table class="table align-items-center table-flush">
                                     <thead class="thead-light">
                                         <tr>
@@ -178,7 +178,7 @@
                                                 </div>
                                             </th>
                                             <td>
-                                              <p th:text="${func.departamento}"  class="font-weight-normal"></p>
+                                                <p th:text="${func.departamento}"  class="font-weight-normal"></p>
                                             </td>
                                             <td>
                                                 <div th:if="${func.disponivel} == true">

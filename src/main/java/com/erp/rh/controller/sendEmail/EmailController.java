@@ -28,83 +28,108 @@ import com.erp.rh.repository.funcionario.FuncionarioRepository;
 @RequestMapping("/erp/email")
 public class EmailController {
 
-	@Autowired
-	FuncionarioRepository funcionarioRepository;
-	@Autowired
-	private JavaMailSender javaMailSender;
+    @Autowired
+    FuncionarioRepository funcionarioRepository;
+    @Autowired
+    private JavaMailSender javaMailSender;
 
-	@GetMapping("/novo")
-	public ModelAndView novoEmail() {
-		return new ModelAndView("/email/email").addObject("email", new Email());
-	}
+    @GetMapping("/novo")
+    public ModelAndView novoEmail() {
+        return new ModelAndView("/email/email").addObject("email", new Email());
+    }
 
-	@GetMapping("/promocao/{id}")
-	public ModelAndView msgPromocao(@PathVariable(value = "id") long id
-	/* ,@PathVariable(value = "true") boolean msg */) {
+    @GetMapping("/departamento/{par}")
+    public ModelAndView departamento(@PathVariable(value = "par") int par) {
+        if(par == 1){
+            
+        }
+        return new ModelAndView("/email/email").addObject("email", new Email());
+    }
 
-		Funcionario funcionario = funcionarioRepository.findById(id);
-		Email emailDefinido = new Email();
+    @GetMapping("/promocao/{id}")
+    public ModelAndView msgPromocao(@PathVariable(value = "id") long id
+    /* ,@PathVariable(value = "true") boolean msg */) {
 
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-		String admisao = funcionario.getDtAdmission().format(formatter);
+        Funcionario funcionario = funcionarioRepository.findById(id);
+        Email emailDefinido = new Email();
 
-		emailDefinido.setMensagem("PROMOÇÃO\r\n" + "\r\n" + "Sr(a). " + funcionario.getFirstName() + " "
-				+ funcionario.getLastName() + "\r\n" + "\r\n"
-				+ "Temos o prazer de lhe comunicar que a partir do dia “inserir data” vossa senhoria passará a exercer o cargo de “informar cargo”.\r\n"
-				+ "\r\n"
-				+ "Estamos certos que você terá sucesso em sua nova função, a qual esperamos que seja exercida com a mesma dedicação e eficiência que \r\n"
-				+ "possibilitou a realização desta promoção.\r\n" + "\r\n"
-				+ "Receba nossos sinceros cumprimentos pela sua ascensão profissional.\r\n" + "\r\n"
-				+ "Cordialmente,\r\n" + "\r\n" + "Recursos Humanos.");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        String admisao = funcionario.getDtAdmission().format(formatter);
 
-		return new ModelAndView("/email/email").addObject("email", emailDefinido);
-	}
+        emailDefinido.setMensagem("PROMOÇÃO\r\n" + "\r\n" + "Sr(a). " + funcionario.getFirstName() + " "
+                + funcionario.getLastName() + "\r\n" + "\r\n"
+                + "Temos o prazer de lhe comunicar que a partir do dia “inserir data” vossa senhoria passará a exercer o cargo de “informar cargo”.\r\n"
+                + "\r\n"
+                + "Estamos certos que você terá sucesso em sua nova função, a qual esperamos que seja exercida com a mesma dedicação e eficiência que \r\n"
+                + "possibilitou a realização desta promoção.\r\n" + "\r\n"
+                + "Receba nossos sinceros cumprimentos pela sua ascensão profissional.\r\n" + "\r\n"
+                + "Cordialmente,\r\n" + "\r\n" + "Recursos Humanos.");
 
-	@GetMapping("/funcionario/{id}")
-	public ModelAndView msgPreDefinida(@PathVariable(value = "id") long id
-	/* ,@PathVariable(value = "true") boolean msg */) {
+        return new ModelAndView("/email/email").addObject("email", emailDefinido);
+    }
 
-		Funcionario funcionario = funcionarioRepository.findById(id);
-		Email emailDefinido = new Email();
+    @GetMapping("/funcionario/{id}")
+    public ModelAndView msgPreDefinida(@PathVariable(value = "id") long id
+    /* ,@PathVariable(value = "true") boolean msg */) {
 
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-		String admisao = funcionario.getDtAdmission().format(formatter);
+        Funcionario funcionario = funcionarioRepository.findById(id);
+        Email emailDefinido = new Email();
 
-		emailDefinido.setAssunto("CONTRATAÇÃO DE FUNCIONARIO");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        String admisao = funcionario.getDtAdmission().format(formatter);
 
-		emailDefinido.setMensagem("CONTRATAÇÃO\r\n" + "\r\n" + "Informamos que o Sr (a) " + funcionario.getFirstName()
-				+ " " + funcionario.getLastName() + ", portador do CPF " + funcionario.getCpf() + ",\r\n"
-				+ "foi selecionada para ocupar o cargo de " + funcionario.getCargo() + " a partir de " + admisao
-				+ ". \r\n"
-				+ "Favor (se necessário) solicitar a aquisição dos equipamentos necessários para o novo colaborador exercer suas funções.\r\n"
-				+ "\r\n" + "Atenciosamente,\r\n" + "\r\n" + "Recursos Humanos");
+        emailDefinido.setAssunto("CONTRATAÇÃO DE FUNCIONARIO");
 
-		return new ModelAndView("/email/email").addObject("email", emailDefinido);
-	}
+        emailDefinido.setMensagem("CONTRATAÇÃO\r\n" + "\r\n" + "Informamos que o Sr (a) " + funcionario.getFirstName()
+                + " " + funcionario.getLastName() + ", portador do CPF " + funcionario.getCpf() + ",\r\n"
+                + "foi selecionada para ocupar o cargo de " + funcionario.getCargo() + " a partir de " + admisao
+                + ". \r\n"
+                + "Favor (se necessário) solicitar a aquisição dos equipamentos necessários para o novo colaborador exercer suas funções.\r\n"
+                + "\r\n" + "Atenciosamente,\r\n" + "\r\n" + "Recursos Humanos");
 
-	@PostMapping("enviar")
-	public ModelAndView sendEmail(@ModelAttribute("email") @Valid Email email, RedirectAttributes redirectAttributes) {
+        return new ModelAndView("/email/email").addObject("email", emailDefinido);
+    }
 
-		try {
-			MimeMessage mail = javaMailSender.createMimeMessage();
+    @PostMapping("enviar")
+    public ModelAndView sendEmail(@ModelAttribute("email") @Valid Email email, RedirectAttributes redirectAttributes) {
 
-			MimeMessageHelper helper = new MimeMessageHelper(mail);
-			helper.setTo(email.getDestinatario());
-			helper.setSubject(email.getAssunto());
-			helper.setText(email.getMensagem());
-			javaMailSender.send(mail);
+        try {
+            MimeMessage mail = javaMailSender.createMimeMessage();
 
-			redirectAttributes.addFlashAttribute("mensagemSucesso", "Email enviado com sucesso");
+            MimeMessageHelper helper = new MimeMessageHelper(mail);
+            helper.setTo(email.getDestinatario());
+            helper.setSubject(email.getAssunto());
+            helper.setText(email.getMensagem());
+            javaMailSender.send(mail);
 
-		} catch (Exception e) {
-			e.printStackTrace();
-			redirectAttributes.addFlashAttribute("mensagemSucesso", "Erro ao enviar email");
+            redirectAttributes.addFlashAttribute("mensagemSucesso", "Email enviado com sucesso");
 
-		}
+        } catch (Exception e) {
+            e.printStackTrace();
+            redirectAttributes.addFlashAttribute("mensagemSucesso", "Erro ao enviar email");
 
-		return new ModelAndView("redirect:/erp/funcionario/listar");
+        }
 
-	}
+        return new ModelAndView("redirect:/erp/funcionario/listar");
+
+    }
+
+    @GetMapping("/contato/{id}")
+    public ModelAndView msgEmailProfile(@PathVariable(value = "id") long id
+    /* ,@PathVariable(value = "true") boolean msg */) {
+
+        Funcionario funcionario = funcionarioRepository.findById(id);
+        Email emailDefinido = new Email();
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        String admisao = funcionario.getDtAdmission().format(formatter);
+
+        emailDefinido.setDestinatario(funcionario.getContato().getEmail());
+        emailDefinido.setAssunto("EMAIL DE CONTATO Funcionario " + funcionario.getFirstName());
+
+        return new ModelAndView("/email/email").addObject("email", emailDefinido);
+    }
+
 //	Fonte 
 //	https://receitasdecodigo.com.br/spring-boot/como-configurar-projetos-spring-boot-para-enviar-e-mail
 }
