@@ -65,44 +65,9 @@
                             <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
                                 <div class="d-flex justify-content-between" th:object="${funcionario}">
                                     <a th:href="@{/erp/funcionario/buscar/{id}(id = ${funcionario.id})}" class="btn btn-sm btn-info mr-4">Editar</a>
-                                    <a th:href="@{/erp/email/novo}" class="btn btn-sm btn-default float-right">Enviar email</a>
-                                </div>
-                            </div>
-                            <div class="card-body pt-0 pt-md-4">
-                                <div class="row">
-                                    <div class="col">
-                                        <div class="card-profile-stats d-flex justify-content-center mt-md-5">
-                                            <div>
-                                                <span class="heading" th:text="${#lists.size(advertencias)}"></span>
-                                                <span class="description">Advertencias</span>
-                                            </div>
-                                            <div>
-                                                <span class="heading" th:text="${#lists.size(suspensoes)}"></span>
-                                                <span class="description">Suspensões</span>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="text-center" th:object="${funcionario}">
-                                    <h3 th:text="${funcionario.firstName + ' ' + funcionario.lastName}"></h3>
-                                    <div class="h5 font-weight-300">
-                                        <i class="ni location_pin mr-2"></i><label th:text="${funcionario.endereco.cidade}"></label>
-                                    </div>
-                                    <div class="h5 mt-4">
-                                        <i class="ni business_briefcase-24 mr-2" ></i><label th:text="${funcionario.cargo}"></label>
-                                    </div>
-                                    <div>
-                                        <i class="ni education_hat mr-2"></i><label th:text="${funcionario.departamento}"></label>
-                                    </div>
-
-                                    <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
-                                        <div class="d-flex justify-content-center">
-                                            <a th:href="@{/erp/advertencia/aplicar/{id}(id = ${funcionario.id})}" class="btn btn-sm btn-warning mr-4">Advertir</a>
-                                            <a th:href="@{/erp/suspensao/aplicar/{id}(id = ${funcionario.id})}" class="btn btn-sm btn-danger mr-4">Suspender</a>
-                                        </div>
-                                    </div>
-                                </div>
+                                    <a class="dropdown-item"
+                                       th:href="@{/erp/email/contato/{id}(id = ${funcionario.id})}">Enviar
+                                        Email</a> <a class="dropdown-item"
                             </div>
                         </div>
                         <div class="card-body pt-0 pt-md-4">
