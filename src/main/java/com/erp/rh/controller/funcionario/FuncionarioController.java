@@ -53,7 +53,7 @@ public class FuncionarioController {
 
 		for (Funcionario funcionario : funcionarioRepository.findAll()) {
 
-			String porcentagem = String.valueOf(100 * funcionario.getDataAdmissao().getDayOfYear() / 345);
+			String porcentagem = String.valueOf(100 - (100 * funcionario.getDataAdmissao().getDayOfYear() / 365 ));
 			funcionario.setFerias(porcentagem + "%");
 			funcionarios.add(funcionario);
 
@@ -66,9 +66,9 @@ public class FuncionarioController {
 	@PostMapping("/save")
 	public ModelAndView save(@ModelAttribute("funcionario") @Valid Funcionario funcionario, BindingResult bindingResult,
 			RedirectAttributes redirectAttributes) {
-		if (bindingResult.hasErrors()) {
-			return new ModelAndView("/funcionario/cadastrarAlterar");
-		}
+		//if (bindingResult.hasErrors()) {
+		//	return new ModelAndView("/funcionario/cadastrarAlterar");
+		//}
 
 		if (funcionario.getId() == null) {
 			if (funcionario.getAcesso().getUsername().equals("") || funcionario.getAcesso().getPassword().equals("")) {
